@@ -1,0 +1,42 @@
+import { parse } from 'qs';
+import { routerRedux } from 'dva/router';
+import getLogin from '../../services/system/home';
+import { saveSession } from '../../utils/index';
+
+export default {
+  namespace: 'allocation',
+  state: {
+    roomCode: '',
+    buildingName: '',
+    modalVisible: false,
+    cateId: '',
+    treeData: [],
+    queryString: '',
+    oPty: '',
+    // buildingId: '',
+    collegeName: '',
+    className: '',
+    collegeId: '',
+    calssId: '',
+  },
+  subscriptions: {},
+  effects: {},
+  reducers: {
+    showLoading(state) {
+      return { ...state, loading: true };
+    },
+    hideLoading(state) {
+      return { ...state, loading: false };
+    },
+    querySuccess(state, action) {
+      return { ...state, ...action.payload, loading: false };
+    },
+    updateState(state, payload) {
+      return { ...state, ...payload };
+    },
+    mergeData(state, action) {
+      console.log(action.payload);
+      return { ...state, ...action.payload };
+    },
+  },
+};

@@ -1,0 +1,452 @@
+html body {
+
+  .fn-block {
+      display: block;
+  }
+
+  .fn-inline {
+      display: -moz-inline-stack;
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+  }
+
+  /* 隐藏,
+  通常用来与 JS 配合 */
+  .fn-hide {
+      display: none
+  }
+
+
+  /* 清理浮动 */
+  .fn-clear:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: " ";
+      clear: both;
+      height: 0;
+  }
+
+  .fn-clear {
+      zoom: 1; /* for IE6 IE7 */
+  }
+
+  /* 设置内联,
+  减少浮动带来的bug */
+  .fn-left,
+  .fn-right {
+      display: inline-block;
+  }
+
+  .fn-left {
+      float: left
+  }
+
+  .fn-right {
+      float: right
+  }
+
+
+  /* 设置边距、内距快捷方法 */
+  .fn-m0 {
+      margin: 0
+  }
+
+  .fn-m5 {
+      margin: 5px
+  }
+
+  .fn-m10 {
+      margin: 10px
+  }
+
+  .fn-m15 {
+      margin: 15px
+  }
+
+  .fn-m20 {
+      margin: 20px
+  }
+
+  .fn-m25 {
+      margin: 25px
+  }
+
+  .fn-m30 {
+      margin: 30px
+  }
+
+  .fn-m8 {
+    margin: 8px;
+  }
+
+  .fn-m16 {
+    margin: 16px;
+  }
+
+  .fn-m24 {
+    margin: 24px;
+  }
+
+  .fn-mt0 {
+      margin-top: 0
+  }
+
+  .fn-mr0 {
+      margin-right: 0
+  }
+
+  .fn-mb0 {
+      margin-bottom: 0
+  }
+
+  .fn-ml0 {
+      margin-left: 0
+  }
+
+  .fn-mt5 {
+      margin-top: 5px
+  }
+
+  .fn-mr5 {
+      margin-right: 5px
+  }
+
+  .fn-mb5 {
+      margin-bottom: 5px
+  }
+
+  .fn-ml5 {
+      margin-left: 5px
+  }
+
+  .fn-mt10 {
+      margin-top: 10px
+  }
+
+  .fn-mr10 {
+      margin-right: 10px
+  }
+
+  .fn-mb10 {
+      margin-bottom: 10px
+  }
+
+  .fn-ml10 {
+      margin-left: 10px
+  }
+
+  .fn-mt15 {
+      margin-top: 15px
+  }
+
+  .fn-mr15 {
+      margin-right: 15px
+  }
+
+  .fn-mb15 {
+      margin-bottom: 15px
+  }
+
+  .fn-ml15 {
+      margin-left: 15px
+  }
+
+  .fn-mt20 {
+      margin-top: 20px
+  }
+
+  .fn-mr20 {
+      margin-right: 20px
+  }
+
+  .fn-mb20 {
+      margin-bottom: 20px
+  }
+
+  .fn-ml20 {
+      margin-left: 20px
+  }
+
+  .fn-mt25 {
+      margin-top: 25px
+  }
+
+  .fn-mr25 {
+      margin-right: 25px
+  }
+
+  .fn-mb25 {
+      margin-bottom: 25px
+  }
+
+  .fn-ml25 {
+      margin-left: 25px
+  }
+
+  .fn-mt30 {
+      margin-top: 30px
+  }
+
+  .fn-mr30 {
+      margin-right: 30px
+  }
+
+  .fn-mb30 {
+      margin-bottom: 30px
+  }
+
+  .fn-ml30 {
+      margin-left: 30px
+  }
+
+  .fn-mt8 {
+      margin-top: 8px
+  }
+
+  .fn-mr8 {
+      margin-right: 8px
+  }
+
+  .fn-mb8 {
+      margin-bottom: 8px
+  }
+
+  .fn-ml8 {
+      margin-left: 8px
+  }
+
+  .fn-mt16 {
+      margin-top: 16px
+  }
+
+  .fn-mr16 {
+      margin-right: 16px
+  }
+
+  .fn-mb16 {
+      margin-bottom: 16px
+  }
+
+  .fn-ml16 {
+      margin-left: 16px
+  }
+
+  .fn-mt24 {
+      margin-top: 24px
+  }
+
+  .fn-mr24 {
+      margin-right: 24px
+  }
+
+  .fn-mb24 {
+      margin-bottom: 24px
+  }
+
+  .fn-ml24 {
+      margin-left: 24px
+  }
+
+  .fn-p0 {
+      padding: 0
+  }
+
+  .fn-p5 {
+      padding: 5px
+  }
+
+  .fn-p10 {
+      padding: 10px
+  }
+
+  .fn-p15 {
+      padding: 15px
+  }
+
+  .fn-p20 {
+      padding: 20px
+  }
+
+  .fn-p25 {
+      padding: 25px
+  }
+
+  .fn-p30 {
+      padding: 30px
+  }
+
+  .fn-p8 {
+    padding: 8px;
+  }
+
+  .fn-p16 {
+    padding: 16px;
+  }
+
+  .fn-p24 {
+    padding: 24px;
+  }
+
+  .fn-pt0 {
+      padding-top: 0
+  }
+
+  .fn-pr0 {
+      padding-right: 0
+  }
+
+  .fn-pb0 {
+      padding-bottom: 0
+  }
+
+  .fn-pl0 {
+      padding-left: 0
+  }
+
+  .fn-pt5 {
+      padding-top: 5px
+  }
+
+  .fn-pr5 {
+      padding-right: 5px
+  }
+
+  .fn-pb5 {
+      padding-bottom: 5px
+  }
+
+  .fn-pl5 {
+      padding-left: 5px
+  }
+
+  .fn-pt10 {
+      padding-top: 10px
+  }
+
+  .fn-pr10 {
+      padding-right: 10px
+  }
+
+  .fn-pb10 {
+      padding-bottom: 10px
+  }
+
+  .fn-pl10 {
+      padding-left: 10px
+  }
+
+  .fn-pt15 {
+      padding-top: 15px
+  }
+
+  .fn-pr15 {
+      padding-right: 15px
+  }
+
+  .fn-pb15 {
+      padding-bottom: 15px
+  }
+
+  .fn-pl15 {
+      padding-left: 15px
+  }
+
+  .fn-pt20 {
+      padding-top: 20px
+  }
+
+  .fn-pr20 {
+      padding-right: 20px
+  }
+
+  .fn-pb20 {
+      padding-bottom: 20px
+  }
+
+  .fn-pl20 {
+      padding-left: 20px
+  }
+
+  .fn-pt25 {
+      padding-top: 25px
+  }
+
+  .fn-pr25 {
+      padding-right: 25px
+  }
+
+  .fn-pb25 {
+      padding-bottom: 25px
+  }
+
+  .fn-pl25 {
+      padding-left: 25px
+  }
+
+  .fn-pt30 {
+      padding-top: 30px
+  }
+
+  .fn-pr30 {
+      padding-right: 30px
+  }
+
+  .fn-pb30 {
+      padding-bottom: 30px
+  }
+
+  .fn-pl30 {
+      padding-left: 30px
+  }
+
+  .fn-pt8 {
+      padding-top: 8px
+  }
+
+  .fn-pr8 {
+      padding-right: 8px
+  }
+
+  .fn-pb8 {
+      padding-bottom: 8px
+  }
+
+  .fn-pl8 {
+      padding-left: 8px
+  }
+
+  .fn-pt16 {
+      padding-top: 16px
+  }
+
+  .fn-pr16 {
+      padding-right: 16px
+  }
+
+  .fn-pb16 {
+      padding-bottom: 16px
+  }
+
+  .fn-pl16 {
+      padding-left: 16px
+  }
+
+  .fn-pt24 {
+      padding-top: 24px
+  }
+
+  .fn-pr24 {
+      padding-right: 24px
+  }
+
+  .fn-pb24 {
+      padding-bottom: 24px
+  }
+
+  .fn-pl24 {
+      padding-left: 24px
+  }
+
+}

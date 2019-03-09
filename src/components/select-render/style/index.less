@@ -1,0 +1,8 @@
+/* 修复多个ant-form-item嵌套导致没有margin-bottom问题 */
+.ant-form-item .hrui-select-render .ant-form-item {
+  margin-bottom: 24px!important;
+
+  &.ant-form-item-with-help {
+    margin-bottom: 3px!important;
+  }
+}

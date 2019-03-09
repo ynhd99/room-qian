@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      "hermes-tree-select@1.1.1",
+      "D:\\work\\merchants"
+    ]
+  ],
+  "_from": "hermes-tree-select@1.1.1",
+  "_id": "hermes-tree-select@1.1.1",
+  "_inBundle": false,
+  "_integrity": "sha512-KEXnROFcxam6M94bKbmzDvkp+AnAPZpDCFAsrS3wsxoP52e7Z2LQ9SYgsj7j1Z8thLl1qrKrhgrttJYBJtr4pQ==",
+  "_location": "/hermes-tree-select",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "hermes-tree-select@1.1.1",
+    "name": "hermes-tree-select",
+    "escapedName": "hermes-tree-select",
+    "rawSpec": "1.1.1",
+    "saveSpec": null,
+    "fetchSpec": "1.1.1"
+  },
+  "_requiredBy": [
+    "/hermes-react"
+  ],
+  "_resolved": "https://registry.npmjs.org/hermes-tree-select/-/hermes-tree-select-1.1.1.tgz",
+  "_spec": "1.1.1",
+  "_where": "D:\\work\\merchants",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.13.1",
+    "react-list": "^0.8.4"
+  },
+  "description": "```html  <Tree   treeData = { cities }   checked = { ['340803','340824'] }   onChange = {this.onChange.bind(this) }   searchValue = {this.state.searchValue }   search = { this.search.bind(this) } /> ```",
+  "devDependencies": {
+    "@alipay/ajax": "^3.1.1",
+    "antd": "^1.4.1",
+    "atool-build": "^0.8.0",
+    "babel-eslint": "^6.1.2",
+    "babel-plugin-antd": "^0.5.1",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-runtime": "^6.11.6",
+    "dora": "^0.4.3",
+    "dora-plugin-proxy": "^0.8.0",
+    "dora-plugin-webpack": "^0.8.1",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.1",
+    "eslint-plugin-react": "^6.2.0",
+    "pre-commit": "1.x",
+    "react": "^15.3.1",
+    "react-addons-perf": "^15.3.1",
+    "react-dom": "^15.3.1"
+  },
+  "entry": {
+    "index": "./examples/index.jsx"
+  },
+  "files": [
+    "asynctree.jsx",
+    "index.jsx",
+    "src"
+  ],
+  "name": "hermes-tree-select",
+  "pre-commit": [
+    "lint"
+  ],
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "atool-build -o ./dist/${npm_package_name}/${npm_package_version}/",
+    "dev": "dora -p 8001 --plugins webpack",
+    "lint": "eslint --ext .js,.jsx src",
+    "start": "npm run dev",
+    "test": "atool-test --keep"
+  },
+  "version": "1.1.1"
+}
