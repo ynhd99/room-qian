@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, Input, Row, Col, TreeSelect } from 'antd';
+import { Modal, Form, Input, Row, Col } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -35,7 +35,7 @@ const CollegeModal = ({
     onOk: handleOk,
     onCancel,
     wrapClassName: 'vertical-center-modal',
-    confirmLoading: college.loading,
+    // confirmLoading: college.loading,
     destroyOnClose: true,
   };
   return (

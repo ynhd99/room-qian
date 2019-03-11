@@ -40,7 +40,7 @@ const App = ({ children, account, location, dispatch }) => {
         <aside className={classnames(styles.sider)}>
           <Sider {...siderProps} />
         </aside>
-        <div className={styles.main} style={{ marginLeft: isShow ? 230 : 0 }}>
+        <div style={{ marginLeft: isShow ? 230 : 0 }} className={isShow ? styles.main : ''}>
           <Bread {...breadProps} />
           <div className={'iframe-container'}>
             <div className={styles.content}>

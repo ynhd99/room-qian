@@ -66,10 +66,6 @@ const CollegeSearch = ({
             <Button type="primary" onClick={() => mergeData({ modalVisible: true })}>
               添加学院
             </Button>
-            &nbsp;&nbsp;&nbsp;
-            <Button type="primary" onClick={() => mergeData({ modalVisible: true })}>
-              添加班级
-            </Button>
           </Col>
         </Row>
       </div>

@@ -43,6 +43,18 @@ const College = ({ college, dispatch }) => {
         payload,
       });
     },
+    modalHandleOk(payload) {
+      dispatch({
+        type: 'college/add',
+        payload,
+      });
+      dispatch({
+        type: 'college/mergeData',
+        payload: {
+          modalVisable: false,
+        },
+      });
+    },
   };
   return (
     <div>
