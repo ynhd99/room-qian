@@ -2,9 +2,10 @@ import { connect } from 'dva';
 import React from 'react';
 import ClassSearch from '../../components/system/class/search';
 import ClassList from '../../components/system/class/list';
+import ClassModal from '../../components/system/class/modal';
 
 const ClassRoom = ({ classRoom, dispatch }) => {
-  const CollegeLists = {
+  const ClassLists = {
     classRoom,
     onPageChange(page) {
       dispatch({
@@ -22,8 +23,25 @@ const ClassRoom = ({ classRoom, dispatch }) => {
         payload,
       });
     },
+    updateStatus(payload) {
+      dispatch({
+        type: 'classRoom/updateStatus',
+        payload: {
+          id: payload.id,
+          status: payload.status,
+        },
+      });
+    },
+    deleteClass(payload) {
+      dispatch({
+        type: 'classRoom/deleteClass',
+        payload: {
+          id: payload.record.id,
+        },
+      });
+    },
   };
-  const CollegeSearchList = {
+  const ClassSearchs = {
     classRoom,
     mergeData(payload) {
       console.log('hahahhahahhahh');
@@ -32,21 +50,61 @@ const ClassRoom = ({ classRoom, dispatch }) => {
         payload,
       });
     },
+    searchAction() {
+      dispatch({
+        type: 'classRoom/getClassList',
+        payload: {},
+      });
+    },
+    showModal(modalVisible) {
+      dispatch({
+        type: 'classRoom/mergeData',
+        payload: {
+          modalVisible,
+        },
+      });
+      dispatch({
+        type: 'classRoom/getCollegeList',
+        payload: {},
+      });
+    },
   };
-  const CollegeModalList = {
+  const ClassModals = {
     classRoom,
     mergeData(payload) {
       console.log('hahahhahahhahh');
       dispatch({
-        type: 'college/mergeData',
+        type: 'classRoom/mergeData',
         payload,
       });
+    },
+    modalHandleOk(values) {
+      if (classRoom.oPty === 'add') {
+        dispatch({
+          type: 'classRoom/addClass',
+          payload: {
+            classCode: values.classCode,
+            className: values.className,
+            collegeId: values.collegeId,
+          },
+        });
+      } else {
+        console.log('我开始了哈  ');
+        dispatch({
+          type: 'classRoom/updateClass',
+          payload: {
+            className: values.className,
+            collegeId: values.collegeId,
+          },
+        });
+      }
     },
   };
   return (
     <div>
-      <ClassSearch {...CollegeSearchList} />
-      <ClassList {...CollegeLists} />
+      <ClassSearch {...ClassSearchs} />
+      <ClassList {...ClassLists} />
+      <ClassModal {...ClassModals} />
     </div>
   );
 };

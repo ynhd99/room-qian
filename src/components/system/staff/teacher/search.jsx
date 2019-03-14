@@ -6,14 +6,10 @@ const TeacherSearch = ({
   teacher,
   mergeData,
   onSubmitInfo,
+  searchAction,
+  getDataList,
   form: { getFieldDecorator, validateFields },
 }) => {
-  const formItemLayout1 = {
-    wrapperCol: {
-      span: 18,
-      offset: 6,
-    },
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     validateFields({ force: true }, (err, values) => {
@@ -31,14 +27,16 @@ const TeacherSearch = ({
               <FormItem label="搜索条件">
                 {getFieldDecorator('queryString', {
                   initialValue: teacher.queryString,
-                })(<Input minWidth="214" placeholder="请输入老师的编号或者姓名" />)}
-              </FormItem>
-            </Col>
-            <Col span={8} xl={8} xxl={6}>
-              <FormItem className="search-input" {...formItemLayout1}>
-                <Button type="primary" htmlType="submit">
-                  搜索
-                </Button>
+                })(
+                  <Input
+                    width="214"
+                    placeholder="请输入老师的编号或者姓名"
+                    onChange={(value) => {
+                      mergeData({ queryString: value.target.value });
+                      searchAction();
+                    }}
+                  />,
+                )}
               </FormItem>
             </Col>
           </Row>
@@ -47,11 +45,15 @@ const TeacherSearch = ({
           <Row />
           <Row>
             <Col span={16}>
-              <Button type="primary" onClick={() => mergeData({ modalVisible: true })}>
+              <Button
+                type="primary"
+                onClick={() => {
+                  mergeData({ modalVisible: true, oPty: 'add' });
+                  getDataList();
+                }}
+              >
                 +新增老师
               </Button>
-              &nbsp;&nbsp;
-              <Button type="primary">删除</Button>
             </Col>
           </Row>
         </div>

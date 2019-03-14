@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { parse } from 'qs';
-import { getList, add } from '../../services/system/college';
+import { getList, add, updateStatus, deleteCollege, update } from '../../services/system/college';
 
 export default {
   namespace: 'college',
@@ -8,7 +8,8 @@ export default {
     loading: false,
     collegeList: [],
     modalVisable: false,
-    status: '',
+    // 状态
+    status: '2',
     // 学院名称
     collegeName: '',
     // 学院代码
@@ -38,7 +39,7 @@ export default {
     },
   },
   effects: {
-    * add({ payload }, { select, call, put }) {
+    * add({ payload }, { call, put }) {
       const res = yield call(add, { ...parse(payload) });
       if (res.data.code === '200') {
         message.info('新增成功');
@@ -47,10 +48,45 @@ export default {
         message.error(res.data.errorInfo);
       }
     },
+    * update({ payload }, { select, call, put }) {
+      const { id } = yield select(state => state.college);
+      payload.id = id;
+      const res = yield call(update, { ...parse(payload) });
+      if (res.data.code === '200') {
+        message.info('修改成功');
+        yield put({ type: 'getList', payload: {} });
+      } else {
+        message.error(res.data.errorInfo);
+      }
+    },
+    * deleteCollege({ payload }, { select, call, put }) {
+      const res = yield call(deleteCollege, { ...parse(payload) });
+      if (res.data.code === '200') {
+        message.info('删除成功');
+        yield put({ type: 'getList', payload: {} });
+      } else {
+        message.error(res.data.errorInfo);
+      }
+    },
+    * updateStatus({ payload }, { select, call, put }) {
+      const res = yield call(updateStatus, { ...parse(payload) });
+      if (res.data.code === '200') {
+        message.info('修改成功');
+        yield put({ type: 'getList', payload: {} });
+      } else {
+        message.error(res.data.errorInfo);
+      }
+    },
     * getList({ payload }, { select, call, put }) {
+      console.log('开始获取列表');
       yield put({ type: 'showLoading' });
-      const { queryString, pagination } = yield select(state => state.college);
+      const { status, queryString, pagination } = yield select(state => state.college);
       payload.queryString = queryString;
+      if (status === '2') {
+        payload.status = null;
+      } else {
+        payload.status = status;
+      }
       payload.page = payload.pageNo || pagination.current;
       payload.size = payload.pageSize || pagination.pageSize;
       if (payload.page === 0 || payload.rows === 0) {

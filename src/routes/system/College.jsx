@@ -23,14 +23,69 @@ const College = ({ college, dispatch }) => {
         payload,
       });
     },
+    updateStatus(payload) {
+      console.log(`我进来了吧${payload.id}`);
+      dispatch({
+        type: 'college/updateStatus',
+        payload: {
+          id: payload.id,
+          status: payload.status,
+        },
+      });
+    },
+    deleteCollege(payload) {
+      dispatch({
+        type: 'college/deleteCollege',
+        payload: {
+          id: payload.record.id,
+        },
+      });
+    },
   };
   const CollegeSearchList = {
     college,
     mergeData(payload) {
-      console.log('hahahhahahhahh');
       dispatch({
         type: 'college/mergeData',
         payload,
+      });
+    },
+    changeStatusList(value) {
+      console.log(`我开始改变状态了${value}`);
+      dispatch({
+        type: 'college/mergeData',
+        payload: {
+          status: value,
+        },
+      });
+      dispatch({
+        type: 'college/getList',
+        payload: {},
+      });
+    },
+    searchAction() {
+      dispatch({
+        type: 'college/getList',
+        payload: {},
+      });
+    },
+    nameChanged(value) {
+      console.log('我改变了输入框');
+      dispatch({
+        type: 'college/mergeData',
+        payload: {
+          queryString: value,
+        },
+      });
+      dispatch({
+        type: 'college/getList',
+        payload: {},
+      });
+    },
+    onSubmitInfo() {
+      dispatch({
+        type: 'college/getList',
+        payload: {},
       });
     },
   };
@@ -44,10 +99,17 @@ const College = ({ college, dispatch }) => {
       });
     },
     modalHandleOk(payload) {
-      dispatch({
-        type: 'college/add',
-        payload,
-      });
+      if (college.oPty === 'add') {
+        dispatch({
+          type: 'college/add',
+          payload,
+        });
+      } else {
+        dispatch({
+          type: 'college/update',
+          payload,
+        });
+      }
       dispatch({
         type: 'college/mergeData',
         payload: {

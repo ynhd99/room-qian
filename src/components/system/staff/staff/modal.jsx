@@ -39,6 +39,29 @@ const StaffModal = ({
     destroyOnClose: true,
   };
   console.log(staff.modalVisible);
+  const filterOption = (inputValue, option) => {
+    const props = option.props;
+    const qs = props.queryString;
+    const reg = new RegExp(inputValue, 'i');
+    if (typeof props.children === 'string') {
+      return false;
+    }
+    if (qs && reg.test(qs)) {
+      return true;
+    }
+    return false;
+  };
+  const roleOptions =
+    staff.roleList &&
+    staff.roleList.map(role => (
+      <Select.Option
+        value={role.id}
+        key={role.id}
+        queryString={`${role.roleName} | ${role.roleCode}`}
+      >
+        {role.roleName} | {role.roleCode}
+      </Select.Option>
+    ));
   return (
     <Modal {...modalOpts}>
       <Form>
@@ -57,7 +80,13 @@ const StaffModal = ({
                     message: '请输入2到10位的中文或英文字符！',
                   },
                 ],
-              })(<Input type="text" placeholder="2到10位的中文或英文字符" />)}
+              })(
+                <Input
+                  type="text"
+                  placeholder="2到10位的中文或英文字符"
+                  disabled={staff.oPty === 'edit'}
+                />,
+              )}
             </FormItem>
             <FormItem {...formItemLayout} label="姓名" hasFeedback>
               {getFieldDecorator('staffName', {
@@ -101,27 +130,29 @@ const StaffModal = ({
                 ],
               })(
                 <RadioGroup name="gender">
-                  <Radio value={1}>男</Radio>
-                  <Radio value={2}>女</Radio>
+                  <Radio value="1">男</Radio>
+                  <Radio value="2">女</Radio>
                 </RadioGroup>,
               )}
             </FormItem>
             <FormItem {...formItemLayout} label="角色">
               {getFieldDecorator('roleId', {
-                initialValue: staff.roleId,
+                initialValue: staff.roleId === '' ? '请选择角色' : '',
                 rules: [{ required: true, message: '请选择角色' }],
-              })(<Select placeholder="请选择角色">{''}</Select>)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="管理楼号">
-              {getFieldDecorator('buildingId', {
-                initialValue: staff.buildingId || [],
-                rules: [
-                  {
-                    required: true,
-                    message: '请选择楼号',
-                  },
-                ],
-              })(<Select placeholder="请选择楼号">{''}</Select>)}
+              })(
+                <Select
+                  style={{ minWidth: 215 }}
+                  value={staff.roleId}
+                  showSearch
+                  filterOption={filterOption}
+                  onChange={(value) => {
+                    mergeData({ roleId: value });
+                  }}
+                  placeholder="请选择角色"
+                >
+                  {roleOptions}
+                </Select>,
+              )}
             </FormItem>
           </Col>
         </Row>

@@ -51,9 +51,41 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         payload,
       });
     },
+    searchAction() {
+      dispatch({
+        type: 'teacher/getTeacherList',
+        payload: {},
+      });
+    },
+    getDataList() {
+      dispatch({
+        type: 'teacher/getRoleList',
+        payload: {},
+      });
+      dispatch({
+        type: 'teacher/getCollegeList',
+        payload: {},
+      });
+    },
   };
   const teacherList = {
     teacher,
+    getDataList() {
+      dispatch({
+        type: 'teacher/getRoleList',
+        payload: {},
+      });
+      dispatch({
+        type: 'teacher/getCollegeList',
+        payload: {},
+      });
+    },
+    mergeData(payload) {
+      dispatch({
+        type: 'teacher/mergeData',
+        payload,
+      });
+    },
     onPageChange(page) {
       dispatch({
         type: 'teacher/getStudentList',
@@ -61,6 +93,12 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
           pageNo: page.current,
           pageSize: page.pageSize,
         },
+      });
+    },
+    deleteTeacher(payload) {
+      dispatch({
+        type: 'teacher/deleteTeacher',
+        payload,
       });
     },
   };
@@ -72,6 +110,20 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         payload,
       });
     },
+    modalHandleOk(payload) {
+      if (teacher.oPty === 'add') {
+        dispatch({
+          type: 'teacher/addTeacher',
+          payload,
+        });
+      } else if (teacher.oPty === 'edit') {
+        console.log('好难过啊');
+        dispatch({
+          type: 'teacher/updateTeacher',
+          payload,
+        });
+      }
+    },
   };
   const staffSearch = {
     staff,
@@ -81,9 +133,28 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         payload,
       });
     },
+    getRoleList(payload) {
+      console.log('我要获取角色信息了');
+      dispatch({
+        type: 'staff/getRoleList',
+        payload,
+      });
+    },
+    searchAction() {
+      dispatch({
+        type: 'staff/getStaffList',
+        payload: {},
+      });
+    },
   };
   const staffList = {
     staff,
+    mergeData(payload) {
+      dispatch({
+        type: 'staff/mergeData',
+        payload,
+      });
+    },
     onPageChange(page) {
       dispatch({
         type: 'staff/getStudentList',
@@ -91,6 +162,13 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
           pageNo: page.current,
           pageSize: page.pageSize,
         },
+      });
+    },
+    getRoleList(payload) {
+      console.log('我要获取角色信息了');
+      dispatch({
+        type: 'staff/getRoleList',
+        payload,
       });
     },
   };
@@ -101,6 +179,20 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         type: 'staff/mergeData',
         payload,
       });
+    },
+    modalHandleOk(payload) {
+      if (staff.oPty === 'add') {
+        dispatch({
+          type: 'staff/addStaff',
+          payload,
+        });
+      } else if (staff.oPty === 'edit') {
+        console.log('好难过啊');
+        dispatch({
+          type: 'staff/updateStaff',
+          payload,
+        });
+      }
     },
   };
   return (

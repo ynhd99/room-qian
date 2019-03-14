@@ -52,7 +52,13 @@ const CollegeModal = ({
                     message: '请输入学院编码',
                   },
                 ],
-              })(<Input type="text" placeholder="请输入学院编码" />)}
+              })(
+                <Input
+                  type="text"
+                  placeholder="请输入学院编码"
+                  disabled={college.oPty === 'edit'}
+                />,
+              )}
             </FormItem>
           </Row>
           <Row>

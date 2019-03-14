@@ -1,22 +1,31 @@
 import React from 'react';
 import { Table, Form, Badge, Popconfirm } from 'antd';
 
-const CollegeList = ({ mergeData, college, onPageChange, showModal, updateStatus }) => {
+const CollegeList = ({
+  mergeData,
+  college,
+  onPageChange,
+  showModal,
+  updateStatus,
+  deleteCollege,
+}) => {
   const columns = [
     {
       title: '学院代码',
       dataIndex: 'collegeCode',
       key: 'collegeCode',
+      width: '25%',
     },
     {
       title: '学院名称',
       dataIndex: 'collegeName',
       key: 'collegeName',
+      width: '25%',
     },
     {
       title: '分类状态',
       dataIndex: 'status',
-      width: 100,
+      width: '25%',
       render(text, record) {
         if (record.parentId === '-1') {
           return null;
@@ -30,16 +39,27 @@ const CollegeList = ({ mergeData, college, onPageChange, showModal, updateStatus
     {
       title: '操作',
       dataIndex: 'action',
-      width: '200',
+      width: '25%',
       render(text, record) {
         if (record.status === 0) {
           return (
             <div>
-              <a onClick={() => showModal('edit', record)}>编辑 |</a>
+              <a
+                onClick={() =>
+                  mergeData({
+                    oPty: 'edit',
+                    id: record.id,
+                    modalVisible: true,
+                    collegeCode: record.collegeCode,
+                  })
+                }
+              >
+                编辑 |
+              </a>
               <Popconfirm
-                title="你确定要停用改学院吗？"
+                title="你确定要停用该学院吗？"
                 onConfirm={() => {
-                  updateStatus({ record, status: 1 });
+                  updateStatus({ id: record.id, status: 1 });
                 }}
                 okText="确定"
                 cancelText="取消"
@@ -53,9 +73,9 @@ const CollegeList = ({ mergeData, college, onPageChange, showModal, updateStatus
           <div>
             <a onClick={() => showModal('edit', record)}>编辑 |</a>
             <Popconfirm
-              title="你确定要启用改学院吗？"
+              title="你确定要启用该学院吗？"
               onConfirm={() => {
-                updateStatus({ record, status: 1 });
+                updateStatus({ id: record.id, status: 0 });
               }}
               okText="确定"
               cancelText="取消"
@@ -63,9 +83,9 @@ const CollegeList = ({ mergeData, college, onPageChange, showModal, updateStatus
               <a> 启用 |</a>
             </Popconfirm>
             <Popconfirm
-              title="你确定要删除改学院吗？"
+              title="你确定要删除该学院吗？"
               onConfirm={() => {
-                updateStatus({ record, status: 1 });
+                deleteCollege({ record });
               }}
               okText="确定"
               cancelText="取消"

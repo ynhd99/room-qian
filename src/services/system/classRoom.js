@@ -1,31 +1,31 @@
 import request from '../../utils/request';
 
-export async function add(params) {
-  return request('/api/college/add', {
+export async function addClass(params) {
+  return request('/api/class/addClass', {
     method: 'post',
     body: JSON.stringify(params),
   });
 }
-export async function getList(params) {
+export async function getCollegeList(params) {
   return request('/api/college/findDataForPage', {
     method: 'post',
     body: JSON.stringify(params),
   });
 }
-export async function updateStatus(params) {
-  return request('/api/college/updateStatus', {
+export async function getClassList(params) {
+  return request('/api/class/findClassForPage', {
     method: 'post',
     body: JSON.stringify(params),
   });
 }
-export async function deleteCollege(params) {
-  return request('/api/college/delete', {
+export async function updateClass(params) {
+  return request('/api/class/updateClass', {
     method: 'post',
     body: JSON.stringify(params),
   });
 }
-export async function update(params) {
-  return request('/api/college/update', {
+export async function deleteClass(params) {
+  return request('/api/class/deleteClass', {
     method: 'post',
     body: JSON.stringify(params),
   });

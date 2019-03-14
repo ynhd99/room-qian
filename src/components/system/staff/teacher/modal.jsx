@@ -38,7 +38,40 @@ const TeacherModal = ({
     confirmLoading: teacher.loading,
     destroyOnClose: true,
   };
-  console.log(teacher.modalVisible);
+  const filterOption = (inputValue, option) => {
+    const props = option.props;
+    const qs = props.queryString;
+    const reg = new RegExp(inputValue, 'i');
+    if (typeof props.children === 'string') {
+      return false;
+    }
+    if (qs && reg.test(qs)) {
+      return true;
+    }
+    return false;
+  };
+  const roleOptions =
+    teacher.roleList &&
+    teacher.roleList.map(role => (
+      <Select.Option
+        value={role.id}
+        key={role.id}
+        queryString={`${role.roleName} | ${role.roleCode}`}
+      >
+        {role.roleName} | {role.roleCode}
+      </Select.Option>
+    ));
+  const collegeOptions =
+    teacher.collegeList &&
+    teacher.collegeList.map(college => (
+      <Select.Option
+        value={college.id}
+        key={college.id}
+        queryString={`${college.collegeName} | ${college.collegeCode}`}
+      >
+        {college.collegeName} | {college.collegeCode}
+      </Select.Option>
+    ));
   return (
     <Modal {...modalOpts}>
       <Form>
@@ -53,11 +86,17 @@ const TeacherModal = ({
                     message: '请输入编号！',
                   },
                   {
-                    pattern: /^[A-Za-z\u4e00-\u9fa5]{2,10}$/,
-                    message: '请输入2到10位的中文或英文字符！',
+                    pattern: /^[0-9]{1,10}$/,
+                    message: '请输入1到10位的数字！',
                   },
                 ],
-              })(<Input type="text" placeholder="2到10位的中文或英文字符" />)}
+              })(
+                <Input
+                  type="text"
+                  placeholder="请输入1到10位的数字"
+                  disabled={teacher.oPty === 'edit'}
+                />,
+              )}
             </FormItem>
             <FormItem {...formItemLayout} label="辅导员姓名" hasFeedback>
               {getFieldDecorator('teacherName', {
@@ -101,27 +140,53 @@ const TeacherModal = ({
                 ],
               })(
                 <RadioGroup name="gender">
-                  <Radio value={1}>男</Radio>
-                  <Radio value={2}>女</Radio>
+                  <Radio value="1">男</Radio>
+                  <Radio value="2">女</Radio>
                 </RadioGroup>,
               )}
             </FormItem>
             <FormItem {...formItemLayout} label="角色">
               {getFieldDecorator('roleId', {
-                initialValue: teacher.roleId,
+                initialValue: teacher.roleId === '' ? '请选择角色' : teacher.roleId,
                 rules: [{ required: true, message: '请选择角色' }],
-              })(<Select placeholder="请选择角色">{''}</Select>)}
+              })(
+                <Select
+                  style={{ minWidth: 215 }}
+                  value={teacher.roleId}
+                  showSearch
+                  filterOption={filterOption}
+                  onChange={(value) => {
+                    mergeData({ roleId: value });
+                  }}
+                  placeholder="请选择角色"
+                >
+                  {roleOptions}
+                </Select>,
+              )}
             </FormItem>
             <FormItem {...formItemLayout} label="学院">
               {getFieldDecorator('collegeId', {
-                initialValue: teacher.collegeId,
+                initialValue: teacher.collegeId === '' ? '请选择学院' : teacher.collegeId,
                 rules: [
                   {
                     required: true,
                     message: '请选择学院',
                   },
                 ],
-              })(<Select placeholder="请选择学院">{''}</Select>)}
+              })(
+                <Select
+                  style={{ minWidth: 215 }}
+                  value={teacher.collegeId}
+                  showSearch
+                  filterOption={filterOption}
+                  onChange={(value) => {
+                    mergeData({ collegeId: value });
+                  }}
+                  placeholder="请选择学院"
+                >
+                  {collegeOptions}
+                </Select>,
+              )}
             </FormItem>
           </Col>
         </Row>

@@ -6,6 +6,8 @@ const CollegeSearch = ({
   college,
   mergeData,
   onSubmitInfo,
+  nameChanged,
+  searchAction,
   form: { getFieldDecorator, validateFields },
 }) => {
   const formItemLayout1 = {
@@ -22,7 +24,15 @@ const CollegeSearch = ({
       }
     });
   };
-  const changeStatusList = () => {};
+  const nameProps = {
+    style: { minWidth: 248 },
+    onChange({ target: { value } }) {
+      nameChanged(value);
+    },
+    placeholder: '请输入分类编码或名称',
+    value: college.queryString,
+  };
+
   return (
     <div className="components-search">
       <Form layout="inline" onSubmit={handleSubmit}>
@@ -31,17 +41,20 @@ const CollegeSearch = ({
             <FormItem label="搜索条件">
               {getFieldDecorator('queryString', {
                 initialValue: college.queryString,
-              })(<Input minWidth="214" placeholder="请输入学院的编码或者名称" />)}
+              })(<Input {...nameProps} />)}
             </FormItem>
           </Col>
           <Col span={8}>
             <Form.Item label="状态">
               {getFieldDecorator('status', {
-                initialValue: college.status || '',
+                initialValue: college.status,
               })(
                 <Radio.Group
                   style={{ minWidth: 215 }}
-                  onChange={value => changeStatusList(value.target.value)}
+                  onChange={(value) => {
+                    mergeData({ status: value.target.value });
+                    searchAction();
+                  }}
                 >
                   <Radio.Button value="0">开启</Radio.Button>
                   <Radio.Button value="1">停用</Radio.Button>
@@ -50,20 +63,13 @@ const CollegeSearch = ({
               )}
             </Form.Item>
           </Col>
-          <Col span={8} xl={8} xxl={6}>
-            <FormItem className="search-input" {...formItemLayout1}>
-              <Button type="primary" htmlType="submit">
-                搜索
-              </Button>
-            </FormItem>
-          </Col>
         </Row>
       </Form>
       <div className="action-box" style={{ marginTop: '15px' }}>
         <Row />
         <Row>
           <Col span={16}>
-            <Button type="primary" onClick={() => mergeData({ modalVisible: true })}>
+            <Button type="primary" onClick={() => mergeData({ modalVisible: true, oPty: 'add' })}>
               添加学院
             </Button>
           </Col>

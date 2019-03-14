@@ -8,12 +8,6 @@ const StudentSearch = ({
   onSubmitInfo,
   form: { getFieldDecorator, validateFields },
 }) => {
-  const formItemLayout1 = {
-    wrapperCol: {
-      span: 18,
-      offset: 6,
-    },
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     validateFields({ force: true }, (err, values) => {
@@ -27,18 +21,11 @@ const StudentSearch = ({
       <div className="components-search">
         <Form layout="inline" onSubmit={handleSubmit}>
           <Row>
-            <Col span={8}>
+            <Col span={16}>
               <FormItem label="搜索条件">
                 {getFieldDecorator('queryString', {
-                  // initialValue: student.queryString,
-                })(<Input minWidth="214" placeholder="请输入学生的编号或者姓名" />)}
-              </FormItem>
-            </Col>
-            <Col span={8} xl={8} xxl={6}>
-              <FormItem className="search-input" {...formItemLayout1}>
-                <Button type="primary" htmlType="submit">
-                  搜索
-                </Button>
+                  initialValue: student.queryString,
+                })(<Input width="260" placeholder="请输入学生的编号或者姓名" />)}
               </FormItem>
             </Col>
           </Row>
