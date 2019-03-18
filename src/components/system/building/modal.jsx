@@ -15,7 +15,6 @@ const BuildingModal = ({
         modalHandleOk(values);
       }
     });
-    mergeData({ modalVisible: false });
   };
   const onCancel = () => {
     mergeData({ modalVisible: false, oPty: '' });
@@ -38,6 +37,29 @@ const BuildingModal = ({
     confirmLoading: building.loading,
     destroyOnClose: true,
   };
+  const filterOption = (inputValue, option) => {
+    const props = option.props;
+    const qs = props.queryString;
+    const reg = new RegExp(inputValue, 'i');
+    if (typeof props.children === 'string') {
+      return false;
+    }
+    if (qs && reg.test(qs)) {
+      return true;
+    }
+    return false;
+  };
+  const staffOptions =
+    building.staffList &&
+    building.staffList.map(staff => (
+      <Select.Option
+        value={staff.id}
+        key={staff.id}
+        queryString={`${staff.staffName} | ${staff.staffCode}`}
+      >
+        {staff.staffName} | {staff.staffCode}
+      </Select.Option>
+    ));
   return (
     <Modal {...modalOpts}>
       <Form>
@@ -78,7 +100,20 @@ const BuildingModal = ({
                     message: '请选择宿管人员',
                   },
                 ],
-              })(<Select placeholder="请选择宿管人员" />)}
+              })(
+                <Select
+                  style={{ minWidth: 215 }}
+                  value={building.staffId}
+                  showSearch
+                  filterOption={filterOption}
+                  onChange={(value) => {
+                    mergeData({ staffId: value });
+                  }}
+                  placeholder="请选择角色"
+                >
+                  {staffOptions}
+                </Select>,
+              )}
             </FormItem>
           </Row>
         </Col>

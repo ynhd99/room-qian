@@ -48,3 +48,29 @@ export async function deleteTeacher(params) {
     body: JSON.stringify(params),
   });
 }
+export async function getStudentList(params) {
+  return request('/api/student/findStudentForPage', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+export async function addStudent(params) {
+  return request('/api/student/addStudent', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+
+export async function updateStudent(params) {
+  return request('/api/student/updateStudent', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+
+export async function deleteStudent(params) {
+  return request('/api/student/deleteStudent', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}

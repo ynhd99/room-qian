@@ -23,6 +23,18 @@ const Ruilding = ({ building, dispatch }) => {
         payload,
       });
     },
+    updateStatus(payload) {
+      dispatch({
+        type: 'building/updateStatus',
+        payload,
+      });
+    },
+    deleteBuilding(payload) {
+      dispatch({
+        type: 'building/deleteBuilding',
+        payload,
+      });
+    },
   };
   const BuildingSearchList = {
     building,
@@ -33,6 +45,18 @@ const Ruilding = ({ building, dispatch }) => {
         payload,
       });
     },
+    searchAction() {
+      dispatch({
+        type: 'building/getBuildingList',
+        payload: {},
+      });
+    },
+    getStaffList() {
+      dispatch({
+        type: 'building/getStaffList',
+        payload: {},
+      });
+    },
   };
   const BuildingModalList = {
     building,
@@ -41,6 +65,26 @@ const Ruilding = ({ building, dispatch }) => {
       dispatch({
         type: 'building/mergeData',
         payload,
+      });
+    },
+    // modal点击确定按钮处理事件
+    modalHandleOk(payload) {
+      if (building.oPty === 'add') {
+        dispatch({
+          type: 'building/addBuilding',
+          payload,
+        });
+      } else {
+        dispatch({
+          type: 'building/updateBuilding',
+          payload,
+        });
+      }
+      dispatch({
+        type: 'building/mergeData',
+        payload: {
+          modalVisable: false,
+        },
       });
     },
   };

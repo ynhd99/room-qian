@@ -43,6 +43,8 @@ const StaffList = ({ mergeData, staff, onPageChange, deleteStaff, getRoleList })
                   staffCode: record.staffCode,
                   staffName: record.staffName,
                   staffPhone: record.staffPhone,
+                  staffSex: record.staffSex === '女' ? '2' : '1',
+                  roleId: record.roleId,
                 });
                 getRoleList();
               }}

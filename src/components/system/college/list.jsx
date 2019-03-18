@@ -27,9 +27,6 @@ const CollegeList = ({
       dataIndex: 'status',
       width: '25%',
       render(text, record) {
-        if (record.parentId === '-1') {
-          return null;
-        }
         if (record.status === 0) {
           return <Badge status="success" text="启用" />;
         }

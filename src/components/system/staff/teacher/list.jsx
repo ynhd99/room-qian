@@ -49,6 +49,9 @@ const TeacherList = ({ mergeData, teacher, onPageChange, getDataList, deleteTeac
                   teacherCode: record.teacherCode,
                   teacherName: record.teacherName,
                   teacherPhone: record.teacherPhone,
+                  teacherSex: record.teacherSex === '女' ? '2' : '1',
+                  roleId: record.roleId,
+                  collegeId: record.collegeId,
                 });
                 getDataList();
               }}

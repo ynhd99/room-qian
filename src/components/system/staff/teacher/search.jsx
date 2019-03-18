@@ -48,7 +48,15 @@ const TeacherSearch = ({
               <Button
                 type="primary"
                 onClick={() => {
-                  mergeData({ modalVisible: true, oPty: 'add' });
+                  mergeData({
+                    modalVisible: true,
+                    oPty: 'add',
+                    teacherCode: '',
+                    teacherName: '',
+                    teacherSex: '',
+                    roleId: '',
+                    collegeId: '',
+                  });
                   getDataList();
                 }}
               >

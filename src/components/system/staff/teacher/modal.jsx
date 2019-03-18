@@ -15,7 +15,6 @@ const TeacherModal = ({
         modalHandleOk(values);
       }
     });
-    mergeData({ modalVisible: false });
   };
   const onCancel = () => {
     mergeData({ modalVisible: false, oPty: '' });

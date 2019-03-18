@@ -15,7 +15,6 @@ const StaffModal = ({
         modalHandleOk(values);
       }
     });
-    mergeData({ modalVisible: false });
   };
   const onCancel = () => {
     mergeData({ modalVisible: false, oPty: '' });
@@ -137,7 +136,7 @@ const StaffModal = ({
             </FormItem>
             <FormItem {...formItemLayout} label="角色">
               {getFieldDecorator('roleId', {
-                initialValue: staff.roleId === '' ? '请选择角色' : '',
+                initialValue: staff.roleId === '' ? '请选择角色' : staff.roleId,
                 rules: [{ required: true, message: '请选择角色' }],
               })(
                 <Select

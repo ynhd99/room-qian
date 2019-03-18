@@ -54,6 +54,8 @@ const StaffSearch = ({
                     staffCode: '',
                     staffName: '',
                     staffPhone: '',
+                    staffSex: '',
+                    roleId: '',
                   });
                   getRoleList();
                 }}

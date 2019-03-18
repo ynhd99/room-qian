@@ -18,3 +18,9 @@ export async function getCollegeList(params) {
     body: JSON.stringify(params),
   });
 }
+export async function getClassList(params) {
+  return request('/api/class/findClassForPage', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}

@@ -21,6 +21,22 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         payload,
       });
     },
+    searchAction() {
+      dispatch({
+        type: 'student/getStudentList',
+        payload: {},
+      });
+    },
+    getDataList() {
+      dispatch({
+        type: 'student/getRoleList',
+        payload: {},
+      });
+      dispatch({
+        type: 'student/getCollegeList',
+        payload: {},
+      });
+    },
   };
   const studentList = {
     student,
@@ -33,6 +49,28 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         },
       });
     },
+    mergeData(payload) {
+      dispatch({
+        type: 'student/mergeData',
+        payload,
+      });
+    },
+    getDataList() {
+      dispatch({
+        type: 'student/getRoleList',
+        payload: {},
+      });
+      dispatch({
+        type: 'student/getCollegeList',
+        payload: {},
+      });
+    },
+    deleteStudent(payload) {
+      dispatch({
+        type: 'student/deleteStudent',
+        payload,
+      });
+    },
   };
   const studentModal = {
     student,
@@ -40,6 +78,35 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
       dispatch({
         type: 'student/mergeData',
         payload,
+      });
+    },
+    getClassList() {
+      dispatch({
+        type: 'student/getClassList',
+        payload: {},
+      });
+    },
+    modalHandleOk(payload) {
+      if (student.oPty === 'add') {
+        dispatch({
+          type: 'student/addStudent',
+          payload,
+        });
+      } else if (student.oPty === 'edit') {
+        console.log('好难过啊');
+        dispatch({
+          type: 'student/updateStudent',
+          payload,
+        });
+      }
+      dispatch({
+        type: 'student/mergeData',
+        payload: {
+          modalVisible: false,
+          roleId: '',
+          collegeId: '',
+          classId: '',
+        },
       });
     },
   };
@@ -123,6 +190,14 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
           payload,
         });
       }
+      dispatch({
+        type: 'teacher/mergeData',
+        payload: {
+          modalVisible: false,
+          roleId: '',
+          collegeId: '',
+        },
+      });
     },
   };
   const staffSearch = {
@@ -193,6 +268,13 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
           payload,
         });
       }
+      dispatch({
+        type: 'staff/mergeData',
+        payload: {
+          modalVisible: false,
+          roleId: '',
+        },
+      });
     },
   };
   return (
