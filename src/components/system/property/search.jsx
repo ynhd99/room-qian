@@ -8,11 +8,6 @@ const PropertySearch = ({
   onSubmitInfo,
   form: { getFieldDecorator, validateFields },
 }) => {
-  const formItemLayout1 = {
-    wrapperCol: {
-      offset: 15,
-    },
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     validateFields({ force: true }, (err, values) => {
@@ -30,13 +25,6 @@ const PropertySearch = ({
               {getFieldDecorator('queryString', {
                 initialValue: property.queryString,
               })(<Input minWidth="214" placeholder="请输入物品的编码或者名称" />)}
-            </FormItem>
-          </Col>
-          <Col span={8}>
-            <FormItem className="search-input" {...formItemLayout1}>
-              <Button type="primary" htmlType="submit">
-                搜索
-              </Button>
             </FormItem>
           </Col>
         </Row>

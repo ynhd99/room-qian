@@ -79,8 +79,8 @@ const BuildingModal = ({
           </Row>
           <Row>
             <FormItem label="宿舍楼名称" {...formItemLayout}>
-              {getFieldDecorator('collegeName', {
-                initialValue: building.collegeName,
+              {getFieldDecorator('buildingName', {
+                initialValue: building.buildingName,
                 rules: [
                   {
                     required: true,

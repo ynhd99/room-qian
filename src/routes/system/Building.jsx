@@ -83,7 +83,7 @@ const Ruilding = ({ building, dispatch }) => {
       dispatch({
         type: 'building/mergeData',
         payload: {
-          modalVisable: false,
+          modalVisible: false,
         },
       });
     },

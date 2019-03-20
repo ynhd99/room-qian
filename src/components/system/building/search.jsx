@@ -66,7 +66,13 @@ const CollegeSearch = ({
             <Button
               type="primary"
               onClick={() => {
-                mergeData({ modalVisible: true, oPty: 'add' });
+                mergeData({
+                  modalVisible: true,
+                  oPty: 'add',
+                  buildingCode: '',
+                  buildingName: '',
+                  staffId: '',
+                });
                 getStaffList();
               }}
             >

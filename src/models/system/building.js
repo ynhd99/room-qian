@@ -82,7 +82,7 @@ export default {
     },
     // 更新教学楼信息
     * updateBuilding({ payload }, { select, call, put }) {
-      const { id } = yield select(state => state.staff);
+      const { id } = yield select(state => state.building);
       payload.id = id;
       const res = yield call(updateBuilding, { ...parse(payload) });
       if (res.data.code === '200') {
