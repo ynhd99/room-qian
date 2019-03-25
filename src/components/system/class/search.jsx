@@ -9,12 +9,6 @@ const ClassSearch = ({
   searchAction,
   form: { getFieldDecorator, validateFields },
 }) => {
-  const formItemLayout1 = {
-    wrapperCol: {
-      span: 18,
-      offset: 6,
-    },
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     validateFields({ force: true }, (err, values) => {

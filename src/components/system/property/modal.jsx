@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, Input, Row, Col, TreeSelect } from 'antd';
+import { Modal, Form, Input, Row, Col } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -15,10 +15,9 @@ const PropertyModal = ({
         modalHandleOk(values);
       }
     });
-    mergeData({ modalVisible: false });
   };
   const onCancel = () => {
-    mergeData({ modalVisible: false, deportCode: '', deportName: '', oPty: '' });
+    mergeData({ modalVisible: false, goodsCode: '', goodsName: '', oPty: '' });
   };
   const formItemLayout = {
     labelCol: {
@@ -44,21 +43,27 @@ const PropertyModal = ({
         <Col>
           <Row>
             <FormItem label="物品编码" {...formItemLayout}>
-              {getFieldDecorator('propertyCode', {
-                initialValue: property.propertyCode,
+              {getFieldDecorator('goodsCode', {
+                initialValue: property.goodsCode,
                 rules: [
                   {
                     required: true,
                     message: '请输入物品编码',
                   },
                 ],
-              })(<Input type="text" placeholder="请输入物品编码" />)}
+              })(
+                <Input
+                  type="text"
+                  placeholder="请输入物品编码"
+                  disabled={property.oPty === 'edit'}
+                />,
+              )}
             </FormItem>
           </Row>
           <Row>
             <FormItem label="物品名称" {...formItemLayout}>
-              {getFieldDecorator('propertyName', {
-                initialValue: property.propertyName,
+              {getFieldDecorator('goodsName', {
+                initialValue: property.goodsName,
                 rules: [
                   {
                     required: true,

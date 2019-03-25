@@ -1,11 +1,14 @@
 import React from 'react';
-import { Form, Select, Row, Col, Button, TimePicker, moment } from 'antd';
+import { Form, Select, Row, Col, Button, DatePicker } from 'antd';
+
+const { WeekPicker } = DatePicker;
 
 const FormItem = Form.Item;
 const VisitorSearch = ({
   visitor,
   mergeData,
   onSubmitInfo,
+  searchAction,
   form: { getFieldDecorator, validateFields },
 }) => {
   const formItemLayout1 = {
@@ -26,24 +29,26 @@ const VisitorSearch = ({
       <Form layout="inline" onSubmit={handleSubmit}>
         <Row>
           <Col span={8}>
-            <FormItem label="宿舍">
-              {getFieldDecorator('roomId', {
-                initialValue: visitor.roomId,
-              })(<Select minWidth="214" placeholder="请输入物品的编码或者名称" />)}
+            <FormItem label="搜索条件">
+              {getFieldDecorator('queryString', {
+                initialValue: visitor.querystring,
+              })(
+                <Select
+                  minWidth="214"
+                  placeholder="请输入宿舍名称或者编码"
+                  onChange={(value) => {
+                    mergeData({ queryString: value.target.value });
+                    searchAction();
+                  }}
+                />,
+              )}
             </FormItem>
           </Col>
           <Col span={8}>
             <FormItem label="到访时间">
               {getFieldDecorator('visitData', {
                 initialValue: visitor.visitData,
-              })(<TimePicker minWidth="214" />)}
-            </FormItem>
-          </Col>
-          <Col span={8}>
-            <FormItem className="search-input" {...formItemLayout1}>
-              <Button type="primary" htmlType="submit">
-                搜索
-              </Button>
+              })(<WeekPicker minWidth="214" />)}
             </FormItem>
           </Col>
         </Row>
@@ -53,7 +58,7 @@ const VisitorSearch = ({
         <Row>
           <Col span={16}>
             <Button type="primary" onClick={() => mergeData({ modalVisible: true })}>
-              添加公共财产
+              添加访客信息
             </Button>
           </Col>
         </Row>
