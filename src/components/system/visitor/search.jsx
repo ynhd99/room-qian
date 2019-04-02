@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form, Select, Row, Col, Button, DatePicker } from 'antd';
+import { Form, Row, Col, Button, DatePicker, Input } from 'antd';
 
-const { WeekPicker } = DatePicker;
+const { RangePicker } = DatePicker;
 
 const FormItem = Form.Item;
 const VisitorSearch = ({
@@ -30,25 +30,25 @@ const VisitorSearch = ({
         <Row>
           <Col span={8}>
             <FormItem label="搜索条件">
-              {getFieldDecorator('queryString', {
-                initialValue: visitor.querystring,
+              {getFieldDecorator('visitorName', {
+                initialValue: visitor.visitorName,
               })(
-                <Select
-                  minWidth="214"
-                  placeholder="请输入宿舍名称或者编码"
+                <Input
+                  minWidth="220"
+                  placeholder="请输入到访人姓名"
                   onChange={(value) => {
-                    mergeData({ queryString: value.target.value });
+                    mergeData({ visitorName: value.target.value });
                     searchAction();
                   }}
                 />,
               )}
             </FormItem>
           </Col>
-          <Col span={8}>
+          <Col span={16}>
             <FormItem label="到访时间">
               {getFieldDecorator('visitData', {
                 initialValue: visitor.visitData,
-              })(<WeekPicker minWidth="214" />)}
+              })(<RangePicker minWidth="200" />)}
             </FormItem>
           </Col>
         </Row>

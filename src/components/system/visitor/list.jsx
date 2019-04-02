@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Form } from 'antd';
 
-const VisitorList = ({ visitor, onPageChange }) => {
+const VisitorList = ({ visitor, onPageChange, mergeData }) => {
   const columns = [
     {
       title: '姓名',
@@ -24,19 +24,44 @@ const VisitorList = ({ visitor, onPageChange }) => {
       key: 'receptName',
     },
     {
-      title: 'startTime',
+      title: '到访时间',
       dataIndex: 'startTime',
-      key: '访问开始时间',
+      key: 'startTime',
     },
     {
-      title: 'endTime',
+      title: '离开时间',
       dataIndex: 'endTime',
-      key: '访问结束时间',
+      key: 'endTime',
+    },
+    {
+      title: '到访事由',
+      dataIndex: 'remark',
+      key: 'remark',
     },
     {
       title: '操作',
       dataIndex: 'action',
       key: 'action',
+      render(text, record) {
+        return (
+          <a
+            onClick={() => {
+              mergeData({
+                oPty: 'edit',
+                id: record.id,
+                modalVisible: true,
+                visitorName: record.visitorName,
+                identityCode: record.identityCode,
+                phoneNumber: record.phoneNumber,
+                receptName: record.receptName,
+                startTime: record.startTime,
+              });
+            }}
+          >
+            编辑
+          </a>
+        );
+      },
     },
   ];
   return (

@@ -1,12 +1,12 @@
 import { connect } from 'dva';
 import React from 'react';
-import PropertyList from '../../components/system/property/list';
-import PropertySearch from '../../components/system/property/search';
-import PropertyModal from '../../components/system/property/modal';
+import VisitorSearch from '../../components/system/visitor/search';
+import VisitorList from '../../components/system/visitor/list';
+import VisitorModal from '../../components/system/visitor/modal';
 
-const Property = ({ property, dispatch }) => {
-  const propertyList = {
-    property,
+const Visitor = ({ visitor, dispatch }) => {
+  const visitorList = {
+    visitor,
     onPageChange(page) {
       dispatch({
         type: 'property/getStaffList',
@@ -19,7 +19,7 @@ const Property = ({ property, dispatch }) => {
     mergeData(payload) {
       console.log('hahahhahahhahh');
       dispatch({
-        type: 'property/mergeData',
+        type: 'visitor/mergeData',
         payload,
       });
     },
@@ -42,12 +42,12 @@ const Property = ({ property, dispatch }) => {
       });
     },
   };
-  const propertySearch = {
-    property,
+  const visitorSearch = {
+    visitor,
     mergeData(payload) {
       console.log('hahahhahahhahh');
       dispatch({
-        type: 'property/mergeData',
+        type: 'visitor/mergeData',
         payload,
       });
     },
@@ -58,17 +58,17 @@ const Property = ({ property, dispatch }) => {
       });
     },
   };
-  const propertyModal = {
-    property,
+  const visitorModal = {
+    visitor,
     mergeData(payload) {
       console.log('hahahhahahhahh');
       dispatch({
-        type: 'property/mergeData',
+        type: 'visitor/mergeData',
         payload,
       });
     },
     modalHandleOk(payload) {
-      if (property.oPty === 'add') {
+      if (visitor.oPty === 'add') {
         dispatch({
           type: 'property/addGoods',
           payload,
@@ -89,14 +89,14 @@ const Property = ({ property, dispatch }) => {
   };
   return (
     <div>
-      <PropertySearch {...propertySearch} />
-      <PropertyList {...propertyList} />
-      <PropertyModal {...propertyModal} />
+      <VisitorSearch {...visitorSearch} />
+      <VisitorList {...visitorList} />
+      <VisitorModal {...visitorModal} />
     </div>
   );
 };
-function mapStateToProps({ property }) {
-  return { property };
+function mapStateToProps({ visitor }) {
+  return { visitor };
 }
 
-export default connect(mapStateToProps)(Property);
+export default connect(mapStateToProps)(Visitor);
