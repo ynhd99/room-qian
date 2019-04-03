@@ -29,7 +29,7 @@ const VisitorModal = ({
   };
   const modalOpts = {
     width: 600,
-    title: '新增访问信息',
+    title: visitor.oPty === 'add' ? '新增访问信息' : '修改访问信息',
     visible: visitor.modalVisible,
     onOk: handleOk,
     onCancel,
@@ -96,7 +96,7 @@ const VisitorModal = ({
           <Row>
             <FormItem label="开始时间" {...formItemLayout}>
               {getFieldDecorator('startTime', {
-                initialValue: visitor.receptName,
+                initialValue: visitor.startTime,
                 rules: [
                   {
                     required: true,
@@ -115,7 +115,13 @@ const VisitorModal = ({
                     message: '请输入离开时间',
                   },
                 ],
-              })(<Input type="text" placeholder="请输入离开时间" />)}
+              })(
+                <Input
+                  type="text"
+                  placeholder="请输入离开时间"
+                  disabled={visitor.oPty === 'add'}
+                />,
+              )}
             </FormItem>
           </Row>
           <Row>

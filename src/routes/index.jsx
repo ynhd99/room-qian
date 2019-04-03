@@ -20,6 +20,7 @@ import AllocationDetail from './system/AllocationDetail';
 import ClassRoom from './system/ClassRoom';
 import Property from './system/Property';
 import Visitor from './system/Visitor';
+import Record from './system/Record';
 
 const routes = [
   {
@@ -97,6 +98,10 @@ const routes = [
   {
     path: '/system/room/visitor',
     component: Visitor,
+  },
+  {
+    path: '/system/room/record',
+    component: Record,
   },
 ];
 const Router = ({ history, app }) => {

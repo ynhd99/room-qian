@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Form, Row, Col, Button, DatePicker, Input } from 'antd';
 
 const { RangePicker } = DatePicker;
@@ -24,6 +25,9 @@ const VisitorSearch = ({
       }
     });
   };
+  function disabledDate(current) {
+    return current && current > moment().endOf('day');
+  }
   return (
     <div className="components-search">
       <Form layout="inline" onSubmit={handleSubmit}>
@@ -46,9 +50,35 @@ const VisitorSearch = ({
           </Col>
           <Col span={16}>
             <FormItem label="到访时间">
-              {getFieldDecorator('visitData', {
-                initialValue: visitor.visitData,
-              })(<RangePicker minWidth="200" />)}
+              {getFieldDecorator('visitDate', {
+                initialValue: visitor.visitDate || '',
+              })(
+                <DatePicker.RangePicker
+                  allowClear={false}
+                  format="YYYY-MM-DD HH:mm:ss"
+                  renderExtraFooter={() => (
+                    <div style={{ textAlign: 'center', color: '#bfbfbf' }}>
+                      请点选两个时间以确定一个时间范围
+                    </div>
+                  )}
+                  disabledDate={disabledDate}
+                  onChange={(value) => {
+                    mergeData({ visitDate: value });
+                    searchAction();
+                  }}
+                  showTime={{
+                    hideDisabledOptions: true,
+                    defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')],
+                  }}
+                  ranges={{
+                    前1月: [moment().subtract(1, 'month'), moment()],
+                    前15天: [moment().subtract(15, 'day'), moment()],
+                    前7天: [moment().subtract(7, 'day'), moment()],
+                    前3天: [moment().subtract(3, 'day'), moment()],
+                    今天: [moment(), moment()],
+                  }}
+                />,
+              )}
             </FormItem>
           </Col>
         </Row>
@@ -57,7 +87,22 @@ const VisitorSearch = ({
         <Row />
         <Row>
           <Col span={16}>
-            <Button type="primary" onClick={() => mergeData({ modalVisible: true })}>
+            <Button
+              type="primary"
+              onClick={() =>
+                mergeData({
+                  modalVisible: true,
+                  oPty: 'add',
+                  visitorName: '',
+                  identityCode: '',
+                  phoneNumber: '',
+                  receptName: '',
+                  startTime: '',
+                  endTime: '',
+                  remark: '',
+                })
+              }
+            >
               添加访客信息
             </Button>
           </Col>

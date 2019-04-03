@@ -32,6 +32,7 @@ app.model(require('../models/system/roomAllocation'));
 app.model(require('../models/system/class'));
 app.model(require('../models/system/property'));
 app.model(require('../models/system/visitor'));
+app.model(require('../models/system/record'));
 // 添加Router
 app.router(require('../routes'));
 // start

@@ -9,7 +9,7 @@ const Visitor = ({ visitor, dispatch }) => {
     visitor,
     onPageChange(page) {
       dispatch({
-        type: 'property/getStaffList',
+        type: 'visitor/getVisitorList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,
@@ -23,22 +23,11 @@ const Visitor = ({ visitor, dispatch }) => {
         payload,
       });
     },
-    updateStatus(payload) {
+    updateVisitor(payload) {
       console.log(`我进来了吧${payload.id}`);
       dispatch({
-        type: 'property/updateStatus',
-        payload: {
-          id: payload.id,
-          status: payload.status,
-        },
-      });
-    },
-    deleteGoods(payload) {
-      dispatch({
-        type: 'property/deleteGoods',
-        payload: {
-          id: payload.record.id,
-        },
+        type: 'visitor/updateVisitor',
+        payload,
       });
     },
   };
@@ -53,7 +42,7 @@ const Visitor = ({ visitor, dispatch }) => {
     },
     searchAction() {
       dispatch({
-        type: 'property/getGoodsList',
+        type: 'visitor/getVisitorList',
         payload: {},
       });
     },
@@ -70,17 +59,17 @@ const Visitor = ({ visitor, dispatch }) => {
     modalHandleOk(payload) {
       if (visitor.oPty === 'add') {
         dispatch({
-          type: 'property/addGoods',
+          type: 'visitor/addVisitor',
           payload,
         });
       } else {
         dispatch({
-          type: 'property/updateGoods',
+          type: 'visitor/updateVisitor',
           payload,
         });
       }
       dispatch({
-        type: 'property/mergeData',
+        type: 'visitor/mergeData',
         payload: {
           modalVisible: false,
         },

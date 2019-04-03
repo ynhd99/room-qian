@@ -7,36 +7,43 @@ const VisitorList = ({ visitor, onPageChange, mergeData }) => {
       title: '姓名',
       dataIndex: 'visitorName',
       key: 'visitorName',
+      width: '10%',
     },
     {
       title: '证件号',
       dataIndex: 'identityCode',
       key: 'identityCode',
+      width: '15%',
     },
     {
       title: '手机号',
       dataIndex: 'phoneNumber',
       key: 'phoneNumber',
+      width: '10%',
     },
     {
       title: '接待人',
       dataIndex: 'receptName',
       key: 'receptName',
+      width: '10%',
     },
     {
       title: '到访时间',
       dataIndex: 'startTime',
       key: 'startTime',
+      width: '10%',
     },
     {
       title: '离开时间',
       dataIndex: 'endTime',
       key: 'endTime',
+      width: '10%',
     },
     {
       title: '到访事由',
       dataIndex: 'remark',
       key: 'remark',
+      width: '15%',
     },
     {
       title: '操作',
@@ -55,6 +62,7 @@ const VisitorList = ({ visitor, onPageChange, mergeData }) => {
                 phoneNumber: record.phoneNumber,
                 receptName: record.receptName,
                 startTime: record.startTime,
+                remark: record.remark,
               });
             }}
           >
