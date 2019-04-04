@@ -6966,7 +6966,6 @@ fieldset[disabled] .layout .sider :global .toggle-side :global .button:focus {
   line-height: inherit;
 }
 .layout .main {
-  overflow: auto;
   height: 100%;
   transition: all 0.3s ease-out;
 }

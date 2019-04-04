@@ -38,7 +38,7 @@ export default {
       const { code } = res.data;
       if (code === '200') {
         window.sessionStorage.setItem('token', res.data.data.sessionId);
-        const path = '/system/book/deport';
+        const path = '/system/room/record';
         yield put(routerRedux.push(path));
       } else {
         console.log(res.data.errorInfo);

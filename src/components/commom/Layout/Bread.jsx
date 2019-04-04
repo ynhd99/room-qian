@@ -1,11 +1,16 @@
 import React from 'react';
-import { Breadcrumb, Form } from 'antd';
-import { Link } from 'dva/router';
+import { connect } from 'dva';
+import { Breadcrumb, Button, Col } from 'antd';
 import pathToRegexp from 'path-to-regexp';
 import styles from './Bread.less';
-import { queryArray } from '../../../utils';
 
-const Bread = ({ SiderMenuList, location }) => {
+const Bread = ({ SiderMenuList, location, dispatch }) => {
+  const mergeData = (payload) => {
+    dispatch({
+      type: 'record/mergeData',
+      payload,
+    });
+  };
   // 匹配当前路由
   const pathArray = [];
   let current;
@@ -26,6 +31,26 @@ const Bread = ({ SiderMenuList, location }) => {
     // 递归查找父级
     const breads = pathArray.map((item) => {
       const content = <span>{item.name}</span>;
+      if (item.key === '/system/room/record') {
+        return (
+          <Breadcrumb.Item>
+            <Col span={8}>{content}</Col>
+            <Col span={4} />
+            <Col span={4} />
+            <Col span={2} />
+            <Col span={2} />
+            <Col span={2} />
+            <Button
+              type="primary"
+              onClick={() =>
+                mergeData({ oPty: 'add', id: '', modalVisible: true, title: '', content: '' })
+              }
+            >
+              新增公告
+            </Button>
+          </Breadcrumb.Item>
+        );
+      }
       return <Breadcrumb.Item>{content}</Breadcrumb.Item>;
     });
 
@@ -37,5 +62,7 @@ const Bread = ({ SiderMenuList, location }) => {
   }
   return null;
 };
-
-export default Form.create()(Bread);
+function mapStateToProps({ record }) {
+  return { record };
+}
+export default connect(mapStateToProps)(Bread);

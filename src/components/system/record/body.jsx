@@ -1,29 +1,53 @@
 import React from 'react';
-import { Collapse } from 'antd';
+import { List, Icon, Badge, Popconfirm } from 'antd';
 
-const Panel = Collapse.Panel;
-
-const RecordBody = ({ record }) => {
-  const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-  it can be found as a welcome guest in many households across the world.
-  it can be found as a welcome guest in many households across the world.
-  it can be found as a welcome guest in many households across the world.
-`;
+const RecordBody = ({ record, mergeData, deleleRecord }) => {
+  const recordList = record.recordList;
   return (
-    <Collapse defaultActiveKey={['1']}>
-      <Panel header="This is panel header 1" key="1">
-        <p>{text}</p>
-      </Panel>
-      <Panel header="This is panel header 2" key="2">
-        <p>{text}</p>
-      </Panel>
-      <Panel header="This is panel header 3" key="3">
-        <p>{text}</p>
-      </Panel>
-    </Collapse>
+    <List
+      itemLayout="horizontal"
+      dataSource={recordList}
+      renderItem={item => (
+        <List.Item
+          actions={[
+            <a
+              onClick={() => {
+                mergeData({
+                  oPty: 'edit',
+                  id: item.id,
+                  modalVisible: true,
+                  title: item.title,
+                  content: item.content,
+                });
+              }}
+            >
+              编辑
+            </a>,
+            <Popconfirm
+              title="您确定要删除吗？"
+              onConfirm={() => {
+                deleleRecord({ id: item.id });
+              }}
+              okText="确定"
+              cancelText="取消"
+            >
+              <a>删除</a>
+            </Popconfirm>,
+          ]}
+        >
+          <List.Item.Meta
+            avatar={
+              // <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+              <Badge dot>
+                <Icon type="notification" />
+              </Badge>
+            }
+            title={<a href="https://ant.design">{item.title}</a>}
+            description={item.content}
+          />
+        </List.Item>
+      )}
+    />
   );
 };
 export default RecordBody;

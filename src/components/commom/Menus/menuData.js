@@ -1,6 +1,17 @@
 const SiderMenuList = [
   {
     key: 'sub0',
+    name: '公告管理',
+    icon: 'icon-cho-message',
+    items: [
+      {
+        key: '/system/room/record',
+        name: '宿舍公告',
+      },
+    ],
+  },
+  {
+    key: 'sub1',
     name: '系统管理',
     icon: 'icon-cho-set',
     items: [
@@ -41,9 +52,9 @@ const SiderMenuList = [
     ],
   },
   {
-    key: 'sub1',
+    key: 'sub2',
     name: '宿舍管理',
-    icon: 'icon-cho-set',
+    icon: 'icon-cho-home',
     items: [
       {
         key: '/system/room/category',
@@ -64,9 +75,9 @@ const SiderMenuList = [
     ],
   },
   {
-    key: 'sub2',
+    key: 'sub3',
     name: '公共财产管理',
-    icon: 'icon-cho-set',
+    icon: 'icon-cho-bill',
     items: [
       {
         key: '/system/room/property',
@@ -79,9 +90,9 @@ const SiderMenuList = [
     ],
   },
   {
-    key: 'sub3',
+    key: 'sub4',
     name: '外来人员管理',
-    icon: 'icon-cho-set',
+    icon: 'icon-cho-staff',
     items: [
       {
         key: '/system/room/visitor',
@@ -90,24 +101,13 @@ const SiderMenuList = [
     ],
   },
   {
-    key: 'sub4',
+    key: 'sub5',
     name: '卫生管理',
-    icon: 'icon-cho-store',
+    icon: 'icon-cho-check',
     items: [
       {
         key: '/systeem/room/health',
         name: '卫生检查情况',
-      },
-    ],
-  },
-  {
-    key: 'sub5',
-    name: '公告管理',
-    icon: 'icon-cho-store',
-    items: [
-      {
-        key: '/system/room/record',
-        name: '宿舍公告',
       },
     ],
   },

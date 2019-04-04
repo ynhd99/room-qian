@@ -1,7 +1,6 @@
 import React from 'react';
-import { Form, Input, Row, Col, Button, Select, Radio, TreeSelect } from 'antd';
+import { Form, Input, Row, Col, Button, Radio } from 'antd';
 
-const Option = Select.Option;
 const FormItem = Form.Item;
 const RoomSearch = ({ mergeData, form: { getFieldDecorator }, room }) => {
   const formItemLayout1 = {
@@ -10,27 +9,10 @@ const RoomSearch = ({ mergeData, form: { getFieldDecorator }, room }) => {
     },
   };
   const changeStatusList = () => {};
-  const onTreeChange = () => {};
   return (
     <div className="components-search">
       <Form layout="inline">
         <Row>
-          <Col span={8}>
-            <FormItem label="宿舍类别">
-              {getFieldDecorator('cateId', {
-                initialValue: room.cateId || '',
-              })(
-                <TreeSelect
-                  style={{ minWidth: 215 }}
-                  dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                  treeData={room.treeData}
-                  placeholder="请选择宿舍类别"
-                  treeDefaultExpandAll
-                  onChange={onTreeChange}
-                />,
-              )}
-            </FormItem>
-          </Col>
           <Col span={8}>
             <FormItem label="宿舍号">
               {getFieldDecorator('roomCode', {
@@ -49,24 +31,10 @@ const RoomSearch = ({ mergeData, form: { getFieldDecorator }, room }) => {
                 >
                   <Radio.Button value="0">开启</Radio.Button>
                   <Radio.Button value="1">停用</Radio.Button>
-                  <Radio.Button value="2">全部</Radio.Button>
+                  <Radio.Button value="">全部</Radio.Button>
                 </Radio.Group>,
               )}
             </Form.Item>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={4} />
-          <Col span={4} />
-          <Col span={4} />
-          <Col span={4} />
-          <Col span={4} />
-          <Col span={4}>
-            <FormItem className="search-input" {...formItemLayout1}>
-              <Button type="primary" htmlType="submit">
-                搜索
-              </Button>
-            </FormItem>
           </Col>
         </Row>
       </Form>

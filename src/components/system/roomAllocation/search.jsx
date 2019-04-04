@@ -1,7 +1,6 @@
 import React from 'react';
-import { Form, Row, Col, Button, Select } from 'antd';
+import { Form, Row, Col, Button, Input } from 'antd';
 
-const Option = Select.Option;
 const FormItem = Form.Item;
 const RoomAllocationSearch = ({
   mergeData,
@@ -22,36 +21,17 @@ const RoomAllocationSearch = ({
             <FormItem label="楼号">
               {getFieldDecorator('buildingId', {
                 initialValue: roomAllocation.buildingId,
-              })(
-                <Select style={{ minWidth: 215 }} placeholder="请选择楼号">
-                  <Select.Option key="" value="">
-                    请选择楼号
-                  </Select.Option>
-                </Select>,
-              )}
+              })(<Input style={{ minWidth: 215 }} placeholder="请输入楼号" />)}
             </FormItem>
           </Col>
           <Col span={8}>
             <FormItem label="宿舍号">
               {getFieldDecorator('roomId', {
                 initialValue: roomAllocation.roomId,
-              })(
-                <Select style={{ minWidth: 215 }} placeholder="请选择宿舍号">
-                  <Select.Option key="" value="">
-                    请选择宿舍号
-                  </Select.Option>
-                </Select>,
-              )}
+              })(<Input style={{ minWidth: 215 }} placeholder="请输入宿舍号" />)}
             </FormItem>
           </Col>
           <Col span={4} />
-          <Col span={4}>
-            <FormItem className="search-input" {...formItemLayout1}>
-              <Button type="primary" htmlType="submit">
-                搜索
-              </Button>
-            </FormItem>
-          </Col>
         </Row>
         <Row>
           <Button

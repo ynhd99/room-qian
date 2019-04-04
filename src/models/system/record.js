@@ -1,27 +1,73 @@
+import { message } from 'antd';
+import { parse } from 'qs';
+import { addRecord, updateRecord, getRecordList, deleteRecord } from '../../services/system/record';
+
 export default {
   namespace: 'record',
   state: {
     loading: false,
-    roleList: [],
+    recordList: [],
     modalVisable: false,
-    status: '',
-    // 员工姓名
-    roleName: '',
-    // 所含员工数
-    roleNumber: '',
-    // 分页
-    pagination: {
-      showSizeChanger: true,
-      showQuickJumper: true,
-      showTotal: total => `共 ${total} 条`,
-      current: 1,
-      total: 0,
-      pageSize: 10,
-      pageSizeOptions: ['10', '20', '50', '100'],
+    title: '',
+    content: '',
+    oPty: '',
+  },
+  subscriptions: {
+    setup({ dispatch, history }) {
+      history.listen((location) => {
+        if (location.pathname === '/system/room/record') {
+          dispatch({
+            type: 'getRecordList',
+            payload: {},
+          });
+        }
+      });
     },
   },
-  subscriptions: {},
-  effects: {},
+  effects: {
+    * getRecordList({ payload }, { call, put }) {
+      const res = yield call(getRecordList, { ...parse(payload) });
+      if (res.data.code === '200') {
+        yield put({
+          type: 'mergeData',
+          payload: {
+            recordList: res.data.data,
+          },
+        });
+      } else {
+        message.error('获取失败');
+      }
+    },
+    * addRecord({ payload }, { call, put }) {
+      const res = yield call(addRecord, { ...parse(payload) });
+      if (res.data.code === '200') {
+        message.info('新增成功');
+        yield put({ type: 'getRecordList', payload: {} });
+      } else {
+        message.error(res.data.errorInfo);
+      }
+    },
+    * updateRecord({ payload }, { call, put, select }) {
+      const { id } = yield select(state => state.record);
+      payload.id = id;
+      const res = yield call(updateRecord, { ...parse(payload) });
+      if (res.data.code === '200') {
+        message.info('更新成功');
+        yield put({ type: 'getRecordList', payload: {} });
+      } else {
+        message.error(res.data.errorInfo);
+      }
+    },
+    * deleteRecord({ payload }, { call, put }) {
+      const res = yield call(deleteRecord, { ...parse(payload) });
+      if (res.data.code === '200') {
+        message.info('删除成功');
+        yield put({ type: 'getRecordList', payload: {} });
+      } else {
+        message.error(res.data.errorInfo);
+      }
+    },
+  },
   reducers: {
     showLoading(state) {
       return { ...state, loading: true };
