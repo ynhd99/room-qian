@@ -1,7 +1,7 @@
 import React from 'react';
-import { Table, Form } from 'antd';
+import { Table, Form, Badge, Popconfirm } from 'antd';
 
-const RoomList = ({ room }) => {
+const RoomList = ({ room, mergeData, updateStatus, deleteClass, onPageChange, getDataList }) => {
   const columns = [
     {
       title: '宿舍号',
@@ -10,8 +10,11 @@ const RoomList = ({ room }) => {
     },
     {
       title: '宿舍类别',
-      dataIndex: 'cateName',
-      key: 'cateName',
+      render: (text, record) => (
+        <span>
+          {record.cateParentName}-{record.cateName}
+        </span>
+      ),
     },
     {
       title: '楼号',
@@ -26,21 +29,104 @@ const RoomList = ({ room }) => {
     {
       title: '状态',
       dataIndex: 'status',
-      key: 'status',
+      render(text, record) {
+        if (record.parentId === '-1') {
+          return null;
+        }
+        if (record.status === 0) {
+          return <Badge status="success" text="启用" />;
+        }
+        return <Badge status="error" text="停用" />;
+      },
     },
     {
       title: '操作',
       dataIndex: 'action',
-      key: 'action',
+      render(text, record) {
+        if (record.status === 0) {
+          return (
+            <div>
+              <a
+                onClick={() => {
+                  mergeData({
+                    oPty: 'edit',
+                    id: record.id,
+                    modalVisible: true,
+                    roomCode: record.roomCode,
+                    cateId: record.cateId,
+                    buildingId: record.buildingId,
+                    roomCount: record.roomCount,
+                  });
+                  getDataList();
+                }}
+              >
+                编辑 |
+              </a>
+              <Popconfirm
+                title="你确定要停用该宿舍吗？"
+                onConfirm={() => {
+                  updateStatus({ id: record.id, status: 1 });
+                }}
+                okText="确定"
+                cancelText="取消"
+              >
+                <a> 停用</a>
+              </Popconfirm>
+            </div>
+          );
+        }
+        return (
+          <div>
+            <a
+              onClick={() => {
+                mergeData({
+                  oPty: 'edit',
+                  id: record.id,
+                  modalVisible: true,
+                  roomCode: record.roomCode,
+                  cateId: record.cateId,
+                  buildingId: record.buildingId,
+                  roomCount: record.roomCount,
+                });
+                getDataList();
+              }}
+            >
+              编辑 |
+            </a>
+            <Popconfirm
+              title="你确定要启用该宿舍吗？"
+              onConfirm={() => {
+                updateStatus({ id: record.id, status: 0 });
+              }}
+              okText="确定"
+              cancelText="取消"
+            >
+              <a> 启用 |</a>
+            </Popconfirm>
+            <Popconfirm
+              title="你确定要删除该宿舍吗？"
+              onConfirm={() => {
+                deleteClass({ record });
+              }}
+              okText="确定"
+              cancelText="取消"
+            >
+              <a> 删除</a>
+            </Popconfirm>
+          </div>
+        );
+      },
     },
   ];
   return (
     <Table
-      // dataSource={}
+      style={{ marginTop: '15px' }}
+      dataSource={room.roomList}
       columns={columns}
       // loading={loading}
       rowKey={record => record.id}
-      pagination={false} // 分页器:不分页
+      pagination={room.pagination} // 分页器:不分页
+      onChange={onPageChange}
     />
   );
 };

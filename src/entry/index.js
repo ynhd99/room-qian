@@ -12,8 +12,6 @@ app.use(createLoading());
 // 注册model，接收发送的action
 app.model(require('../models/app'));
 app.model(require('../models/system/home'));
-app.model(require('../models/system/deport'));
-app.model(require('../models/system/deportBegin'));
 app.model(require('../models/system/roomCate'));
 app.model(require('../models/system/room'));
 app.model(require('../models/system/register'));
@@ -33,6 +31,7 @@ app.model(require('../models/system/class'));
 app.model(require('../models/system/property'));
 app.model(require('../models/system/visitor'));
 app.model(require('../models/system/record'));
+app.model(require('../models/system/repair'));
 // 添加Router
 app.router(require('../routes'));
 // start

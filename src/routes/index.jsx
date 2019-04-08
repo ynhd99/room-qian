@@ -2,8 +2,6 @@ import React from 'react';
 import RouterConfig from '../router';
 // 系统路由
 import Home from './system/Home';
-import Deport from './system/Deport';
-import DeportBegin from './system/DeportBegin';
 import RoomCate from './system/RoomCate';
 import Room from './system/Room';
 import Register from './system/Register';
@@ -21,19 +19,12 @@ import ClassRoom from './system/ClassRoom';
 import Property from './system/Property';
 import Visitor from './system/Visitor';
 import Record from './system/Record';
+import Repair from './system/Repair';
 
 const routes = [
   {
     path: '/system/book/home',
     component: Home,
-  },
-  {
-    path: '/system/book/deport',
-    component: Deport,
-  },
-  {
-    path: '/system/book/deportBegin',
-    component: DeportBegin,
   },
   {
     path: '/system/room/category',
@@ -102,6 +93,10 @@ const routes = [
   {
     path: '/system/room/record',
     component: Record,
+  },
+  {
+    path: '/system/room/repair',
+    component: Repair,
   },
 ];
 const Router = ({ history, app }) => {

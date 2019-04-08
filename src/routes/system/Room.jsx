@@ -14,13 +14,65 @@ const Room = ({ room, dispatch }) => {
         payload,
       });
     },
+    searchAction() {
+      dispatch({
+        type: 'room/getRoomList',
+        payload: {},
+      });
+    },
+    getDataList() {
+      dispatch({
+        type: 'room/getCateList',
+        payload: {},
+      });
+      dispatch({
+        type: 'room/getBuildingList',
+        payload: {},
+      });
+    },
   };
   const listPropsList = {
     room,
+    onPageChange(page) {
+      dispatch({
+        type: 'room/getRoomList',
+        payload: {
+          pageNo: page.current,
+          pageSize: page.pageSize,
+        },
+      });
+    },
+    getDataList() {
+      dispatch({
+        type: 'room/getCateList',
+        payload: {},
+      });
+      dispatch({
+        type: 'room/getBuildingList',
+        payload: {},
+      });
+    },
     mergeData(payload) {
       dispatch({
         type: 'room/mergeData',
         payload,
+      });
+    },
+    updateStatus(payload) {
+      dispatch({
+        type: 'room/updateRoom',
+        payload: {
+          id: payload.id,
+          status: payload.status,
+        },
+      });
+    },
+    deleteRoom(payload) {
+      dispatch({
+        type: 'room/deleteRoom',
+        payload: {
+          id: payload.record.id,
+        },
       });
     },
   };
@@ -30,6 +82,25 @@ const Room = ({ room, dispatch }) => {
       dispatch({
         type: 'room/mergeData',
         payload,
+      });
+    },
+    modalHandleOk(payload) {
+      if (room.oPty === 'add') {
+        dispatch({
+          type: 'room/addRoom',
+          payload,
+        });
+      } else {
+        dispatch({
+          type: 'room/updateRoom',
+          payload,
+        });
+      }
+      dispatch({
+        type: 'room/mergeData',
+        payload: {
+          modalVisible: false,
+        },
       });
     },
   };
