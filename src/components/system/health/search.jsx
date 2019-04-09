@@ -3,8 +3,8 @@ import moment from 'moment';
 import { Form, Row, Col, Button, DatePicker, Input } from 'antd';
 
 const FormItem = Form.Item;
-const RepairSearch = ({
-  repair,
+const HealthSearch = ({
+  health,
   mergeData,
   onSubmitInfo,
   searchAction,
@@ -25,16 +25,16 @@ const RepairSearch = ({
     });
   };
   function disabledDate(current) {
-    return current && current < moment().endOf('day');
+    return current && current > moment().endOf('day');
   }
   return (
     <div className="components-search">
       <Form layout="inline" onSubmit={handleSubmit}>
         <Row>
-          <Col span={7}>
+          <Col span={8}>
             <FormItem label="宿舍号">
               {getFieldDecorator('roomCode', {
-                initialValue: repair.roomCode,
+                initialValue: health.roomCode,
               })(
                 <Input
                   style={{ minWidth: 200 }}
@@ -47,26 +47,10 @@ const RepairSearch = ({
               )}
             </FormItem>
           </Col>
-          <Col span={7}>
-            <FormItem label="物品名称">
-              {getFieldDecorator('queryString', {
-                initialValue: repair.queryString,
-              })(
-                <Input
-                  style={{ minWidth: 200 }}
-                  placeholder="请输入物品名称/编码"
-                  onChange={(value) => {
-                    mergeData({ queryString: value.target.value });
-                    searchAction();
-                  }}
-                />,
-              )}
-            </FormItem>
-          </Col>
-          <Col span={10}>
-            <FormItem label="维修日期">
+          <Col span={16}>
+            <FormItem label="检查日期">
               {getFieldDecorator('rangeDate', {
-                initialValue: repair.rangeDate || '',
+                initialValue: health.rangeDate || '',
               })(
                 <DatePicker.RangePicker
                   style={{ minWidth: 150 }}
@@ -107,15 +91,13 @@ const RepairSearch = ({
                   oPty: 'add',
                   roomCode: '',
                   roomId: '',
-                  goodsId: '',
-                  propertyName: '',
-                  repairDate: '',
+                  checkDate: '',
                   remark: '',
                 });
                 getDateList();
               }}
             >
-              添加维修情况
+              添加卫生检查情况
             </Button>
           </Col>
         </Row>
@@ -123,4 +105,4 @@ const RepairSearch = ({
     </div>
   );
 };
-export default Form.create()(RepairSearch);
+export default Form.create()(HealthSearch);

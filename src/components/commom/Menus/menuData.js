@@ -106,7 +106,7 @@ const SiderMenuList = [
     icon: 'icon-cho-check',
     items: [
       {
-        key: '/systeem/room/health',
+        key: '/system/room/health',
         name: '卫生检查情况',
       },
     ],

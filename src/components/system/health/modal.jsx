@@ -4,8 +4,8 @@ import { Modal, Form, Input, Row, Col, Select, DatePicker } from 'antd';
 
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
-const RepairModal = ({
-  repair,
+const HealthModal = ({
+  health,
   form: { getFieldDecorator, validateFields },
   modalHandleOk,
   mergeData,
@@ -22,18 +22,14 @@ const RepairModal = ({
     }
     return false;
   };
+  function disabledDate(current) {
+    return current && current > moment().endOf('day');
+  }
   const roomOperation =
-    repair.roomList &&
-    repair.roomList.map(room => (
+    health.roomList &&
+    health.roomList.map(room => (
       <Select.Option value={room.id} key={room.id} queryString={`${room.roomCode}`}>
         {room.roomCode}
-      </Select.Option>
-    ));
-  const goodsOperation =
-    repair.goodsList &&
-    repair.goodsList.map(good => (
-      <Select.Option value={good.id} key={good.id} queryString={`${good.goodsName}`}>
-        {good.goodsName}
       </Select.Option>
     ));
   const handleOk = () => {
@@ -56,12 +52,12 @@ const RepairModal = ({
   };
   const modalOpts = {
     width: 600,
-    title: repair.oPty === 'add' ? '新增维修信息' : '修改维修信息',
-    visible: repair.modalVisible,
+    title: health.oPty === 'add' ? '新增检查信息' : '修改检查信息',
+    visible: health.modalVisible,
     onOk: handleOk,
     onCancel,
     wrapClassName: 'vertical-center-modal',
-    confirmLoading: repair.loading,
+    confirmLoading: health.loading,
     destroyOnClose: true,
   };
   return (
@@ -71,19 +67,19 @@ const RepairModal = ({
           <Row>
             <FormItem label="宿舍" hasFeedback {...formItemLayout}>
               {getFieldDecorator('roomId', {
-                initialValue: repair.roomId === '' ? '请选择宿舍' : repair.roomId,
+                initialValue: health.roomId === '' ? '请选择宿舍' : health.roomId,
                 rules: [{ required: true, message: '宿舍号未选择', whitespace: true }],
               })(
                 <Select
                   style={{ minWidth: 215 }}
                   showSearch
-                  value={repair.roomId}
+                  value={health.roomId}
                   filterOption={filterOption}
                   onChange={(value) => {
                     mergeData({ roomId: value });
                   }}
                   placeholder="请选择宿舍"
-                  disabled={repair.oPty === 'edit'}
+                  disabled={health.oPty === 'edit'}
                 >
                   {roomOperation}
                 </Select>,
@@ -91,52 +87,38 @@ const RepairModal = ({
             </FormItem>
           </Row>
           <Row>
-            <FormItem label="物品" hasFeedback {...formItemLayout}>
-              {getFieldDecorator('goodsId', {
-                initialValue: repair.goodsId === '' ? '请选择物品' : repair.goodsId,
-                rules: [{ required: true, message: '物品未选择', whitespace: true }],
-              })(
-                <Select
-                  style={{ minWidth: 215 }}
-                  showSearch
-                  value={repair.goodsId}
-                  filterOption={filterOption}
-                  onChange={(value) => {
-                    mergeData({ goodsId: value });
-                  }}
-                  placeholder="请选择物品"
-                  disabled={repair.oPty === 'edit'}
-                >
-                  {goodsOperation}
-                </Select>,
-              )}
-            </FormItem>
-          </Row>
-          <Row>
             <FormItem label="维修日期" hasFeedback {...formItemLayout}>
-              {getFieldDecorator('repairDate', {
-                initialValue: repair.repairDate || '',
+              {getFieldDecorator('checkDate', {
+                initialValue: health.checkDate || '',
                 // rules: [{ required: true, message: '维修日期未选择', whitespace: true }],
               })(
                 <DatePicker
                   format="YYYY-MM-DD"
                   // value={repair.repairDate}
+                  disabledDate={disabledDate}
                   onChange={value => mergeData({ repairDate: value })}
                 />,
               )}
             </FormItem>
           </Row>
           <Row>
-            <FormItem label="访问事由" {...formItemLayout}>
-              {getFieldDecorator('remark', {
-                initialValue: repair.remark,
+            <FormItem label="检查分数" {...formItemLayout}>
+              {getFieldDecorator('checkPoint', {
+                initialValue: health.checkPoint,
                 rules: [
                   {
                     required: true,
-                    message: '请输入访问原因',
+                    message: '请输入检查分数',
                   },
                 ],
-              })(<TextArea type="text" placeholder="请输入访问原因" />)}
+              })(<Input type="text" placeholder="请输入检查分数" />)}
+            </FormItem>
+          </Row>
+          <Row>
+            <FormItem label="检查备注" {...formItemLayout}>
+              {getFieldDecorator('remark', {
+                initialValue: health.remark,
+              })(<TextArea type="text" placeholder="请输入检查备注" />)}
             </FormItem>
           </Row>
         </Col>
@@ -144,4 +126,4 @@ const RepairModal = ({
     </Modal>
   );
 };
-export default Form.create()(RepairModal);
+export default Form.create()(HealthModal);

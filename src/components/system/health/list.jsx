@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Form } from 'antd';
 
-const RepairList = ({ repair, onPageChange, mergeData, getDateList }) => {
+const HealthList = ({ health, onPageChange, mergeData, getDateList }) => {
   const columns = [
     {
       title: '宿舍号',
@@ -10,22 +10,22 @@ const RepairList = ({ repair, onPageChange, mergeData, getDateList }) => {
       width: '20%',
     },
     {
-      title: '维修物品',
-      dataIndex: 'goodsName',
-      key: 'goodsName',
+      title: '检查日期',
+      dataIndex: 'checkDate',
+      key: 'checkDate',
       width: '20%',
     },
     {
-      title: '维修时间',
-      dataIndex: 'repairDate',
-      key: 'repairDate',
-      width: '20%',
+      title: '检查分数',
+      dataIndex: 'checkPoint',
+      key: 'checkPoint',
+      width: '15%',
     },
     {
-      title: '维修原因',
+      title: '备注',
       dataIndex: 'remark',
       key: 'remark',
-      width: '25%',
+      width: '30%',
     },
     {
       title: '操作',
@@ -42,7 +42,7 @@ const RepairList = ({ repair, onPageChange, mergeData, getDateList }) => {
                 id: record.id,
                 modalVisible: true,
                 roomId: record.roomId,
-                goodsId: record.goodsId,
+                checkPoint: record.checkPoint,
                 remark: record.remark,
               });
             }}
@@ -55,13 +55,13 @@ const RepairList = ({ repair, onPageChange, mergeData, getDateList }) => {
   ];
   return (
     <Table
-      dataSource={repair.repairList}
+      dataSource={health.healthList}
       columns={columns}
       // loading={loading}
       rowKey={record => record.id}
       onChange={onPageChange}
-      pagination={repair.pagination}
+      pagination={health.pagination}
     />
   );
 };
-export default Form.create()(RepairList);
+export default Form.create()(HealthList);

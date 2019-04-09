@@ -1,49 +1,45 @@
 import { connect } from 'dva';
 import React from 'react';
-import RepairFilter from '../../components/system/repair/filter';
-import RepairList from '../../components/system/repair/list';
-import RepairModal from '../../components/system/repair/modal';
+import HealthFilter from '../../components/system/health/search';
+import HealthList from '../../components/system/health/list';
+import HealthModal from '../../components/system/health/modal';
 
-const Repair = ({ repair, dispatch }) => {
-  const repairFilter = {
-    repair,
+const Health = ({ health, dispatch }) => {
+  const healthFilter = {
+    health,
     mergeData(payload) {
       console.log('hahahhahahhahh');
       dispatch({
-        type: 'repair/mergeData',
+        type: 'health/mergeData',
         payload,
       });
     },
     searchAction() {
       console.log('我走了哈');
       dispatch({
-        type: 'repair/getRepairList',
+        type: 'health/getHealthList',
         payload: {},
       });
     },
     getDateList() {
       dispatch({
-        type: 'repair/getRoomList',
-        payload: {},
-      });
-      dispatch({
-        type: 'repair/getGoodsList',
+        type: 'health/getRoomList',
         payload: {},
       });
     },
   };
-  const repairList = {
-    repair,
+  const healthList = {
+    health,
     mergeData(payload) {
       console.log('hahahhahahhahh');
       dispatch({
-        type: 'repair/mergeData',
+        type: 'health/mergeData',
         payload,
       });
     },
     onPageChange(page) {
       dispatch({
-        type: 'staff/getStaffList',
+        type: 'health/getHealthList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,
@@ -52,39 +48,35 @@ const Repair = ({ repair, dispatch }) => {
     },
     getDateList() {
       dispatch({
-        type: 'repair/getRoomList',
-        payload: {},
-      });
-      dispatch({
-        type: 'repair/getGoodsList',
+        type: 'health/getRoomList',
         payload: {},
       });
     },
   };
-  const repairModal = {
-    repair,
+  const healthModal = {
+    health,
     mergeData(payload) {
       console.log('hahahhahahhahh');
       dispatch({
-        type: 'repair/mergeData',
+        type: 'health/mergeData',
         payload,
       });
     },
     modalHandleOk(payload) {
-      if (repair.oPty === 'add') {
+      if (health.oPty === 'add') {
         dispatch({
-          type: 'repair/addRepair',
+          type: 'health/addHealth',
           payload,
         });
       } else {
         console.log('我要修改了');
         dispatch({
-          type: 'repair/updateRepair',
+          type: 'health/updateHealth',
           payload,
         });
       }
       dispatch({
-        type: 'repair/mergeData',
+        type: 'health/mergeData',
         payload: {
           modalVisible: false,
         },
@@ -93,14 +85,14 @@ const Repair = ({ repair, dispatch }) => {
   };
   return (
     <div>
-      <RepairFilter {...repairFilter} />
-      <RepairList {...repairList} />
-      <RepairModal {...repairModal} />
+      <HealthFilter {...healthFilter} />
+      <HealthList {...healthList} />
+      <HealthModal {...healthModal} />
     </div>
   );
 };
-function mapStateToProps({ repair }) {
-  return { repair };
+function mapStateToProps({ health }) {
+  return { health };
 }
 
-export default connect(mapStateToProps)(Repair);
+export default connect(mapStateToProps)(Health);

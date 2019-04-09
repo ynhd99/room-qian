@@ -1,30 +1,18 @@
 import { parse } from 'qs';
 import { message } from 'antd';
 import moment from 'moment';
-import {
-  addRepair,
-  updateRepair,
-  getRepairList,
-  getRoomList,
-  getGoodsList,
-} from '../../services/system/repair';
+import { addHealth, updateHealth, getHealthList, getRoomList } from '../../services/system/health';
 
 export default {
-  namespace: 'repair',
+  namespace: 'health',
   state: {
     roomCode: '',
-    propertyName: '',
     roomId: '',
-    goodsId: '',
     modalVisible: false,
-    repairList: [],
+    healthList: [],
     roomList: [],
-    goodsList: [],
-    queryString: '',
-    pageType: '',
-    buildingId: '',
-    rangeDate: [moment(), moment().add(1, 'month')], // 日期选择框数据
-    repairDate: '',
+    rangeDate: [moment().subtract(1, 'month'), moment()], // 日期选择框数据
+    checkDate: '',
     oPty: '',
     // 分页
     pagination: {
@@ -40,10 +28,10 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen((location) => {
-        if (location.pathname === '/system/room/repair') {
+        if (location.pathname === '/system/room/health') {
           console.log('哈哈哈');
           dispatch({
-            type: 'getRepairList',
+            type: 'getHealthList',
             payload: {},
           });
         }
@@ -51,12 +39,11 @@ export default {
     },
   },
   effects: {
-    * getRepairList({ payload }, { select, call, put }) {
+    * getHealthList({ payload }, { select, call, put }) {
       console.log('走了吗');
       yield put({ type: 'showLoading' });
-      const { roomCode, rangeDate, pagination, queryString } = yield select(state => state.repair);
+      const { roomCode, rangeDate, pagination } = yield select(state => state.health);
       payload.roomCode = roomCode;
-      payload.queryString = queryString;
       payload.startDate = rangeDate[0].format('YYYY-MM-DD');
       payload.endDate = rangeDate[1].format('YYYY-MM-DD');
       payload.page = payload.pageNo || pagination.current;
@@ -65,12 +52,12 @@ export default {
         payload.page = 1;
         payload.size = 10;
       }
-      const res = yield call(getRepairList, { ...parse(payload) });
+      const res = yield call(getHealthList, { ...parse(payload) });
       if (res.data.code === '200') {
         yield put({
           type: 'mergeData',
           payload: {
-            repairList: res.data.data.list,
+            healthList: res.data.data.list,
             pagination: {
               showSizeChanger: true,
               showQuickJumper: true,
@@ -87,9 +74,9 @@ export default {
       }
       yield put({ type: 'hideLoading' });
     },
-    * addRepair({ payload }, { call, put }) {
-      payload.repairDate = payload.repairDate.format('YYYY-MM-DD');
-      const res = yield call(addRepair, { ...parse(payload) });
+    * addHealth({ payload }, { call, put }) {
+      payload.checkDate = payload.checkDate.format('YYYY-MM-DD');
+      const res = yield call(addHealth, { ...parse(payload) });
       if (res.data.code === '200') {
         message.info('新增成功');
         yield put({
@@ -103,12 +90,12 @@ export default {
         message.error(res.data.errorInfo);
       }
     },
-    * updateRepair({ payload }, { select, call, put }) {
-      const { id } = yield select(state => state.repair);
-      payload.repairDate = payload.repairDate.format('YYYY-MM-DD');
+    * updateHealth({ payload }, { select, call, put }) {
+      const { id } = yield select(state => state.health);
+      payload.checkDate = payload.checkDate.format('YYYY-MM-DD');
       payload.id = id;
       console.log('我修改了哈');
-      const res = yield call(updateRepair, { ...parse(payload) });
+      const res = yield call(updateHealth, { ...parse(payload) });
       if (res.data.code === '200') {
         message.info('修改成功');
         yield put({
@@ -119,7 +106,7 @@ export default {
             endTime: '',
           },
         });
-        yield put({ type: 'getRepairList', payload: {} });
+        yield put({ type: 'getHealthList', payload: {} });
       } else {
         message.error(res.data.errorInfo);
       }
@@ -134,22 +121,6 @@ export default {
           type: 'mergeData',
           payload: {
             roomList: res.data.data.list,
-          },
-        });
-      } else {
-        message.error(res.data.errorInfo);
-      }
-    },
-    * getGoodsList({ payload }, { call, put }) {
-      payload.page = 1;
-      payload.size = 100;
-      payload.status = 0;
-      const res = yield call(getGoodsList, { ...parse(payload) });
-      if (res.data.code === '200') {
-        yield put({
-          type: 'mergeData',
-          payload: {
-            goodsList: res.data.data.list,
           },
         });
       } else {

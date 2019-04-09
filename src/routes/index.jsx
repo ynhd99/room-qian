@@ -20,6 +20,8 @@ import Property from './system/Property';
 import Visitor from './system/Visitor';
 import Record from './system/Record';
 import Repair from './system/Repair';
+import Health from './system/Health';
+import Personal from './system/Personal';
 
 const routes = [
   {
@@ -97,6 +99,14 @@ const routes = [
   {
     path: '/system/room/repair',
     component: Repair,
+  },
+  {
+    path: '/system/room/health',
+    component: Health,
+  },
+  {
+    path: '/system/room/personal',
+    component: Personal,
   },
 ];
 const Router = ({ history, app }) => {

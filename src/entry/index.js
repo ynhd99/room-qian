@@ -32,6 +32,8 @@ app.model(require('../models/system/property'));
 app.model(require('../models/system/visitor'));
 app.model(require('../models/system/record'));
 app.model(require('../models/system/repair'));
+app.model(require('../models/system/health'));
+app.model(require('../models/system/personal'));
 // 添加Router
 app.router(require('../routes'));
 // start
