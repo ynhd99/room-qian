@@ -42,3 +42,35 @@ export async function deleteRoom(params) {
     body: JSON.stringify(params),
   });
 }
+export async function getCollegeList(params) {
+  console.log(params);
+  return request('/api/college/findDataForPage', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+export async function getClassList(params) {
+  console.log(params);
+  return request('/api/class/findClassForPage', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+export async function getStudentList(params) {
+  return request('/api/student/findStudentForPage', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+export async function addRoomDetail(params) {
+  return request('/api/roomDetail/addRoomDetail', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+export async function deleteRoomDetail(params) {
+  return request('/api/roomDetail/deleteRoomDetail', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}

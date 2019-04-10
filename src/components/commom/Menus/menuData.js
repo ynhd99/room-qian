@@ -64,10 +64,10 @@ const SiderMenuList = [
         key: '/system/room/room',
         name: '宿舍档案',
       },
-      {
-        key: '/system/room/roomAllocation',
-        name: '分配宿舍',
-      },
+      // {
+      //   key: '/system/room/roomAllocation',
+      //   name: '分配宿舍',
+      // },
       {
         key: '/system/room/allocation',
         name: '宿舍分配情况',

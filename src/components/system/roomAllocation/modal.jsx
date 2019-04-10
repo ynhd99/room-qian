@@ -2,8 +2,8 @@ import React from 'react';
 import { Modal, Form, Select, Table, Row, Col } from 'antd';
 
 const FormItem = Form.Item;
-const DetailModal = ({
-  allocationDetail,
+const RoomAllocationModal = ({
+  roomAllocation,
   mergeData,
   modalHandleOk,
   form: { getFieldDecorator, validateFields },
@@ -30,11 +30,11 @@ const DetailModal = ({
   const modalOpts = {
     width: '800',
     title: '新增学生',
-    visible: allocationDetail.modalVisible,
+    visible: roomAllocation.modalVisible,
     onOk: handleOk,
     onCancel,
     wrapClassName: 'vertical-center-modal',
-    confirmLoading: allocationDetail.loading,
+    confirmLoading: roomAllocation.loading,
     destroyOnClose: true,
   };
   const rowSelection = {
@@ -42,7 +42,7 @@ const DetailModal = ({
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
     },
     getCheckboxProps: record => ({
-      disabled: record.name === 'Disabled User', // Column configuration not to be checked
+      disabled: record.name === 'Disabled User',
       name: record.name,
     }),
   };
@@ -56,6 +56,10 @@ const DetailModal = ({
     {
       title: '姓名',
       dataIndex: 'studentName',
+    },
+    {
+      title: '学号',
+      dataIndex: 'studentCode',
     },
     {
       title: '学院',
@@ -77,7 +81,7 @@ const DetailModal = ({
           <Col span={12}>
             <FormItem label="学院：" hasFeedback {...formItemLayout}>
               {getFieldDecorator('collegeId', {
-                initialValue: allocationDetail.collegeId,
+                initialValue: roomAllocation.collegeId,
               })(
                 <Select>
                   <Select.Option key="" value="">
@@ -90,7 +94,7 @@ const DetailModal = ({
           <Col span={12}>
             <FormItem label="班级：" hasFeedback {...formItemLayout}>
               {getFieldDecorator('classId', {
-                initialValue: allocationDetail.classId,
+                initialValue: roomAllocation.classId,
               })(
                 <Select>
                   <Select.Option key="" value="">
@@ -106,4 +110,4 @@ const DetailModal = ({
     </Modal>
   );
 };
-export default Form.create()(DetailModal);
+export default Form.create()(RoomAllocationModal);

@@ -13,6 +13,24 @@ const Allocation = ({ allocation, dispatch }) => {
         payload,
       });
     },
+    getRoomList() {
+      dispatch({
+        type: 'allocation/getRoomList',
+        payload: {},
+      });
+    },
+    getClassList() {
+      dispatch({
+        type: 'allocation/getClassList',
+        payload: {},
+      });
+    },
+    searchAction() {
+      dispatch({
+        type: 'allocation/getStudentList',
+        payload: {},
+      });
+    },
   };
   const listPropsList = {
     allocation,

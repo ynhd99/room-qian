@@ -13,8 +13,6 @@ import Role from './system/Role';
 import College from './system/College';
 import Building from './system/Building';
 import Allocation from './system/Allocation';
-import RoomAllocation from './system/RoomAllocation';
-import AllocationDetail from './system/AllocationDetail';
 import ClassRoom from './system/ClassRoom';
 import Property from './system/Property';
 import Visitor from './system/Visitor';
@@ -22,6 +20,7 @@ import Record from './system/Record';
 import Repair from './system/Repair';
 import Health from './system/Health';
 import Personal from './system/Personal';
+import RoomAllocation from './system/RoomAllocation';
 
 const routes = [
   {
@@ -75,10 +74,6 @@ const routes = [
   {
     path: '/system/room/roomAllocation',
     component: RoomAllocation,
-  },
-  {
-    path: '/system/room/allocationDetail',
-    component: AllocationDetail,
   },
   {
     path: '/system/room/class',

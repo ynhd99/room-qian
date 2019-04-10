@@ -1,7 +1,71 @@
 import React from 'react';
 import { Table, Form, Badge, Popconfirm } from 'antd';
 
-const RoomList = ({ room, mergeData, updateStatus, deleteClass, onPageChange, getDataList }) => {
+const RoomList = ({
+  room,
+  mergeData,
+  updateStatus,
+  deleteClass,
+  onPageChange,
+  getDataList,
+  getAddDataList,
+  deleteRoomDetail,
+}) => {
+  const columnsDetail = [
+    {
+      title: '学院',
+      dataIndex: 'collegeName',
+      key: 'collegeName',
+    },
+    {
+      title: '班级',
+      dataIndex: 'className',
+      key: 'className',
+    },
+    {
+      title: '学号',
+      dataIndex: 'studentCode',
+      key: 'studentCode',
+    },
+    {
+      title: '姓名',
+      dataIndex: 'studentName',
+      key: 'studentName',
+    },
+    {
+      title: '性别',
+      dataIndex: 'studentSex',
+      key: 'studentSex',
+    },
+    {
+      title: '手机号',
+      dataIndex: 'studentPhone',
+      key: 'studentPhone',
+    },
+    {
+      title: '入住日期',
+      dataIndex: 'checkDate',
+      key: 'checkDate',
+    },
+    {
+      title: '操作',
+      dataIndex: 'action',
+      render(text, record) {
+        return (
+          <Popconfirm
+            title="你确定要将该学生从宿舍中移除码？"
+            onConfirm={() => {
+              deleteRoomDetail({ id: record.id, studentId: record.studentId });
+            }}
+            okText="确定"
+            cancelText="取消"
+          >
+            <a>删除</a>
+          </Popconfirm>
+        );
+      },
+    },
+  ];
   const columns = [
     {
       title: '宿舍号',
@@ -27,6 +91,11 @@ const RoomList = ({ room, mergeData, updateStatus, deleteClass, onPageChange, ge
       key: 'roomCount',
     },
     {
+      title: '现有人数',
+      dataIndex: 'currentCount',
+      key: 'currentCount',
+    },
+    {
       title: '状态',
       dataIndex: 'status',
       render(text, record) {
@@ -43,6 +112,50 @@ const RoomList = ({ room, mergeData, updateStatus, deleteClass, onPageChange, ge
       title: '操作',
       dataIndex: 'action',
       render(text, record) {
+        if (record.status === 0 && record.roomCount > record.currentCount) {
+          return (
+            <div>
+              <a
+                onClick={() => {
+                  mergeData({
+                    oPty: 'edit',
+                    id: record.id,
+                    modalVisible: true,
+                    roomCode: record.roomCode,
+                    cateId: record.cateId,
+                    buildingId: record.buildingId,
+                    roomCount: record.roomCount,
+                  });
+                  getDataList();
+                }}
+              >
+                编辑 |
+              </a>
+              <a
+                onClick={() => {
+                  mergeData({
+                    oPty: 'edit',
+                    id: record.id,
+                    addModalVisible: true,
+                  });
+                  getAddDataList();
+                }}
+              >
+                添加学生 |
+              </a>
+              <Popconfirm
+                title="你确定要停用该宿舍吗？"
+                onConfirm={() => {
+                  updateStatus({ id: record.id, status: 1 });
+                }}
+                okText="确定"
+                cancelText="取消"
+              >
+                <a> 停用</a>
+              </Popconfirm>
+            </div>
+          );
+        }
         if (record.status === 0) {
           return (
             <div>
@@ -127,6 +240,14 @@ const RoomList = ({ room, mergeData, updateStatus, deleteClass, onPageChange, ge
       rowKey={record => record.id}
       pagination={room.pagination} // 分页器:不分页
       onChange={onPageChange}
+      expandedRowRender={record => (
+        <Table
+          dataSource={record.roomDetailInfoList}
+          pagination={false}
+          rowKey={record.id}
+          columns={columnsDetail}
+        />
+      )}
     />
   );
 };

@@ -14,6 +14,11 @@ const RoomAllocationList = ({ roomAllocation }) => {
       key: 'roomCode',
     },
     {
+      title: '宿舍类型',
+      dataIndex: 'cateName',
+      key: 'cateName',
+    },
+    {
       title: '容纳人数',
       dataIndex: 'roomCount',
       key: 'roomCount',

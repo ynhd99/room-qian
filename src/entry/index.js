@@ -25,7 +25,6 @@ app.model(require('../models/system/role'));
 app.model(require('../models/system/college'));
 app.model(require('../models/system/building'));
 app.model(require('../models/system/allocation'));
-app.model(require('../models/system/allocationDetail'));
 app.model(require('../models/system/roomAllocation'));
 app.model(require('../models/system/class'));
 app.model(require('../models/system/property'));

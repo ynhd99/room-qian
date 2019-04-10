@@ -24,3 +24,21 @@ export async function getClassList(params) {
     body: JSON.stringify(params),
   });
 }
+export async function getBuildingList(params) {
+  return request('/api/building/findBuildingForPage', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+export async function getRoomList(params) {
+  return request('/api/room/findRoomList', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+export async function getStudentList(params) {
+  return request('/api/roomDetail/findRoomDetailForPage', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
