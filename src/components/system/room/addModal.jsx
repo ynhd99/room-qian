@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Modal, Form, Select, Table, Row, Col, DatePicker } from 'antd';
+import { Modal, Form, Select, Table, Row, Col, DatePicker, Input } from 'antd';
 
 const FormItem = Form.Item;
 const AddRoomModal = ({
@@ -10,7 +10,7 @@ const AddRoomModal = ({
   onPageChange,
   getStudentList,
   addRoomDetail,
-  form: { getFieldDecorator },
+  form: { getFieldDecorator, validateFields },
 }) => {
   const filterOption = (inputValue, option) => {
     const props = option.props;
@@ -51,8 +51,12 @@ const AddRoomModal = ({
     },
   };
   const handleOk = () => {
-    addRoomDetail();
-    mergeData({ addModalVisible: false, oPty: '', collegeId: '', classId: '', checkDate: '' });
+    validateFields((errors, values) => {
+      if (!errors) {
+        addRoomDetail();
+        mergeData({ addModalVisible: false, oPty: '', collegeId: '', classId: '', checkDate: '' });
+      }
+    });
   };
   const onCancel = () => {
     mergeData({ addModalVisible: false, oPty: '', collegeId: '', classId: '', checkDate: '' });
@@ -68,14 +72,18 @@ const AddRoomModal = ({
   };
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, `selectedRows: ${selectedRows}`);
       const arr = [];
-      for (let i = 0; i < selectedRowKeys.length; i += 1) {
+      for (let i = 0; i < selectedRows.length; i += 1) {
         const object = {};
-        object.studentId = selectedRowKeys[i];
+        object.studentId = selectedRows[i].id;
+        object.bedCount = selectedRows[i].bedCount;
         arr[i] = object;
       }
       mergeData({ roomDetailInfoList: arr });
+    },
+    onSelect: (record, selected, selectedRows) => {
+      console.log(`selectedRows: ${selectedRows}`, `selected: ${selected}`);
     },
     getCheckboxProps: record => ({
       disabled: record.settleFlag === 1,
@@ -104,6 +112,33 @@ const AddRoomModal = ({
     {
       title: '性别',
       dataIndex: 'studentSex',
+    },
+    {
+      title: '床位号',
+      dataIndex: 'bedCount',
+      editable: true,
+      render(text, record) {
+        return (
+          <Form>
+            <FormItem hasFeedback {...formItemLayout}>
+              {getFieldDecorator(`${record.id}bedCount`, {
+                initialValue: '',
+                rules:
+                  record.settleFlag === 1
+                    ? ''
+                    : [{ required: true, message: '床位号没选择', whitespace: true }],
+              })(
+                <Input
+                  disabled={record.settleFlag === 1}
+                  onChange={(value) => {
+                    record.bedCount = value.target.value;
+                  }}
+                />,
+              )}
+            </FormItem>
+          </Form>
+        );
+      },
     },
   ];
   function disabledDate(current) {
@@ -167,6 +202,7 @@ const AddRoomModal = ({
                 <DatePicker
                   format="YYYY-MM-DD"
                   // value={repair.repairDate}
+                  style={{ minWidth: 215 }}
                   disabledDate={disabledDate}
                   onChange={value => mergeData({ checkDate: value })}
                 />,

@@ -42,3 +42,21 @@ export async function getStudentList(params) {
     body: JSON.stringify(params),
   });
 }
+export async function addRole(params) {
+  return request('/api/authority/addRole', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+export async function getAuthorityList(params) {
+  return request('/api/authority/getAuthorityList', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
+export async function updateRole(params) {
+  return request('/api/authority/updateRole', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}

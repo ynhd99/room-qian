@@ -59,7 +59,7 @@ export default {
         yield put({
           type: 'mergeData',
           payload: {
-            roleList: res.data.data,
+            roleList: res.data.data.list,
           },
         });
       }

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Table, Form, Popconfirm } from 'antd';
+import INVENTORY_PERMISSION from '../../../commom/Permission/systemPermission';
+import Permission from '../../../commom/Permission/Permission';
 
 const StudentList = ({ mergeData, student, onPageChange, getDataList, deleteStudent }) => {
   const columns = [
@@ -40,35 +42,39 @@ const StudentList = ({ mergeData, student, onPageChange, getDataList, deleteStud
       render(text, record) {
         return (
           <div>
-            <a
-              onClick={() => {
-                mergeData({
-                  oPty: 'edit',
-                  id: record.id,
-                  modalVisible: true,
-                  studentCode: record.studentCode,
-                  studentName: record.studentName,
-                  studentPhone: record.studentPhone,
-                  classId: record.classId,
-                  studentSex: record.studentSex === '女' ? '2' : '1',
-                  collegeId: record.collegeId,
-                  roleId: record.roleId,
-                });
-                getDataList();
-              }}
-            >
-              编辑 |
-            </a>
-            <Popconfirm
-              title="你确定要删除该学生吗？"
-              onConfirm={() => {
-                deleteStudent({ id: record.id });
-              }}
-              okText="确定"
-              cancelText="取消"
-            >
-              <a> 删除</a>
-            </Popconfirm>
+            <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.OPTION}>
+              <a
+                onClick={() => {
+                  mergeData({
+                    oPty: 'edit',
+                    id: record.id,
+                    modalVisible: true,
+                    studentCode: record.studentCode,
+                    studentName: record.studentName,
+                    studentPhone: record.studentPhone,
+                    classId: record.classId,
+                    studentSex: record.studentSex === '女' ? '2' : '1',
+                    collegeId: record.collegeId,
+                    roleId: record.roleId,
+                  });
+                  getDataList();
+                }}
+              >
+                编辑 |
+              </a>
+            </Permission>
+            <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.OPTION}>
+              <Popconfirm
+                title="你确定要删除该学生吗？"
+                onConfirm={() => {
+                  deleteStudent({ id: record.id });
+                }}
+                okText="确定"
+                cancelText="取消"
+              >
+                <a> 删除</a>
+              </Popconfirm>
+            </Permission>
           </div>
         );
       },

@@ -48,6 +48,11 @@ const RoomList = ({
       key: 'checkDate',
     },
     {
+      title: '床位号',
+      dataIndex: 'bedCount',
+      key: 'bedCount',
+    },
+    {
       title: '操作',
       dataIndex: 'action',
       render(text, record) {

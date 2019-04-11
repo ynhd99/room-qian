@@ -2,6 +2,7 @@ import { connect } from 'dva';
 import React from 'react';
 import RoleList from '../../components/system/role/list';
 import RoleModal from '../../components/system/role/modal';
+import TreeData from '../../components/commom/Menus/authorityTree';
 
 const Role = ({ role, dispatch }) => {
   const RoleLists = {
@@ -22,14 +23,41 @@ const Role = ({ role, dispatch }) => {
         payload,
       });
     },
+    getAuthorityList(payload) {
+      dispatch({
+        type: 'role/getAuthorityList',
+        payload,
+      });
+    },
   };
   const RoleModalList = {
     role,
+    TreeData,
     mergeData(payload) {
       console.log('hahahhahahhahh');
       dispatch({
         type: 'role/mergeData',
         payload,
+      });
+    },
+    modalHandleOk(payload) {
+      console.log(`roleName${payload.roleName}`);
+      if (role.oPty === 'add') {
+        dispatch({
+          type: 'role/addRole',
+          payload,
+        });
+      } else {
+        dispatch({
+          type: 'role/updateRole',
+          payload,
+        });
+      }
+      dispatch({
+        type: 'role/mergeData',
+        payload: {
+          modalVisible: false,
+        },
       });
     },
   };

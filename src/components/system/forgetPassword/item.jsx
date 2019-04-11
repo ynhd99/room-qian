@@ -36,16 +36,16 @@ const Item = ({
                 required: true,
                 message: '请输入手机号！',
               },
-              {
-                pattern: /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/,
-                message: '手机号格式错误！',
-              },
+              // {
+              //   pattern: /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/,
+              //   message: '手机号格式错误！',
+              // },
             ],
           })(
             <Input
               size="large"
               style={{ width: '100%' }}
-              placeholder="请输入11位手机号"
+              placeholder="请输入账号"
               onChange={onChangeMobile}
             />,
           )}

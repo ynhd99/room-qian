@@ -78,89 +78,85 @@ const AllocationSearch = ({
         <Row>
           <Col span={8}>
             <FormItem label="楼号" hasFeedback {...formItemLayout}>
-              {getFieldDecorator('buildingId', {
-                initialValue: allocation.buildingId === '' ? '请选择楼号' : allocation.buildingId,
-                // rules: [{ required: true, message: '宿舍楼号未选择', whitespace: true }],
-              })(
-                <Select
-                  style={{ minWidth: 215 }}
-                  showSearch
-                  filterOption={filterOption}
-                  onChange={(value) => {
-                    mergeData({ buildingId: value });
-                    getRoomList();
-                    searchAction();
-                  }}
-                  placeholder="请选择所属楼号"
-                >
-                  {buildingOperation}
-                </Select>,
-              )}
+              <Select
+                style={{ minWidth: 215 }}
+                showSearch
+                value={allocation.buildingId}
+                filterOption={filterOption}
+                onChange={(value) => {
+                  mergeData({ buildingId: value });
+                  getRoomList();
+                  searchAction();
+                }}
+                placeholder="请选择所属楼号"
+              >
+                <Select.Option value="" key="">
+                  全部
+                </Select.Option>
+                {buildingOperation}
+              </Select>
             </FormItem>
           </Col>
           <Col span={8}>
             <FormItem label="宿舍号" hasFeedback {...formItemLayout}>
-              {getFieldDecorator('roomId', {
-                initialValue: allocation.roomId === '' ? '请选择宿舍号' : allocation.roomId,
-                // rules: [{ required: true, message: '宿舍号未选择', whitespace: true }],
-              })(
-                <Select
-                  style={{ minWidth: 215 }}
-                  showSearch
-                  filterOption={filterOption}
-                  onChange={(value) => {
-                    mergeData({ roomId: value });
-                    searchAction();
-                  }}
-                  placeholder="请选择宿舍号"
-                >
-                  {roomOperation}
-                </Select>,
-              )}
+              <Select
+                style={{ minWidth: 215 }}
+                showSearch
+                value={allocation.roomId}
+                filterOption={filterOption}
+                onChange={(value) => {
+                  mergeData({ roomId: value });
+                  searchAction();
+                }}
+                placeholder="请选择宿舍号"
+              >
+                <Select.Option value="" key="">
+                  全部
+                </Select.Option>
+                {roomOperation}
+              </Select>
             </FormItem>
           </Col>
           <Col span={8}>
-            <FormItem {...formItemLayout} label="学院">
-              {getFieldDecorator('collegeId', {
-                initialValue: allocation.collegeId === '' ? '请选择学院' : allocation.collegeId,
-              })(
-                <Select
-                  style={{ minWidth: 150 }}
-                  value={allocation.collegeId}
-                  showSearch
-                  filterOption={filterOption}
-                  onChange={(value) => {
-                    mergeData({ collegeId: value, classId: '' });
-                    getClassList();
-                    searchAction();
-                  }}
-                  placeholder="请选择学院"
-                >
-                  {collegeOptions}
-                </Select>,
-              )}
+            <FormItem label="学院" hasFeedback {...formItemLayout}>
+              <Select
+                style={{ minWidth: 215 }}
+                showSearch
+                value={allocation.collegeId}
+                filterOption={filterOption}
+                onChange={(value) => {
+                  mergeData({ collegeId: value });
+                  getClassList();
+                  searchAction();
+                }}
+                placeholder="请选择学生学院"
+              >
+                <Select.Option value="" key="">
+                  全部
+                </Select.Option>
+                {collegeOptions}
+              </Select>
             </FormItem>
           </Col>
           <Col span={8}>
             <FormItem {...formItemLayout} label="班级">
-              {getFieldDecorator('classId', {
-                initialValue: allocation.classId === '' ? '请选择班级' : allocation.classId,
-              })(
-                <Select
-                  style={{ minWidth: 150 }}
-                  value={allocation.classId === '' ? '请选择班级' : allocation.classId}
-                  showSearch
-                  filterOption={filterOption}
-                  onChange={(value) => {
-                    mergeData({ classId: value });
-                    searchAction();
-                  }}
-                  placeholder="请选择班级"
-                  defaultActiveFirstOption
-                >
-                  {classOptions}
-                </Select>,
-              )}
+              <Select
+                style={{ minWidth: 215 }}
+                value={allocation.classId}
+                showSearch
+                filterOption={filterOption}
+                onChange={(value) => {
+                  mergeData({ classId: value });
+                  searchAction();
+                }}
+                placeholder="请选择学生班级"
+                defaultActiveFirstOption
+              >
+                <Select.Option value="" key="">
+                  全部
+                </Select.Option>
+                {classOptions}
+              </Select>
             </FormItem>
           </Col>
           <Col span={8}>
@@ -199,26 +195,36 @@ const AllocationSearch = ({
         <Row>
           <Col span={16}>
             <FormItem label="入住日期" hasFeedback {...formItemLayout}>
-              {getFieldDecorator('checkDate', {
-                initialValue: allocation.checkDate || '',
-                // rules: [{ required: true, message: '维修日期未选择', whitespace: true }],
-              })(
-                <DatePicker
-                  format="YYYY-MM-DD"
-                  // value={repair.repairDate}
-                  // disabledDate={disabledDate}
-                  onChange={(value) => {
-                    mergeData({ checkDate: value });
-                    searchAction();
-                  }}
-                />,
-              )}
+              <DatePicker
+                format="YYYY-MM-DD"
+                style={{ minWidth: 265 }}
+                onChange={(value) => {
+                  mergeData({ checkDate: value });
+                  searchAction();
+                }}
+              />
             </FormItem>
           </Col>
           <Col span={4} />
           <Col span={4}>
             <FormItem className="search-input" {...formItemLayout1}>
-              <Button htmlType="submit">重置</Button>
+              <Button
+                htmlType="submit"
+                onClick={() => {
+                  mergeData({
+                    buildingId: '',
+                    roomId: '',
+                    collegeId: '',
+                    classId: '',
+                    studentCode: '',
+                    studentName: '',
+                    checkDate: '',
+                  });
+                  searchAction();
+                }}
+              >
+                重置
+              </Button>
             </FormItem>
           </Col>
         </Row>

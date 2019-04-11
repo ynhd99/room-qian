@@ -17,10 +17,10 @@ const Header = ({ isShow, userLogout }) => {
             defaultSelectedKeys={['1']}
             style={{ lineHeight: '64px' }}
           >
-            <Menu.Item key="1">供应链</Menu.Item>
-            <Menu.Item key="2">
+            <Menu.Item key="1">宿舍管理</Menu.Item>
+            {/* <Menu.Item key="2">
               <Link to="/system/room/personal">个人中心</Link>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item
               key="3"
               onClick={() => {

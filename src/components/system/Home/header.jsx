@@ -39,7 +39,7 @@ const header = ({ dispatch }) => {
                 首页
               </MenuItem>
               <MenuItem className={styles.item} key={2}>
-                辰森官网
+                山东交通学院官网
               </MenuItem>
               <MenuItem className={styles.item} key={3}>
                 客户专线

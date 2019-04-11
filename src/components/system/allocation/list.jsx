@@ -1,12 +1,12 @@
 import React from 'react';
 import { Table, Form } from 'antd';
 
-const AllocationList = ({ allocation }) => {
+const AllocationList = ({ allocation, onPageChange }) => {
   const columns = [
     {
       title: '楼号',
-      dataIndex: 'buildingName',
-      key: 'buildingName',
+      dataIndex: 'buildingCode',
+      key: 'buildingCode',
     },
     {
       title: '宿舍号',
@@ -15,13 +15,13 @@ const AllocationList = ({ allocation }) => {
     },
     {
       title: '姓名',
-      dataIndex: 'staffname',
-      key: 'staffname',
+      dataIndex: 'studentName',
+      key: 'studentName',
     },
     {
       title: '学号',
-      dataIndex: 'staffCode',
-      key: 'staffCode',
+      dataIndex: 'studentCode',
+      key: 'studentCode',
     },
     {
       title: '学院',
@@ -35,17 +35,22 @@ const AllocationList = ({ allocation }) => {
     },
     {
       title: '办理日期',
-      dataIndex: 'oparateData',
-      key: 'oparateData',
+      dataIndex: 'checkDate',
+      key: 'checkDate',
+    },
+    {
+      title: '床号',
+      dataIndex: 'bedCount',
+      key: 'bedCount',
     },
   ];
   return (
     <Table
-      // dataSource={}
+      dataSource={allocation.studentList}
       columns={columns}
       // loading={loading}
       rowKey={record => record.id}
-      pagination={false} // 分页器:不分页
+      pagination={onPageChange} // 分页器:不分页
     />
   );
 };

@@ -2,13 +2,13 @@ import { message } from 'antd';
 import { parse } from 'qs';
 import { routerRedux } from 'dva/router';
 import getLogin from '../../services/system/home';
-import { saveSession, getSession } from '../../utils/index';
 
 export default {
   namespace: 'home',
   state: {
     loading: false,
     params: null,
+    authorityList: [],
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -40,6 +40,12 @@ export default {
         window.sessionStorage.setItem('token', res.data.data.sessionId);
         const path = '/system/room/record';
         yield put(routerRedux.push(path));
+        yield put({
+          type: 'mergeData',
+          payload: {
+            authorityList: res.data.data.authority,
+          },
+        });
       } else {
         console.log(res.data.errorInfo);
         message.error(res.data.errorInfo);
@@ -60,6 +66,7 @@ export default {
       return { ...state, ...payload };
     },
     mergeData(state, action) {
+      console.log(`ahhahahah${action.payload.authorityList[0]}`);
       return { ...state, ...action.payload };
     },
   },

@@ -1,32 +1,35 @@
 module.exports = {
   SUB0: {
+    code: '600000',
+    description: '公告管理',
+  },
+  SUB1: {
     code: '610000',
     description: '系统设置',
   },
-  SUB1: {
+  SUB2: {
     code: '611000',
     description: '宿舍管理',
   },
-  SUB2: {
+  SUB3: {
     code: '612000',
     description: '公共财产管理',
   },
-  SUB3: {
+  SUB4: {
     code: '613000',
     description: '外来人员管理',
   },
-  SUB4: {
+  SUB5: {
     code: '614000',
     description: '卫生管理',
   },
-  PRICE_LIST: {
-    PAGE: { code: '615012', description: '配送售价单' },
-    VIEW: { code: '61501201', description: '配送售价单_查看' },
-    EDIT: { code: '61501202', description: '配送售价单_编辑' },
-    ABOLISH: { code: '61501206', description: '配送售价单_整单作废' },
-    DELETE: { code: '61501202', description: '配送售价单_删除' },
-    CREATE: { code: '61501202', description: '配送售价单_新增' },
-    VERIFY: { code: '61501206', description: '配送售价单_审核' },
+  RECORD_LIST: {
+    ADD: { code: '6000001', description: '新增公告' },
+    OPTION: { code: '6000002', description: '删除/编辑' },
+  },
+  ACCOUNT_LIST: {
+    ADD: { code: '001001001', description: '新增账号' },
+    OPTION: { code: '001001003', description: '操作' },
   },
   COSTS_LIST: {
     PAGE: { code: '613003', description: '供应商定价单' },

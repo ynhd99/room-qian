@@ -40,16 +40,16 @@ const Allocation = ({ allocation, dispatch }) => {
         payload,
       });
     },
+    onPageChange(page) {
+      dispatch({
+        type: 'allocation/getStudentList',
+        payload: {
+          pageNo: page.current,
+          pageSize: page.pageSize,
+        },
+      });
+    },
   };
-  //   const modalPropsList = {
-  //     room,
-  //     mergeData(payload) {
-  //       dispatch({
-  //         type: 'allocation/mergeData',
-  //         payload,
-  //       });
-  //     },
-  //   };
   return (
     <div>
       <AllocationSearch {...searchPropsList} />

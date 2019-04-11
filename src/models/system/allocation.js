@@ -15,7 +15,6 @@ export default {
     buildingName: '',
     modalVisible: false,
     cateId: '',
-    collegeId: '',
     treeData: [],
     buildingList: [],
     roomList: [],
@@ -29,6 +28,17 @@ export default {
     collegeName: '',
     className: '',
     calssId: '',
+    clooegeid: '',
+    // 分页
+    pagination: {
+      showSizeChanger: true,
+      showQuickJumper: true,
+      showTotal: total => `共 ${total} 条`,
+      current: 1,
+      total: 0,
+      pageSize: 10,
+      pageSizeOptions: ['10', '20', '50', '100'],
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -59,7 +69,7 @@ export default {
     },
   },
   effects: {
-    // 分页获取教学楼列表
+    // 分页获取学生住宿情况列表
     * getStudentList({ payload }, { select, call, put }) {
       console.log('我获取学生列表了');
       yield put({ type: 'showLoading' });
@@ -77,7 +87,7 @@ export default {
       payload.collegeId = collegeId;
       payload.studentName = studentName;
       payload.studentCode = studentCode;
-      if (!checkDate === '') {
+      if (checkDate !== '') {
         payload.checkDate = checkDate.format('YYYY-MM-DD');
       }
       payload.page = payload.pageNo || pagination.current;

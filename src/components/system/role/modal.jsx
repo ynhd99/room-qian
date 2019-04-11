@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, Input, Row, Col, TreeSelect } from 'antd';
+import { Modal, Form, Input, Row, Col, Tree } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -15,7 +15,6 @@ const RoleModal = ({
         modalHandleOk(values);
       }
     });
-    mergeData({ modalVisible: false });
   };
   const onCancel = () => {
     mergeData({ modalVisible: false, deportCode: '', deportName: '', oPty: '' });
@@ -28,6 +27,42 @@ const RoleModal = ({
       span: 14,
     },
   };
+  const renderTreeNodes = data =>
+    data.map((item) => {
+      console.log(`title${item.authorityName}`);
+      if (item.children) {
+        return (
+          <Tree.TreeNode
+            title={item.authorityName}
+            key={item.id}
+            dataRef={item}
+            checked={item.isSelect === 1}
+          >
+            {renderTreeNodes(item.children)}
+          </Tree.TreeNode>
+        );
+      }
+      return (
+        <Tree.TreeNode
+          title={item.authorityName}
+          key={item.id}
+          dataRef={item}
+          checked={item.isSelect === 1}
+        />
+      );
+    });
+  const onCheck = (checkedKeys) => {
+    console.log('selectedKeys', checkedKeys);
+    const arr = [];
+    for (let i = 0; i < checkedKeys.length; i += 1) {
+      const object = {};
+      object.authorityId = checkedKeys[i];
+      arr[i] = object;
+    }
+    mergeData({ roleAuthorityList: arr });
+  };
+
+  const treeNode = renderTreeNodes(role.authorityList);
   const modalOpts = {
     width: 600,
     title: role.oPty === 'edit' ? '编辑角色' : '添加角色',
@@ -69,10 +104,10 @@ const RoleModal = ({
             </FormItem>
           </Row>
           <Row>
-            <FormItem label="权限" {...formItemLayout}>
-              {getFieldDecorator('authorityId', {
-                initialValue: role.authorityId,
-              })(<TreeSelect placeholder="请选择隶属机构" />)}
+            <FormItem label="选择权限" {...formItemLayout}>
+              <Tree checkable defaultSelectedKeys={['600000']} onCheck={onCheck}>
+                {treeNode}
+              </Tree>
             </FormItem>
           </Row>
         </Col>

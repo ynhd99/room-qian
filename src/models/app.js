@@ -1,8 +1,8 @@
 import { parse } from 'qs';
+import { message } from 'antd';
 import { routerRedux } from 'dva/router';
 import { getSession } from '../utils/index';
 import { userLogout } from '../services/app';
-import { message } from 'antd';
 
 export default {
   namespace: 'account',
