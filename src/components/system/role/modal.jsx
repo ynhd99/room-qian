@@ -27,6 +27,20 @@ const RoleModal = ({
       span: 14,
     },
   };
+  // const checkedArr = [];
+  // const checkedList = (list) => {
+  //   for (let i = 0; i < list.length; i += 1) {
+  //     console.log(`iiiiiii${list[i].authorityName}`);
+  //     if (list[i].children) {
+  //       if (list[i].isSelect === 1) {
+  //         checkedArr.push(list[i].id);
+  //       }
+  //       checkedList(list[i].children);
+  //     }
+  //   }
+  //   console.log(`checkedArr${checkedArr[0]}`);
+  //   return checkedArr;
+  // };
   const renderTreeNodes = data =>
     data.map((item) => {
       console.log(`title${item.authorityName}`);
@@ -36,7 +50,8 @@ const RoleModal = ({
             title={item.authorityName}
             key={item.id}
             dataRef={item}
-            checked={item.isSelect === 1}
+            selected={item.isSelect === 1}
+            defaultExpandedKeys={item.isSelect === 1 ? [item.id] : ''}
           >
             {renderTreeNodes(item.children)}
           </Tree.TreeNode>
@@ -87,7 +102,9 @@ const RoleModal = ({
                     message: '请输入角色编码',
                   },
                 ],
-              })(<Input type="text" placeholder="请输入角色编码" />)}
+              })(
+                <Input type="text" placeholder="请输入角色编码" disabled={role.oPty === 'edit'} />,
+              )}
             </FormItem>
           </Row>
           <Row>
@@ -105,7 +122,7 @@ const RoleModal = ({
           </Row>
           <Row>
             <FormItem label="选择权限" {...formItemLayout}>
-              <Tree checkable defaultSelectedKeys={['600000']} onCheck={onCheck}>
+              <Tree checkable onCheck={onCheck} defaultCheckedKeys={role.selectedKeys}>
                 {treeNode}
               </Tree>
             </FormItem>

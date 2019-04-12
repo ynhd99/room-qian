@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import { Form, Row, Col, Button, DatePicker, Input } from 'antd';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
 const FormItem = Form.Item;
 const HealthSearch = ({
@@ -81,26 +83,28 @@ const HealthSearch = ({
       </Form>
       <div className="action-box">
         <Row />
-        <Row>
-          <Col span={16}>
-            <Button
-              type="primary"
-              onClick={() => {
-                mergeData({
-                  modalVisible: true,
-                  oPty: 'add',
-                  roomCode: '',
-                  roomId: '',
-                  checkDate: '',
-                  remark: '',
-                });
-                getDateList();
-              }}
-            >
-              添加卫生检查情况
-            </Button>
-          </Col>
-        </Row>
+        <Permission path={INVENTORY_PERMISSION.HEALTH_LIST.ADD.code}>
+          <Row>
+            <Col span={16}>
+              <Button
+                type="primary"
+                onClick={() => {
+                  mergeData({
+                    modalVisible: true,
+                    oPty: 'add',
+                    roomCode: '',
+                    roomId: '',
+                    checkDate: '',
+                    remark: '',
+                  });
+                  getDateList();
+                }}
+              >
+                添加卫生检查情况
+              </Button>
+            </Col>
+          </Row>
+        </Permission>
       </div>
     </div>
   );

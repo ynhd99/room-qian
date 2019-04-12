@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Input, Row, Col, Button } from 'antd';
+import INVENTORY_PERMISSION from '../../../commom/Permission/systemPermission';
+import Permission from '../../../commom/Permission/Permission';
 
 const FormItem = Form.Item;
 const TeacherSearch = ({
@@ -43,27 +45,29 @@ const TeacherSearch = ({
         </Form>
         <div className="action-box" style={{ marginTop: '15px' }}>
           <Row />
-          <Row>
-            <Col span={16}>
-              <Button
-                type="primary"
-                onClick={() => {
-                  mergeData({
-                    modalVisible: true,
-                    oPty: 'add',
-                    teacherCode: '',
-                    teacherName: '',
-                    teacherSex: '',
-                    roleId: '',
-                    collegeId: '',
-                  });
-                  getDataList();
-                }}
-              >
-                +新增老师
-              </Button>
-            </Col>
-          </Row>
+          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.ADD.code}>
+            <Row>
+              <Col span={16}>
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    mergeData({
+                      modalVisible: true,
+                      oPty: 'add',
+                      teacherCode: '',
+                      teacherName: '',
+                      teacherSex: '',
+                      roleId: '',
+                      collegeId: '',
+                    });
+                    getDataList();
+                  }}
+                >
+                  +新增老师
+                </Button>
+              </Col>
+            </Row>
+          </Permission>
         </div>
       </div>
     </div>

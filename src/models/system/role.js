@@ -5,6 +5,7 @@ import {
   addRole,
   getAuthorityList,
   updateRole,
+  deleteRole,
 } from '../../services/system/common/common';
 
 export default {
@@ -16,6 +17,7 @@ export default {
     codeList: [],
     authorityList: [],
     roleAuthorityList: [],
+    selectedKeys: [],
     oPty: '',
     status: '',
     id: '',
@@ -40,6 +42,10 @@ export default {
         if (location.pathname === '/system/room/role') {
           dispatch({
             type: 'getRoleList',
+            payload: {},
+          });
+          dispatch({
+            type: 'getAuthorityList',
             payload: {},
           });
         }
@@ -90,6 +96,16 @@ export default {
         message.error(res.data.errorInfo);
       }
     },
+    * deleteRole({ payload }, { call, put }) {
+      console.log(`还没有吗${payload.id}`);
+      const res = yield call(deleteRole, { ...parse(payload) });
+      if (res.data.code === '200') {
+        message.info('删除成功');
+        yield put({ type: 'getRoleList', payload: {} });
+      } else {
+        message.error(res.data.errorInfo);
+      }
+    },
     * updateRole({ payload }, { call, put, select }) {
       console.log(`还没有吗${payload.classCode}`);
       const { id, roleAuthorityList } = yield select(state => state.role);
@@ -104,7 +120,6 @@ export default {
       }
     },
     * getAuthorityList({ payload }, { call, put }) {
-      console.log(`哈哈哈${payload.id}`);
       const res = yield call(getAuthorityList, { ...parse(payload) });
       if (res.data.code === '200') {
         yield put({

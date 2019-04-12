@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Input, Row, Col, Button, Radio, Select } from 'antd';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
 const FormItem = Form.Item;
 const ClassSearch = ({
@@ -105,19 +107,21 @@ const ClassSearch = ({
           </Col>
         </Row>
       </Form>
-      <Row>
-        <Col span={16}>
-          <Button
-            type="primary"
-            onClick={() => {
-              mergeData({ modalVisible: true, oPty: 'add' });
-              searchAction();
-            }}
-          >
-            添加班级
-          </Button>
-        </Col>
-      </Row>
+      <Permission path={INVENTORY_PERMISSION.CLASS_LIST.ADD.code}>
+        <Row>
+          <Col span={16}>
+            <Button
+              type="primary"
+              onClick={() => {
+                mergeData({ modalVisible: true, oPty: 'add' });
+                searchAction();
+              }}
+            >
+              添加班级
+            </Button>
+          </Col>
+        </Row>
+      </Permission>
     </div>
   );
 };

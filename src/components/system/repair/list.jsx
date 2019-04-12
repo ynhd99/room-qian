@@ -1,5 +1,7 @@
 import React from 'react';
 import { Table, Form } from 'antd';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
 const RepairList = ({ repair, onPageChange, mergeData, getDateList }) => {
   const columns = [
@@ -34,21 +36,23 @@ const RepairList = ({ repair, onPageChange, mergeData, getDateList }) => {
       width: '15%',
       render(text, record) {
         return (
-          <a
-            onClick={() => {
-              getDateList();
-              mergeData({
-                oPty: 'edit',
-                id: record.id,
-                modalVisible: true,
-                roomId: record.roomId,
-                goodsId: record.goodsId,
-                remark: record.remark,
-              });
-            }}
-          >
-            编辑
-          </a>
+          <Permission path={INVENTORY_PERMISSION.REPAIR_LIST.OPTION.code}>
+            <a
+              onClick={() => {
+                getDateList();
+                mergeData({
+                  oPty: 'edit',
+                  id: record.id,
+                  modalVisible: true,
+                  roomId: record.roomId,
+                  goodsId: record.goodsId,
+                  remark: record.remark,
+                });
+              }}
+            >
+              编辑
+            </a>
+          </Permission>
         );
       },
     },

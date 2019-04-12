@@ -1,5 +1,7 @@
 import React from 'react';
 import { Table, Form, Badge, Popconfirm } from 'antd';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
 const CollegeList = ({
   mergeData,
@@ -41,54 +43,58 @@ const CollegeList = ({
         if (record.status === 0) {
           return (
             <div>
-              <a
-                onClick={() =>
-                  mergeData({
-                    oPty: 'edit',
-                    id: record.id,
-                    modalVisible: true,
-                    collegeCode: record.collegeCode,
-                  })
-                }
-              >
-                编辑 |
-              </a>
-              <Popconfirm
-                title="你确定要停用该学院吗？"
-                onConfirm={() => {
-                  updateStatus({ id: record.id, status: 1 });
-                }}
-                okText="确定"
-                cancelText="取消"
-              >
-                <a> 停用</a>
-              </Popconfirm>
+              <Permission path={INVENTORY_PERMISSION.COLLEGE_LIST.OPTION.code}>
+                <a
+                  onClick={() =>
+                    mergeData({
+                      oPty: 'edit',
+                      id: record.id,
+                      modalVisible: true,
+                      collegeCode: record.collegeCode,
+                    })
+                  }
+                >
+                  编辑 |
+                </a>
+                <Popconfirm
+                  title="你确定要停用该学院吗？"
+                  onConfirm={() => {
+                    updateStatus({ id: record.id, status: 1 });
+                  }}
+                  okText="确定"
+                  cancelText="取消"
+                >
+                  <a> 停用</a>
+                </Popconfirm>
+              </Permission>
             </div>
           );
         }
         return (
           <div>
-            <a onClick={() => showModal('edit', record)}>编辑 |</a>
-            <Popconfirm
-              title="你确定要启用该学院吗？"
-              onConfirm={() => {
-                updateStatus({ id: record.id, status: 0 });
-              }}
-              okText="确定"
-              cancelText="取消"
-            >
-              <a> 启用 |</a>
-            </Popconfirm>
-            <Popconfirm
-              title="你确定要删除该学院吗？"
-              onConfirm={() => {
-                deleteCollege({ record });
-              }}
-              okText="确定"
-              cancelText="取消"
-            >
-              <a> 删除</a>
-            </Popconfirm>
+            <Permission path={INVENTORY_PERMISSION.COLLEGE_LIST.OPTION.code}>
+              <a onClick={() => showModal('edit', record)}>编辑 |</a>
+              <Popconfirm
+                title="你确定要启用该学院吗？"
+                onConfirm={() => {
+                  updateStatus({ id: record.id, status: 0 });
+                }}
+                okText="确定"
+                cancelText="取消"
+              >
+                <a> 启用 |</a>
+              </Popconfirm>
+              <Popconfirm
+                title="你确定要删除该学院吗？"
+                onConfirm={() => {
+                  deleteCollege({ record });
+                }}
+                okText="确定"
+                cancelText="取消"
+              >
+                <a> 删除</a>
+              </Popconfirm>
+            </Permission>
           </div>
         );
       },

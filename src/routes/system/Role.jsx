@@ -17,16 +17,17 @@ const Role = ({ role, dispatch }) => {
       });
     },
     mergeData(payload) {
-      console.log('hahahhahahhahh');
+      console.log(`hahahhahahhahh${payload.id}`);
       dispatch({
         type: 'role/mergeData',
         payload,
       });
     },
-    getAuthorityList(payload) {
+    deleteRole(payload) {
+      console.log(`hahahhahahhahh${payload.record.id}`);
       dispatch({
-        type: 'role/getAuthorityList',
-        payload,
+        type: 'role/deleteRole',
+        payload: { ...payload.record },
       });
     },
   };

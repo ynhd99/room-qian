@@ -3,6 +3,8 @@ import { connect } from 'dva';
 import { Breadcrumb, Button, Col } from 'antd';
 import pathToRegexp from 'path-to-regexp';
 import styles from './Bread.less';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
 const Bread = ({ SiderMenuList, location, dispatch }) => {
   const mergeData = (payload) => {
@@ -40,6 +42,7 @@ const Bread = ({ SiderMenuList, location, dispatch }) => {
             <Col span={2} />
             <Col span={2} />
             <Col span={2} />
+            {/* <Permission path={INVENTORY_PERMISSION.RECORD_LIST.ADD.code}> */}
             <Button
               type="primary"
               onClick={() =>
@@ -48,6 +51,7 @@ const Bread = ({ SiderMenuList, location, dispatch }) => {
             >
               新增公告
             </Button>
+            {/* </Permission> */}
           </Breadcrumb.Item>
         );
       }

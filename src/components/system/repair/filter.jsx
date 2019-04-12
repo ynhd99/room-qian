@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import { Form, Row, Col, Button, DatePicker, Input } from 'antd';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
 const FormItem = Form.Item;
 const RepairSearch = ({
@@ -25,7 +27,7 @@ const RepairSearch = ({
     });
   };
   function disabledDate(current) {
-    return current && current < moment().endOf('day');
+    return current && current > moment().endOf('day');
   }
   return (
     <div className="components-search">
@@ -97,28 +99,30 @@ const RepairSearch = ({
       </Form>
       <div className="action-box">
         <Row />
-        <Row>
-          <Col span={16}>
-            <Button
-              type="primary"
-              onClick={() => {
-                mergeData({
-                  modalVisible: true,
-                  oPty: 'add',
-                  roomCode: '',
-                  roomId: '',
-                  goodsId: '',
-                  propertyName: '',
-                  repairDate: '',
-                  remark: '',
-                });
-                getDateList();
-              }}
-            >
-              添加维修情况
-            </Button>
-          </Col>
-        </Row>
+        <Permission path={INVENTORY_PERMISSION.REPAIR_LIST.ADD.code}>
+          <Row>
+            <Col span={16}>
+              <Button
+                type="primary"
+                onClick={() => {
+                  mergeData({
+                    modalVisible: true,
+                    oPty: 'add',
+                    roomCode: '',
+                    roomId: '',
+                    goodsId: '',
+                    propertyName: '',
+                    repairDate: '',
+                    remark: '',
+                  });
+                  getDateList();
+                }}
+              >
+                添加维修情况
+              </Button>
+            </Col>
+          </Row>
+        </Permission>
       </div>
     </div>
   );

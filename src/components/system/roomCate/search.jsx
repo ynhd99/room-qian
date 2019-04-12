@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Input, Row, Col, Button } from 'antd';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
 const FormItem = Form.Item;
 
@@ -23,13 +25,15 @@ const CateSearch = ({ queryString, showModal }) => {
             </FormItem>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <Button type="primary" onClick={() => showModal('add')}>
-              添加分类
-            </Button>
-          </Col>
-        </Row>
+        <Permission path={INVENTORY_PERMISSION.ROOMCATE_LIST.ADD.code}>
+          <Row>
+            <Col>
+              <Button type="primary" onClick={() => showModal('add')}>
+                添加分类
+              </Button>
+            </Col>
+          </Row>
+        </Permission>
       </Form>
     </div>
   );

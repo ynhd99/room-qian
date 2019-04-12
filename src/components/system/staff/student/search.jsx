@@ -45,9 +45,9 @@ const StudentSearch = ({
         </Form>
         <div className="action-box" style={{ marginTop: '15px' }}>
           <Row />
-          <Row>
-            <Col span={16}>
-              <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.ADD.code}>
+          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.ADD.code}>
+            <Row>
+              <Col span={16}>
                 <Button
                   type="primary"
                   onClick={() => {
@@ -67,9 +67,9 @@ const StudentSearch = ({
                 >
                   +新增学生
                 </Button>
-              </Permission>
-            </Col>
-          </Row>
+              </Col>
+            </Row>
+          </Permission>
         </div>
       </div>
     </div>

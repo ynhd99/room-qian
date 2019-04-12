@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import { Form, Row, Col, Button, DatePicker, Input } from 'antd';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
 const { RangePicker } = DatePicker;
 
@@ -85,28 +87,30 @@ const VisitorSearch = ({
       </Form>
       <div className="action-box">
         <Row />
-        <Row>
-          <Col span={16}>
-            <Button
-              type="primary"
-              onClick={() =>
-                mergeData({
-                  modalVisible: true,
-                  oPty: 'add',
-                  visitorName: '',
-                  identityCode: '',
-                  phoneNumber: '',
-                  receptName: '',
-                  startTime: '',
-                  endTime: '',
-                  remark: '',
-                })
-              }
-            >
-              添加访客信息
-            </Button>
-          </Col>
-        </Row>
+        <Permission path={INVENTORY_PERMISSION.VISITE_LIST.ADD.code}>
+          <Row>
+            <Col span={16}>
+              <Button
+                type="primary"
+                onClick={() =>
+                  mergeData({
+                    modalVisible: true,
+                    oPty: 'add',
+                    visitorName: '',
+                    identityCode: '',
+                    phoneNumber: '',
+                    receptName: '',
+                    startTime: '',
+                    endTime: '',
+                    remark: '',
+                  })
+                }
+              >
+                添加访客信息
+              </Button>
+            </Col>
+          </Row>
+        </Permission>
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Table, Form, Popconfirm } from 'antd';
+import INVENTORY_PERMISSION from '../../../commom/Permission/systemPermission';
+import Permission from '../../../commom/Permission/Permission';
 
 const StaffList = ({ mergeData, staff, onPageChange, deleteStaff, getRoleList }) => {
   const columns = [
@@ -34,33 +36,35 @@ const StaffList = ({ mergeData, staff, onPageChange, deleteStaff, getRoleList })
       render(text, record) {
         return (
           <div>
-            <a
-              onClick={() => {
-                mergeData({
-                  oPty: 'edit',
-                  id: record.id,
-                  modalVisible: true,
-                  staffCode: record.staffCode,
-                  staffName: record.staffName,
-                  staffPhone: record.staffPhone,
-                  staffSex: record.staffSex === '女' ? '2' : '1',
-                  roleId: record.roleId,
-                });
-                getRoleList();
-              }}
-            >
-              编辑 |
-            </a>
-            <Popconfirm
-              title="你确定要删除该学生吗？"
-              onConfirm={() => {
-                deleteStaff({ id: record.id, status: 1 });
-              }}
-              okText="确定"
-              cancelText="取消"
-            >
-              <a> 删除</a>
-            </Popconfirm>
+            <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.OPTION.code}>
+              <a
+                onClick={() => {
+                  mergeData({
+                    oPty: 'edit',
+                    id: record.id,
+                    modalVisible: true,
+                    staffCode: record.staffCode,
+                    staffName: record.staffName,
+                    staffPhone: record.staffPhone,
+                    staffSex: record.staffSex === '女' ? '2' : '1',
+                    roleId: record.roleId,
+                  });
+                  getRoleList();
+                }}
+              >
+                编辑 |
+              </a>
+              <Popconfirm
+                title="你确定要删除该学生吗？"
+                onConfirm={() => {
+                  deleteStaff({ id: record.id, status: 1 });
+                }}
+                okText="确定"
+                cancelText="取消"
+              >
+                <a> 删除</a>
+              </Popconfirm>
+            </Permission>
           </div>
         );
       },

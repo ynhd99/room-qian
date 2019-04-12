@@ -60,3 +60,9 @@ export async function updateRole(params) {
     body: JSON.stringify(params),
   });
 }
+export async function deleteRole(params) {
+  return request('/api/authority/deleteRole', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}

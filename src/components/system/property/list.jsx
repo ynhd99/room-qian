@@ -1,5 +1,7 @@
 import React from 'react';
 import { Table, Form, Badge, Popconfirm } from 'antd';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
 const PropertyList = ({ mergeData, property, onPageChange, updateStatus, deleteGoods }) => {
   const columns = [
@@ -31,6 +33,37 @@ const PropertyList = ({ mergeData, property, onPageChange, updateStatus, deleteG
         if (record.status === 0) {
           return (
             <div>
+              <Permission path={INVENTORY_PERMISSION.GOODS_LIST.OPTION.code}>
+                <a
+                  onClick={() =>
+                    mergeData({
+                      oPty: 'edit',
+                      id: record.id,
+                      modalVisible: true,
+                      goodsCode: record.goodsCode,
+                      goodsName: record.goodsName,
+                    })
+                  }
+                >
+                  编辑 |
+                </a>
+                <Popconfirm
+                  title="你确定要停用该物品吗？"
+                  onConfirm={() => {
+                    updateStatus({ id: record.id, status: 1 });
+                  }}
+                  okText="确定"
+                  cancelText="取消"
+                >
+                  <a> 停用</a>
+                </Popconfirm>
+              </Permission>
+            </div>
+          );
+        }
+        return (
+          <div>
+            <Permission path={INVENTORY_PERMISSION.GOODS_LIST.OPTION.code}>
               <a
                 onClick={() =>
                   mergeData({
@@ -45,53 +78,26 @@ const PropertyList = ({ mergeData, property, onPageChange, updateStatus, deleteG
                 编辑 |
               </a>
               <Popconfirm
-                title="你确定要停用该物品吗？"
+                title="你确定要启用该物品吗？"
                 onConfirm={() => {
-                  updateStatus({ id: record.id, status: 1 });
+                  updateStatus({ id: record.id, status: 0 });
                 }}
                 okText="确定"
                 cancelText="取消"
               >
-                <a> 停用</a>
+                <a> 启用 |</a>
               </Popconfirm>
-            </div>
-          );
-        }
-        return (
-          <div>
-            <a
-              onClick={() =>
-                mergeData({
-                  oPty: 'edit',
-                  id: record.id,
-                  modalVisible: true,
-                  goodsCode: record.goodsCode,
-                  goodsName: record.goodsName,
-                })
-              }
-            >
-              编辑 |
-            </a>
-            <Popconfirm
-              title="你确定要启用该物品吗？"
-              onConfirm={() => {
-                updateStatus({ id: record.id, status: 0 });
-              }}
-              okText="确定"
-              cancelText="取消"
-            >
-              <a> 启用 |</a>
-            </Popconfirm>
-            <Popconfirm
-              title="你确定要删除该物品吗？"
-              onConfirm={() => {
-                deleteGoods({ record });
-              }}
-              okText="确定"
-              cancelText="取消"
-            >
-              <a> 删除</a>
-            </Popconfirm>
+              <Popconfirm
+                title="你确定要删除该物品吗？"
+                onConfirm={() => {
+                  deleteGoods({ record });
+                }}
+                okText="确定"
+                cancelText="取消"
+              >
+                <a> 删除</a>
+              </Popconfirm>
+            </Permission>
           </div>
         );
       },

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { has } from 'lodash';
 
 class Permission extends Component {
   constructor(props) {

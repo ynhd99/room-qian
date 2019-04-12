@@ -1,7 +1,9 @@
 import React from 'react';
-import { Table, Form, Col, Row, Button, Badge, Popconfirm } from 'antd';
+import { Table, Form, Col, Row, Button, Popconfirm } from 'antd';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
-const RoleList = ({ role, onPageChange, mergeData, updateRole, deleteRole, getAuthorityList }) => {
+const RoleList = ({ role, onPageChange, mergeData, deleteRole }) => {
   const columns = [
     {
       title: '角色编码',
@@ -19,85 +21,37 @@ const RoleList = ({ role, onPageChange, mergeData, updateRole, deleteRole, getAu
       key: 'count',
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      key: 'status',
-      render(text, record) {
-        if (record.parentId === '-1') {
-          return null;
-        }
-        if (record.status === 0) {
-          return <Badge status="success" text="启用" />;
-        }
-        return <Badge status="error" text="停用" />;
-      },
-    },
-    {
       title: '操作',
       dataIndex: 'action',
       render(text, record) {
-        if (record.status === 0) {
-          return (
-            <div>
+        return (
+          <div>
+            <Permission path={INVENTORY_PERMISSION.ROLE_LIST.OPTION.code}>
               <a
                 onClick={() => {
                   mergeData({
                     oPty: 'edit',
                     id: record.id,
                     modalVisible: true,
-                    classCode: record.classCode,
+                    roleName: record.roleName,
+                    roleCode: record.roleCode,
+                    selectedKeys: record.nodeIdList,
                   });
-                  getAuthorityList({ id: record.id });
                 }}
               >
                 编辑 |
               </a>
               <Popconfirm
-                title="你确定要停用该学院吗？"
+                title="你确定要删除该学院吗？"
                 onConfirm={() => {
-                  updateRole({ id: record.id, status: 1 });
+                  deleteRole({ record });
                 }}
                 okText="确定"
                 cancelText="取消"
               >
-                <a> 停用</a>
+                <a> 删除</a>
               </Popconfirm>
-            </div>
-          );
-        }
-        return (
-          <div>
-            <a
-              onClick={() =>
-                mergeData({
-                  oPty: 'edit',
-                  id: record.id,
-                  modalVisible: true,
-                })
-              }
-            >
-              编辑 |
-            </a>
-            <Popconfirm
-              title="你确定要启用该学院吗？"
-              onConfirm={() => {
-                updateRole({ id: record.id, status: 0 });
-              }}
-              okText="确定"
-              cancelText="取消"
-            >
-              <a> 启用 |</a>
-            </Popconfirm>
-            <Popconfirm
-              title="你确定要删除该学院吗？"
-              onConfirm={() => {
-                deleteRole({ record });
-              }}
-              okText="确定"
-              cancelText="取消"
-            >
-              <a> 删除</a>
-            </Popconfirm>
+            </Permission>
           </div>
         );
       },
@@ -106,19 +60,26 @@ const RoleList = ({ role, onPageChange, mergeData, updateRole, deleteRole, getAu
   return (
     <div>
       <div className="action-box" style={{ marginTop: '15px', marginLeft: '30px' }}>
-        <Row>
-          <Col span={16}>
-            <Button
-              type="primary"
-              onClick={() => {
-                mergeData({ modalVisible: true, oPty: 'add' });
-                getAuthorityList({ id: '' });
-              }}
-            >
-              +新增角色
-            </Button>
-          </Col>
-        </Row>
+        <Permission path={INVENTORY_PERMISSION.ROLE_LIST.ADD.code}>
+          <Row>
+            <Col span={16}>
+              <Button
+                type="primary"
+                onClick={() => {
+                  mergeData({
+                    modalVisible: true,
+                    oPty: 'add',
+                    roleName: '',
+                    roleCode: '',
+                    selectedKeys: [],
+                  });
+                }}
+              >
+                +新增角色
+              </Button>
+            </Col>
+          </Row>
+        </Permission>
       </div>
       <Table
         style={{ marginTop: '15px' }}

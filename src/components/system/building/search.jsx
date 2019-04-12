@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Input, Row, Col, Button, Radio } from 'antd';
+import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
+import Permission from '../../commom/Permission/Permission';
 
 const FormItem = Form.Item;
 const CollegeSearch = ({
@@ -61,25 +63,27 @@ const CollegeSearch = ({
       </Form>
       <div className="action-box">
         <Row />
-        <Row>
-          <Col span={16}>
-            <Button
-              type="primary"
-              onClick={() => {
-                mergeData({
-                  modalVisible: true,
-                  oPty: 'add',
-                  buildingCode: '',
-                  buildingName: '',
-                  staffId: '',
-                });
-                getStaffList();
-              }}
-            >
-              添加宿舍楼
-            </Button>
-          </Col>
-        </Row>
+        <Permission path={INVENTORY_PERMISSION.BUILDING_LIST.ADD.code}>
+          <Row>
+            <Col span={16}>
+              <Button
+                type="primary"
+                onClick={() => {
+                  mergeData({
+                    modalVisible: true,
+                    oPty: 'add',
+                    buildingCode: '',
+                    buildingName: '',
+                    staffId: '',
+                  });
+                  getStaffList();
+                }}
+              >
+                添加宿舍楼
+              </Button>
+            </Col>
+          </Row>
+        </Permission>
       </div>
     </div>
   );

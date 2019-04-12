@@ -23,7 +23,7 @@ export default {
     queryString: '',
     pageType: '',
     buildingId: '',
-    rangeDate: [moment(), moment().add(1, 'month')], // 日期选择框数据
+    rangeDate: [moment().subtract(1, 'month'), moment()], // 日期选择框数据
     repairDate: '',
     oPty: '',
     // 分页
