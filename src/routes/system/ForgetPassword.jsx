@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'dva';
 import Item from '../../components/system/forgetPassword/item';
-import Header from '../../components/system/Home/header';
-import Footer from '../../components/system/Home/footer';
 
-const ForgetPassword = ({ dispatch, forgetPassword }) => {
+const ForgetPassword = ({ home, dispatch, forgetPassword }) => {
   const { count, phoneNumber, allowSubmit } = forgetPassword;
   const itemProps = {
+    forgetPassword,
     count,
+    home,
     allowSubmit,
     phoneNumber,
     onChangePrefix(value) {
@@ -42,14 +42,12 @@ const ForgetPassword = ({ dispatch, forgetPassword }) => {
   };
   return (
     <div>
-      <Header />
       <Item {...itemProps} />
-      <Footer />
     </div>
   );
 };
-function mapStateToProps({ forgetPassword }) {
-  return { forgetPassword };
+function mapStateToProps({ forgetPassword, home }) {
+  return { forgetPassword, home };
 }
 
 export default connect(mapStateToProps)(ForgetPassword);

@@ -1,5 +1,20 @@
 const SiderMenuList = [
   {
+    key: 'sub6',
+    name: '个人管理',
+    icon: 'icon-cho-message',
+    items: [
+      {
+        key: '/system/room/personal',
+        name: '个人信息',
+      },
+      {
+        key: '/system/room/forgetPassword',
+        name: '修改密码',
+      },
+    ],
+  },
+  {
     key: 'sub0',
     name: '公告管理',
     icon: 'icon-cho-message',

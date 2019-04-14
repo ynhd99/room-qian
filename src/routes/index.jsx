@@ -40,7 +40,7 @@ const routes = [
     component: Register,
   },
   {
-    path: '/system/book/forgetPassword',
+    path: '/system/room/forgetPassword',
     component: ForgetPassword,
   },
   {

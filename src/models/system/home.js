@@ -9,6 +9,7 @@ export default {
     loading: false,
     params: null,
     authorityList: [],
+    userInfo: {},
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -39,11 +40,13 @@ export default {
       if (code === '200') {
         window.sessionStorage.setItem('token', res.data.data.sessionId);
         const path = '/system/room/record';
+        console.log(`res.data.data.data.userInfo${res.data.data.userInfo.code}`);
         yield put(routerRedux.push(path));
         yield put({
           type: 'mergeData',
           payload: {
             authorityList: res.data.data.authority,
+            userInfo: res.data.data.userInfo,
           },
         });
       } else {
@@ -66,7 +69,7 @@ export default {
       return { ...state, ...payload };
     },
     mergeData(state, action) {
-      console.log(`ahhahahah${action.payload.authorityList[0]}`);
+      console.log(`ahhahahah${action.payload}`);
       return { ...state, ...action.payload };
     },
   },

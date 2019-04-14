@@ -1,14 +1,22 @@
 import React from 'react';
-import { Link } from 'dva/router';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Row } from 'antd';
 import styles from '../../../common/register.less';
 
 const FormItem = Form.Item;
 const Item = ({
+  home,
   form: { getFieldDecorator, getFieldValue, validateFields },
   onChangeMobile,
   onSubmitInfo,
 }) => {
+  const formItemLayout = {
+    labelCol: {
+      span: 6,
+    },
+    wrapperCol: {
+      span: 14,
+    },
+  };
   const checkConfirm = (rule, value, callback) => {
     if (value && value !== getFieldValue('newUserPass')) {
       callback('两次输入的密码不匹配!');
@@ -26,84 +34,59 @@ const Item = ({
   };
   return (
     <div className={styles.main}>
-      <h3>重置密码</h3>
       <Form onSubmit={handleSubmit}>
-        <FormItem hasFeedback>
-          {getFieldDecorator('userName', {
-            validateTrigger: 'onChange',
-            rules: [
-              {
-                required: true,
-                message: '请输入手机号！',
-              },
-              // {
-              //   pattern: /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/,
-              //   message: '手机号格式错误！',
-              // },
-            ],
-          })(
+        <Row>
+          <FormItem hasFeedback label="账号" {...formItemLayout}>
             <Input
-              size="large"
-              style={{ width: '100%' }}
+              value={home.userInfo.code}
+              style={{ width: '90%' }}
               placeholder="请输入账号"
-              onChange={onChangeMobile}
-            />,
-          )}
-        </FormItem>
-        <FormItem hasFeedback>
+              disabled
+            />
+          </FormItem>
+        </Row>
+        <FormItem label="原来密码" {...formItemLayout}>
           {getFieldDecorator('oldUserPass', {
+            initialValue: '',
             rules: [
               {
                 required: true,
-                message: '请输入原来的密码！',
-              },
-              {
-                pattern: /^(?=.*?[A-Z])[\w]{6,12}$/,
-                message: '请输入6~12位数字字母组合且至少包含一位大写字母！',
+                message: '请输入原来的密码',
               },
             ],
-          })(<Input size="large" type="password" placeholder="请输入原来的密码" />)}
+          })(<Input type="" placeholder="请输入原来的密码" style={{ width: '90%' }} />)}
         </FormItem>
-        <FormItem hasFeedback>
+        <FormItem label="新密码" {...formItemLayout}>
           {getFieldDecorator('newUserPass', {
+            initialValue: '',
             rules: [
               {
                 required: true,
-                message: '请输入新密码！',
-              },
-              {
-                pattern: /^(?=.*?[A-Z])[\w]{6,12}$/,
-                message: '请输入6~12位数字字母组合且至少包含一位大写字母！',
+                message: '请输入新的密码',
               },
             ],
-          })(<Input size="large" type="password" placeholder="请输入新密码" />)}
+          })(<Input type="" placeholder="请输入新的密码" style={{ width: '90%' }} />)}
         </FormItem>
-        <FormItem hasFeedback>
+        <FormItem label="重复密码" {...formItemLayout}>
           {getFieldDecorator('repeatUserPass', {
+            initialValue: '',
             rules: [
               {
                 required: true,
-                message: '请输入确认密码！',
-              },
-              {
-                validator: checkConfirm,
+                message: '请输入重复密码',
               },
             ],
-          })(<Input size="large" type="password" placeholder="请输入确认密码" />)}
+          })(<Input type="" placeholder="请输入重复密码" style={{ width: '90%' }} />)}
         </FormItem>
         <FormItem>
           <Button
-            size="large"
             className={styles.submit}
             type="primary"
             htmlType="submit"
-            // disabled={!allowSubmit}
+            style={{ width: '20%', marginLeft: '55%' }}
           >
             重置密码
           </Button>
-          <Link className={styles.login} to="/system/book/home">
-            返回首页
-          </Link>
         </FormItem>
       </Form>
     </div>
