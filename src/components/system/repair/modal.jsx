@@ -127,6 +127,19 @@ const RepairModal = ({
             </FormItem>
           </Row>
           <Row>
+            <FormItem label="申请人" {...formItemLayout}>
+              {getFieldDecorator('repairPerson', {
+                initialValue: repair.repairPerson,
+                rules: [
+                  {
+                    required: true,
+                    message: '请输入申请人',
+                  },
+                ],
+              })(<Input type="text" placeholder="请输入申请人" />)}
+            </FormItem>
+          </Row>
+          <Row>
             <FormItem label="访问事由" {...formItemLayout}>
               {getFieldDecorator('remark', {
                 initialValue: repair.remark,

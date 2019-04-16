@@ -54,7 +54,7 @@ const Item = ({
                 message: '请输入原来的密码',
               },
             ],
-          })(<Input type="" placeholder="请输入原来的密码" style={{ width: '90%' }} />)}
+          })(<Input type="password" placeholder="请输入原来的密码" style={{ width: '90%' }} />)}
         </FormItem>
         <FormItem label="新密码" {...formItemLayout}>
           {getFieldDecorator('newUserPass', {
@@ -65,7 +65,7 @@ const Item = ({
                 message: '请输入新的密码',
               },
             ],
-          })(<Input type="" placeholder="请输入新的密码" style={{ width: '90%' }} />)}
+          })(<Input type="password" placeholder="请输入新的密码" style={{ width: '90%' }} />)}
         </FormItem>
         <FormItem label="重复密码" {...formItemLayout}>
           {getFieldDecorator('repeatUserPass', {
@@ -76,7 +76,7 @@ const Item = ({
                 message: '请输入重复密码',
               },
             ],
-          })(<Input type="" placeholder="请输入重复密码" style={{ width: '90%' }} />)}
+          })(<Input type="password" placeholder="请输入重复密码" style={{ width: '90%' }} />)}
         </FormItem>
         <FormItem>
           <Button

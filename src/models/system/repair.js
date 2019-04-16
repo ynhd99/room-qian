@@ -20,9 +20,11 @@ export default {
     repairList: [],
     roomList: [],
     goodsList: [],
+    repairPerson: '',
     queryString: '',
     pageType: '',
     buildingId: '',
+    status: '',
     rangeDate: [moment().subtract(1, 'month'), moment()], // 日期选择框数据
     repairDate: '',
     oPty: '',
@@ -104,9 +106,28 @@ export default {
       }
     },
     * updateRepair({ payload }, { select, call, put }) {
-      const { id } = yield select(state => state.repair);
+      const { id, status } = yield select(state => state.repair);
       payload.repairDate = payload.repairDate.format('YYYY-MM-DD');
       payload.id = id;
+      payload.status = status;
+      console.log('我修改了哈');
+      const res = yield call(updateRepair, { ...parse(payload) });
+      if (res.data.code === '200') {
+        message.info('修改成功');
+        yield put({
+          type: 'mergeData',
+          payload: {
+            roomCode: '',
+            startTime: '',
+            endTime: '',
+          },
+        });
+        yield put({ type: 'getRepairList', payload: {} });
+      } else {
+        message.error(res.data.errorInfo);
+      }
+    },
+    * updateStatus({ payload }, { call, put }) {
       console.log('我修改了哈');
       const res = yield call(updateRepair, { ...parse(payload) });
       if (res.data.code === '200') {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Breadcrumb, Button, Col } from 'antd';
+import { Breadcrumb, Button, Col, Row } from 'antd';
 import pathToRegexp from 'path-to-regexp';
 import styles from './Bread.less';
 import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
@@ -36,22 +36,26 @@ const Bread = ({ SiderMenuList, location, dispatch }) => {
       if (item.key === '/system/room/record') {
         return (
           <Breadcrumb.Item>
-            <Col span={8}>{content}</Col>
-            <Col span={4} />
-            <Col span={4} />
-            <Col span={2} />
-            <Col span={2} />
-            <Col span={2} />
-            {/* <Permission path={INVENTORY_PERMISSION.RECORD_LIST.ADD.code}> */}
-            <Button
-              type="primary"
-              onClick={() =>
-                mergeData({ oPty: 'add', id: '', modalVisible: true, title: '', content: '' })
-              }
-            >
-              新增公告
-            </Button>
-            {/* </Permission> */}
+            <Row>
+              <Col span={8}>{content}</Col>
+              <Col span={4} />
+              <Col span={4} />
+              <Col span={2} />
+              <Col span={2} />
+              <Col span={2} />
+              <Col span={2}>
+                <Permission path={INVENTORY_PERMISSION.RECORD_LIST.ADD.code}>
+                  <Button
+                    type="primary"
+                    onClick={() =>
+                      mergeData({ oPty: 'add', id: '', modalVisible: true, title: '', content: '' })
+                    }
+                  >
+                    新增公告
+                  </Button>
+                </Permission>
+              </Col>
+            </Row>
           </Breadcrumb.Item>
         );
       }

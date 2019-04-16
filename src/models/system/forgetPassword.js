@@ -11,6 +11,9 @@ export default {
     prefix: '',
     phoneNumber: '',
     allowSubmit: false,
+    userPass: '',
+    oldUserPass: '',
+    newUserPass: '',
   },
   subscriptions: {},
   effects: {
@@ -21,7 +24,16 @@ export default {
       console.log(payload);
       const { code } = res.data;
       if (code === '200') {
-        yield put(routerRedux.push('/system/book/forgetPasswordResult'));
+        message.info('修改成功');
+        yield put({
+          type: 'mergeData',
+          payload: {
+            userPass: '',
+            oldUserPass: '',
+            newUserPass: '',
+            repeatUserPass: '',
+          },
+        });
       } else {
         message.warning(`操作失败，请参考：${res.data.errorInfo}`);
       }

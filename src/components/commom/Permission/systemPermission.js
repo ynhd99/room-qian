@@ -61,7 +61,9 @@ module.exports = {
   },
   REPAIR_LIST: {
     ADD: { code: '63000021', description: '新增' },
-    OPTION: { code: '63000022', description: '操作' },
+    EDIT: { code: '63000022', description: '编辑' },
+    SHEN: { code: '63000023', description: '审核' },
+    REJECT: { code: '63000024', description: '驳回' },
   },
   VISITE_LIST: {
     ADD: { code: '64000011', description: '新增' },
@@ -70,5 +72,8 @@ module.exports = {
   HEALTH_LIST: {
     ADD: { code: '65000011', description: '新增' },
     OPTION: { code: '65000012', description: '操作' },
+  },
+  NO_PER: {
+    ADD: { code: '000000000000', description: '新增' },
   },
 };

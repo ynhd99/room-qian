@@ -33,9 +33,9 @@ const ForgetPassword = ({ home, dispatch, forgetPassword }) => {
       dispatch({
         type: 'forgetPassword/forgetPassword',
         payload: {
-          userName: value.userName, // 用户名
+          userName: home.userInfo.code, // 用户名
           userPass: value.newUserPass, // 密码
-          oldUserPasss: value.oldUserPass, // 旧密码
+          oldUserPass: value.oldUserPass, // 旧密码
         },
       });
     },

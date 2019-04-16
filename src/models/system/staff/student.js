@@ -32,6 +32,7 @@ export default {
     roleId: '',
     // 模糊搜索
     queryString: '',
+    colSpan: '',
     // 新增添加标志
     oPty: '',
     // 分页

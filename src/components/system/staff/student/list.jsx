@@ -4,6 +4,38 @@ import INVENTORY_PERMISSION from '../../../commom/Permission/systemPermission';
 import Permission from '../../../commom/Permission/Permission';
 
 const StudentList = ({ mergeData, student, onPageChange, getDataList, deleteStudent }) => {
+  const column = [
+    {
+      title: '学号',
+      dataIndex: 'studentCode',
+      key: 'studentCode',
+      width: '15%',
+    },
+    {
+      title: '学生姓名',
+      dataIndex: 'studentName',
+      key: 'studentName',
+      width: '15%',
+    },
+    {
+      title: '手机号',
+      dataIndex: 'studentPhone',
+      key: 'studentPhone',
+      width: '20%',
+    },
+    {
+      title: '学院',
+      dataIndex: 'collegeName',
+      key: 'collegeName',
+      width: '20%',
+    },
+    {
+      title: '班级',
+      dataIndex: 'className',
+      key: 'className',
+      width: '15%',
+    },
+  ];
   const columns = [
     {
       title: '学号',
@@ -41,8 +73,8 @@ const StudentList = ({ mergeData, student, onPageChange, getDataList, deleteStud
       width: '15%',
       render(text, record) {
         return (
-          <div>
-            <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.OPTION}>
+          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.OPTION.code}>
+            <div>
               <a
                 onClick={() => {
                   mergeData({
@@ -62,8 +94,6 @@ const StudentList = ({ mergeData, student, onPageChange, getDataList, deleteStud
               >
                 编辑 |
               </a>
-            </Permission>
-            <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.OPTION}>
               <Popconfirm
                 title="你确定要删除该学生吗？"
                 onConfirm={() => {
@@ -74,22 +104,23 @@ const StudentList = ({ mergeData, student, onPageChange, getDataList, deleteStud
               >
                 <a> 删除</a>
               </Popconfirm>
-            </Permission>
-          </div>
+            </div>
+          </Permission>
         );
       },
     },
   ];
   return (
-    <Table
-      style={{ marginTop: '15px' }}
-      columns={columns}
-      dataSource={student.studentList}
-      pagination={student.pagination}
-      // loading={staff.loading}
-      rowKey={record => record.id}
-      onChange={onPageChange}
-    />
+    <div>
+      <Table
+        style={{ marginTop: '15px' }}
+        columns={columns}
+        dataSource={student.studentList}
+        pagination={student.pagination}
+        rowKey={record => record.id}
+        onChange={onPageChange}
+      />
+    </div>
   );
 };
 export default Form.create()(StudentList);
