@@ -45,6 +45,7 @@ const HealthList = ({ health, onPageChange, mergeData, getDateList }) => {
                   id: record.id,
                   modalVisible: true,
                   roomId: record.roomId,
+                  checkDate: record.checkDate,
                   checkPoint: record.checkPoint,
                   remark: record.remark,
                 });

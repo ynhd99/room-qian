@@ -112,7 +112,7 @@ const RepairSearch = ({
                     roomId: '',
                     goodsId: '',
                     propertyName: '',
-                    repairDate: '',
+                    repairDate: new Date(),
                     remark: '',
                   });
                   getDateList();

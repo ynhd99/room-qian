@@ -23,7 +23,7 @@ export default {
     buildingName: '',
     buildingId: '',
     status: '',
-    checkDate: '',
+    checkDate: new Date(),
     modalVisible: false,
     addModalVisible: false,
     cateList: [],

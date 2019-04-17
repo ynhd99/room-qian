@@ -6745,6 +6745,7 @@ button.close {
   right: 4px;
   top: 0;
   display: flex;
+  text-align: center;
 }
 .header .rightMenus .user {
   padding-right: 28px;

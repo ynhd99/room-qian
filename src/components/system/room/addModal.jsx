@@ -54,12 +54,24 @@ const AddRoomModal = ({
     validateFields((errors, values) => {
       if (!errors) {
         addRoomDetail();
-        mergeData({ addModalVisible: false, oPty: '', collegeId: '', classId: '', checkDate: '' });
+        mergeData({
+          addModalVisible: false,
+          oPty: '',
+          collegeId: '',
+          classId: '',
+          checkDate: new Date(),
+        });
       }
     });
   };
   const onCancel = () => {
-    mergeData({ addModalVisible: false, oPty: '', collegeId: '', classId: '', checkDate: '' });
+    mergeData({
+      addModalVisible: false,
+      oPty: '',
+      collegeId: '',
+      classId: '',
+      checkDate: new Date(),
+    });
   };
   const modalOpts = {
     width: '1000',
@@ -86,7 +98,7 @@ const AddRoomModal = ({
       console.log(`selectedRows: ${selectedRows}`, `selected: ${selected}`);
     },
     getCheckboxProps: record => ({
-      disabled: record.settleFlag === 1,
+      disabled: record.settleFlag === 1 ? record.settleFlag === 1 : record.bedCount === 0,
       name: record.name,
     }),
   };
@@ -95,48 +107,52 @@ const AddRoomModal = ({
     {
       title: '学生编码',
       dataIndex: 'studentCode',
-      width: '30%',
+      width: '15%',
     },
     {
       title: '姓名',
       dataIndex: 'studentName',
+      width: '15%',
     },
     {
       title: '学院',
       dataIndex: 'collegeName',
+      width: '20%',
     },
     {
       title: '班级',
       dataIndex: 'className',
+      width: '15%',
     },
     {
       title: '性别',
       dataIndex: 'studentSex',
+      width: '10%',
     },
     {
       title: '床位号',
       dataIndex: 'bedCount',
       editable: true,
+      width: '25%',
       render(text, record) {
         return (
-          <Form>
-            <FormItem hasFeedback {...formItemLayout}>
-              {getFieldDecorator(`${record.id}bedCount`, {
-                initialValue: '',
-                rules:
-                  record.settleFlag === 1
-                    ? ''
-                    : [{ required: true, message: '床位号没选择', whitespace: true }],
-              })(
-                <Input
-                  disabled={record.settleFlag === 1}
-                  onChange={(value) => {
-                    record.bedCount = value.target.value;
-                  }}
-                />,
-              )}
-            </FormItem>
-          </Form>
+          <FormItem {...formItemLayout} style={{ margin: '0' }}>
+            {getFieldDecorator(`${record.id}bedCount`, {
+              initialValue: record.bedCount === 0 ? '' : record.bedCount,
+              rules:
+                record.settleFlag === 1
+                  ? ''
+                  : [{ required: true, message: '床位号没选择', whitespace: true }],
+            })(
+              <Input
+                disabled={record.settleFlag === 1}
+                placeholder="请选择床位号"
+                onChange={(value) => {
+                  record.bedCount = value.target.value;
+                }}
+              />,
+            )}
+          </FormItem>
         );
       },
     },
@@ -154,7 +170,7 @@ const AddRoomModal = ({
                 initialValue: room.collegeId === '' ? '请选择学院' : room.collegeId,
               })(
                 <Select
-                  style={{ minWidth: 150 }}
+                  style={{ minWidth: 100 }}
                   value={room.collegeId}
                   showSearch
                   filterOption={filterOption}
@@ -177,7 +193,7 @@ const AddRoomModal = ({
                 initialValue: room.classId === '' ? '请选择班级' : room.classId,
               })(
                 <Select
-                  style={{ minWidth: 150 }}
+                  style={{ minWidth: 100 }}
                   value={room.classId === '' ? '请选择班级' : room.classId}
                   showSearch
                   filterOption={filterOption}
@@ -194,19 +210,22 @@ const AddRoomModal = ({
             </FormItem>
           </Col>
           <Col span={8}>
-            <FormItem label="入住日期" hasFeedback {...formItemLayout}>
-              {getFieldDecorator('checkDate', {
-                initialValue: room.checkDate || '',
-                // rules: [{ required: true, message: '维修日期未选择', whitespace: true }],
-              })(
-                <DatePicker
-                  format="YYYY-MM-DD"
-                  // value={repair.repairDate}
-                  style={{ minWidth: 215 }}
-                  disabledDate={disabledDate}
-                  onChange={value => mergeData({ checkDate: value })}
-                />,
-              )}
+            <FormItem
+              label={
+                <span>
+                  <span style={{ color: 'red' }}>* </span>入住
+                </span>
+              }
+              hasFeedback
+              {...formItemLayout}
+            >
+              <DatePicker
+                format="YYYY-MM-DD"
+                value={moment(room.checkDate)}
+                style={{ minWidth: 100 }}
+                disabledDate={disabledDate}
+                onChange={value => mergeData({ checkDate: value })}
+              />
             </FormItem>
           </Col>
         </Row>
@@ -216,7 +235,6 @@ const AddRoomModal = ({
         columns={columns}
         dataSource={room.studentList}
         pagination={room.pagination}
-        // loading={staff.loading}
         rowKey={record => record.id}
         onChange={onPageChange}
         rowSelection={rowSelection}

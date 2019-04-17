@@ -12,7 +12,7 @@ export default {
     healthList: [],
     roomList: [],
     rangeDate: [moment().subtract(1, 'month'), moment()], // 日期选择框数据
-    checkDate: '',
+    checkDate: new Date(),
     oPty: '',
     // 分页
     pagination: {
@@ -42,7 +42,8 @@ export default {
     * getHealthList({ payload }, { select, call, put }) {
       console.log('走了吗');
       yield put({ type: 'showLoading' });
-      const { roomCode, rangeDate, pagination } = yield select(state => state.health);
+      const { roomCode, rangeDate, pagination, checkDate } = yield select(state => state.health);
+      console.log(`jwdhuwdhuwehdehfuefhe--------${checkDate}`);
       payload.roomCode = roomCode;
       payload.startDate = rangeDate[0].format('YYYY-MM-DD');
       payload.endDate = rangeDate[1].format('YYYY-MM-DD');

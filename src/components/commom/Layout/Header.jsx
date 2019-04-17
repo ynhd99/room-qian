@@ -1,4 +1,3 @@
-import { Link } from 'dva/router';
 import React from 'react';
 import { Menu } from 'antd';
 import styles from './Header.less';
@@ -10,7 +9,8 @@ const Header = ({ isShow, userLogout }) => {
         <div className={styles.leftLogo}>
           <img src="./images/logo.png" alt="logo" />
         </div>
-        <div className={styles.leftMenus}>
+        <div className={styles.leftMenus} />
+        <div className={styles.rightMenus}>
           <Menu
             theme="light"
             mode="horizontal"
@@ -18,9 +18,6 @@ const Header = ({ isShow, userLogout }) => {
             style={{ lineHeight: '64px' }}
           >
             <Menu.Item key="1">宿舍管理</Menu.Item>
-            {/* <Menu.Item key="2">
-              <Link to="/system/room/personal">个人中心</Link>
-            </Menu.Item> */}
             <Menu.Item
               key="3"
               onClick={() => {
@@ -30,8 +27,11 @@ const Header = ({ isShow, userLogout }) => {
               退出
             </Menu.Item>
           </Menu>
+          <div className={styles.user}>
+            <div className={styles.divider} />
+            <div className={styles.info}>{window.sessionStorage.getItem('fullName')}</div>
+          </div>
         </div>
-        <div className={styles.rightMenus} />
       </div>
     );
   }

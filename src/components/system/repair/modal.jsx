@@ -69,7 +69,7 @@ const RepairModal = ({
       <Form>
         <Col>
           <Row>
-            <FormItem label="宿舍" hasFeedback {...formItemLayout}>
+            <FormItem label="宿舍" {...formItemLayout}>
               {getFieldDecorator('roomId', {
                 initialValue: repair.roomId === '' ? '请选择宿舍' : repair.roomId,
                 rules: [{ required: true, message: '宿舍号未选择', whitespace: true }],
@@ -91,7 +91,7 @@ const RepairModal = ({
             </FormItem>
           </Row>
           <Row>
-            <FormItem label="物品" hasFeedback {...formItemLayout}>
+            <FormItem label="物品" {...formItemLayout}>
               {getFieldDecorator('goodsId', {
                 initialValue: repair.goodsId === '' ? '请选择物品' : repair.goodsId,
                 rules: [{ required: true, message: '物品未选择', whitespace: true }],
@@ -113,14 +113,19 @@ const RepairModal = ({
             </FormItem>
           </Row>
           <Row>
-            <FormItem label="维修日期" hasFeedback {...formItemLayout}>
+            <FormItem
+              label={
+                <span>
+                  <span style={{ color: 'red' }}>* </span>维修日期
+                </span>
+              }
+              {...formItemLayout}
+            >
               {getFieldDecorator('repairDate', {
-                initialValue: repair.repairDate || '',
-                // rules: [{ required: true, message: '维修日期未选择', whitespace: true }],
+                initialValue: moment(repair.repairDate),
               })(
                 <DatePicker
                   format="YYYY-MM-DD"
-                  // value={repair.repairDate}
                   onChange={value => mergeData({ repairDate: value })}
                 />,
               )}

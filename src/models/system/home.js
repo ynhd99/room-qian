@@ -39,8 +39,10 @@ export default {
       const { code } = res.data;
       if (code === '200') {
         window.sessionStorage.setItem('token', res.data.data.sessionId);
+        window.sessionStorage.setItem('authority', res.data.data.authority);
+        window.sessionStorage.setItem('fullName', res.data.data.fullName);
+        window.sessionStorage.setItem('userInfo', res.data.data.userInfo);
         const path = '/system/room/record';
-        console.log(`res.data.data.data.userInfo${res.data.data.userInfo.code}`);
         yield put(routerRedux.push(path));
         yield put({
           type: 'mergeData',
@@ -50,7 +52,6 @@ export default {
           },
         });
       } else {
-        console.log(res.data.errorInfo);
         message.error(res.data.errorInfo);
       }
     },

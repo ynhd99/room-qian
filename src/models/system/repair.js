@@ -26,7 +26,7 @@ export default {
     buildingId: '',
     status: '',
     rangeDate: [moment().subtract(1, 'month'), moment()], // 日期选择框数据
-    repairDate: '',
+    repairDate: new Date(),
     oPty: '',
     // 分页
     pagination: {

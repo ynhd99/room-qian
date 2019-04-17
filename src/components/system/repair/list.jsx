@@ -73,6 +73,8 @@ const RepairList = ({ repair, onPageChange, mergeData, getDateList, updateStatus
                       roomId: record.roomId,
                       goodsId: record.goodsId,
                       remark: record.remark,
+                      repairDate: record.repairDate,
+                      repairPerson: record.repairPerson,
                       status: 1,
                     });
                   }}
@@ -120,6 +122,8 @@ const RepairList = ({ repair, onPageChange, mergeData, getDateList, updateStatus
                     roomId: record.roomId,
                     goodsId: record.goodsId,
                     remark: record.remark,
+                    repairDate: record.repairDate,
+                    repairPerson: record.repairPerson,
                     status: 1,
                   });
                 }}

@@ -13,11 +13,6 @@ const HealthSearch = ({
   getDateList,
   form: { getFieldDecorator, validateFields },
 }) => {
-  const formItemLayout1 = {
-    wrapperCol: {
-      offset: 15,
-    },
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     validateFields({ force: true }, (err, values) => {
@@ -26,9 +21,6 @@ const HealthSearch = ({
       }
     });
   };
-  function disabledDate(current) {
-    return current && current > moment().endOf('day');
-  }
   return (
     <div className="components-search">
       <Form layout="inline" onSubmit={handleSubmit}>
@@ -63,7 +55,7 @@ const HealthSearch = ({
                       请点选两个时间以确定一个时间范围
                     </div>
                   )}
-                  disabledDate={disabledDate}
+                  // disabledDate={disabledDate}
                   onChange={(value) => {
                     mergeData({ rangeDate: value });
                     searchAction();
@@ -94,8 +86,9 @@ const HealthSearch = ({
                     oPty: 'add',
                     roomCode: '',
                     roomId: '',
-                    checkDate: '',
+                    checkDate: new Date(),
                     remark: '',
+                    checkPoint: '',
                   });
                   getDateList();
                 }}

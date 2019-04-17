@@ -71,7 +71,7 @@ const CateModal = ({
   return (
     <Modal {...modalOpts}>
       <Form horizontal>
-        <FormItem label="上级分类：" hasFeedback {...formItemLayout}>
+        <FormItem label="上级分类：" {...formItemLayout}>
           {getFieldDecorator('parentId', {
             initialValue: roomCate.parentId,
           })(
@@ -89,7 +89,7 @@ const CateModal = ({
             </Select>,
           )}
         </FormItem>
-        <FormItem label="分类编码：" hasFeedback {...formItemLayout}>
+        <FormItem label="分类编码：" {...formItemLayout}>
           {getFieldDecorator('cateCode', {
             initialValue: roomCate.cateCode,
             rules: [
@@ -98,7 +98,7 @@ const CateModal = ({
             ],
           })(<Input {...codeProps} />)}
         </FormItem>
-        <FormItem label="分类名称：" hasFeedback {...formItemLayout}>
+        <FormItem label="分类名称：" {...formItemLayout}>
           {getFieldDecorator('cateName', {
             initialValue: roomCate.cateName,
             rules: [

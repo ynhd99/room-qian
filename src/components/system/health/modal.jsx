@@ -65,7 +65,7 @@ const HealthModal = ({
       <Form>
         <Col>
           <Row>
-            <FormItem label="宿舍" hasFeedback {...formItemLayout}>
+            <FormItem label="宿舍" {...formItemLayout}>
               {getFieldDecorator('roomId', {
                 initialValue: health.roomId === '' ? '请选择宿舍' : health.roomId,
                 rules: [{ required: true, message: '宿舍号未选择', whitespace: true }],
@@ -87,18 +87,17 @@ const HealthModal = ({
             </FormItem>
           </Row>
           <Row>
-            <FormItem label="维修日期" hasFeedback {...formItemLayout}>
+            <FormItem
+              label={
+                <span>
+                  <span style={{ color: 'red' }}>* </span>检查日期
+                </span>
+              }
+              {...formItemLayout}
+            >
               {getFieldDecorator('checkDate', {
-                initialValue: health.checkDate || '',
-                // rules: [{ required: true, message: '维修日期未选择', whitespace: true }],
-              })(
-                <DatePicker
-                  format="YYYY-MM-DD"
-                  // value={repair.repairDate}
-                  disabledDate={disabledDate}
-                  onChange={value => mergeData({ repairDate: value })}
-                />,
-              )}
+                initialValue: moment(health.checkDate),
+              })(<DatePicker allowClear={false} format="YYYY-MM-DD" style={{ minWidth: 215 }} />)}
             </FormItem>
           </Row>
           <Row>

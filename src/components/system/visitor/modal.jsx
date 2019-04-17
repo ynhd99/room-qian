@@ -102,23 +102,35 @@ const VisitorModal = ({
                     required: true,
                     message: '请输入开始时间',
                   },
+                  {
+                    pattern: /^(\d{4})(-)(\d{2})(-)(\d{2}) (\d{2})(:)(\d{2})(:)(\d{2})$/,
+                    message: '格式不符合要求',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入开始时间" />)}
+              })(<Input type="text" placeholder="格式：2018-04-17 12:23:00" />)}
             </FormItem>
           </Row>
           <Row>
             <FormItem label="结束时间" {...formItemLayout}>
               {getFieldDecorator('endTime', {
                 initialValue: visitor.endTime,
-                rules: [
-                  {
-                    message: '请输入离开时间',
-                  },
-                ],
+                rules:
+                  visitor.oPty === 'edit'
+                    ? [
+                      {
+                        required: true,
+                        message: '请输入离开时间',
+                      },
+                      {
+                        pattern: /^(\d{4})(-)(\d{2})(-)(\d{2}) (\d{2})(:)(\d{2})(:)(\d{2})$/,
+                        message: '格式不符合要求',
+                      },
+                    ]
+                    : '',
               })(
                 <Input
                   type="text"
-                  placeholder="请输入离开时间"
+                  placeholder="格式：2018-04-17 12:23:00"
                   disabled={visitor.oPty === 'add'}
                 />,
               )}

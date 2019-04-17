@@ -80,7 +80,7 @@ const RoomModal = ({
   return (
     <Modal {...modalOpts}>
       <Form horizontal>
-        <FormItem label="宿舍号：" hasFeedback {...formItemLayout}>
+        <FormItem label="宿舍号：" {...formItemLayout}>
           {getFieldDecorator('roomCode', {
             initialValue: room.roomCode,
             rules: [
@@ -89,7 +89,7 @@ const RoomModal = ({
             ],
           })(<Input type="text" placeholder="请输入宿舍号" disabled={room.oPty === 'edit'} />)}
         </FormItem>
-        <FormItem label="宿舍类别" hasFeedback {...formItemLayout}>
+        <FormItem label="宿舍类别" {...formItemLayout}>
           {getFieldDecorator('cateId', {
             initialValue: room.cateId === '' ? '请选择类别' : room.cateId,
             rules: [{ required: true, message: '宿舍分类未选择', whitespace: true }],
@@ -107,7 +107,7 @@ const RoomModal = ({
             </TreeSelect>,
           )}
         </FormItem>
-        <FormItem label="楼号" hasFeedback {...formItemLayout}>
+        <FormItem label="楼号" {...formItemLayout}>
           {getFieldDecorator('buildingId', {
             initialValue: room.buildingId === '' ? '请选择楼号' : room.buildingId,
             rules: [{ required: true, message: '宿舍楼号未选择', whitespace: true }],
@@ -125,7 +125,7 @@ const RoomModal = ({
             </Select>,
           )}
         </FormItem>
-        <FormItem label="容纳人数：" hasFeedback {...formItemLayout}>
+        <FormItem label="容纳人数：" {...formItemLayout}>
           {getFieldDecorator('roomCount', {
             initialValue: room.roomCount,
             rules: [
