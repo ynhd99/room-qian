@@ -6,7 +6,6 @@ const FormItem = Form.Item;
 const Item = ({
   home,
   form: { getFieldDecorator, getFieldValue, validateFields },
-  onChangeMobile,
   onSubmitInfo,
 }) => {
   const formItemLayout = {
@@ -53,6 +52,10 @@ const Item = ({
                 required: true,
                 message: '请输入原来的密码',
               },
+              {
+                pattern: /^(?=.*?[A-Za-z]+)(?=.*?[0-9]+)(?=.*?[A-Z]).{6,12}$/,
+                message: '请输入6~12位数字字母组合且至少包含一位大写字母！',
+              },
             ],
           })(<Input type="password" placeholder="请输入原来的密码" style={{ width: '90%' }} />)}
         </FormItem>
@@ -64,6 +67,10 @@ const Item = ({
                 required: true,
                 message: '请输入新的密码',
               },
+              {
+                pattern: /^(?=.*?[A-Za-z]+)(?=.*?[0-9]+)(?=.*?[A-Z]).{6,12}$/,
+                message: '请输入6~12位数字字母组合且至少包含一位大写字母！',
+              },
             ],
           })(<Input type="password" placeholder="请输入新的密码" style={{ width: '90%' }} />)}
         </FormItem>
@@ -74,6 +81,13 @@ const Item = ({
               {
                 required: true,
                 message: '请输入重复密码',
+              },
+              {
+                pattern: /^(?=.*?[A-Za-z]+)(?=.*?[0-9]+)(?=.*?[A-Z]).{6,12}$/,
+                message: '请输入6~12位数字字母组合且至少包含一位大写字母！',
+              },
+              {
+                validator: checkConfirm,
               },
             ],
           })(<Input type="password" placeholder="请输入重复密码" style={{ width: '90%' }} />)}

@@ -73,8 +73,12 @@ const BuildingModal = ({
                     required: true,
                     message: '请输入宿舍楼编码',
                   },
+                  {
+                    pattern: /^[0-9]{1,10}$/,
+                    message: '请输入1到10位的数字！',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入宿舍楼编码" />)}
+              })(<Input type="text" placeholder="请输入宿舍楼编码（1到10位的数字）" />)}
             </FormItem>
           </Row>
           <Row>
@@ -86,8 +90,12 @@ const BuildingModal = ({
                     required: true,
                     message: '请输入宿舍楼名称',
                   },
+                  {
+                    pattern: /^[A-Za-z\u4e00-\u9fa5]{2,10}$/,
+                    message: '请输入2到10位的中文或英文字符！',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入宿舍楼名称" />)}
+              })(<Input type="text" placeholder="请输入宿舍楼名称（2到10位的中文或英文字符）" />)}
             </FormItem>
           </Row>
           <Row>

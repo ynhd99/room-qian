@@ -75,14 +75,14 @@ const StaffModal = ({
                     message: '请输入编号！',
                   },
                   {
-                    pattern: /^[A-Za-z\u4e00-\u9fa5]{2,10}$/,
-                    message: '请输入2到10位的中文或英文字符！',
+                    pattern: /^[0-9]{1,10}$/,
+                    message: '请输入1到10位的数字！',
                   },
                 ],
               })(
                 <Input
                   type="text"
-                  placeholder="2到10位的中文或英文字符"
+                  placeholder="请输入编号（1到10位的数字）"
                   disabled={staff.oPty === 'edit'}
                 />,
               )}
@@ -100,7 +100,7 @@ const StaffModal = ({
                     message: '请输入2到10位的中文或英文字符！',
                   },
                 ],
-              })(<Input type="text" placeholder="2到10位的中文或英文字符" />)}
+              })(<Input type="text" placeholder="请输入姓名（2到10位的中文或英文字符）" />)}
             </FormItem>
             <FormItem {...formItemLayout} label="手机号">
               {getFieldDecorator('staffPhone', {

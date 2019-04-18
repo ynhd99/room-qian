@@ -85,9 +85,15 @@ const RoomModal = ({
             initialValue: room.roomCode,
             rules: [
               { required: true, message: '宿舍号未填写', whitespace: true },
-              { max: 20, message: '最大长度不超过20' },
+              { max: 30, message: '最大长度不超过30' },
             ],
-          })(<Input type="text" placeholder="请输入宿舍号" disabled={room.oPty === 'edit'} />)}
+          })(
+            <Input
+              type="text"
+              placeholder="请输入宿舍号（最多30个字符）"
+              disabled={room.oPty === 'edit'}
+            />,
+          )}
         </FormItem>
         <FormItem label="宿舍类别" {...formItemLayout}>
           {getFieldDecorator('cateId', {
@@ -130,9 +136,12 @@ const RoomModal = ({
             initialValue: room.roomCount,
             rules: [
               { required: true, message: '容纳人数未填写', whitespace: true },
-              { max: 2, message: '最大长度不超过2' },
+              {
+                pattern: /^[0-9]{1,2}$/,
+                message: '请输入1到2位的数字！',
+              },
             ],
-          })(<Input type="text" placeholder="请输入容纳人数" />)}
+          })(<Input type="text" placeholder="请输入容纳人数（1到2位的数字）" />)}
         </FormItem>
       </Form>
     </Modal>

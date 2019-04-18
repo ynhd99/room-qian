@@ -140,8 +140,12 @@ const RepairModal = ({
                     required: true,
                     message: '请输入申请人',
                   },
+                  {
+                    pattern: /^[A-Za-z\u4e00-\u9fa5]{2,10}$/,
+                    message: '请输入2到10位的中文或英文字符！',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入申请人" />)}
+              })(<Input type="text" placeholder="请输入申请人（2到10位的中文或英文字符）" />)}
             </FormItem>
           </Row>
           <Row>
@@ -153,8 +157,12 @@ const RepairModal = ({
                     required: true,
                     message: '请输入访问原因',
                   },
+                  {
+                    max: 200,
+                    message: '最多200个字符',
+                  },
                 ],
-              })(<TextArea type="text" placeholder="请输入访问原因" />)}
+              })(<TextArea type="text" placeholder="请输入访问原因（最多200个字符）" />)}
             </FormItem>
           </Row>
         </Col>

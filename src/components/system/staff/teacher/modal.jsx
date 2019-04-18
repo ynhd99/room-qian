@@ -92,7 +92,7 @@ const TeacherModal = ({
               })(
                 <Input
                   type="text"
-                  placeholder="请输入1到10位的数字"
+                  placeholder="请输入编号（1到10位的数字）"
                   disabled={teacher.oPty === 'edit'}
                 />,
               )}
@@ -110,7 +110,7 @@ const TeacherModal = ({
                     message: '请输入2到10位的中文或英文字符！',
                   },
                 ],
-              })(<Input type="text" placeholder="2到10位的中文或英文字符" />)}
+              })(<Input type="text" placeholder="请输入姓名（2到10位的中文或英文字符）" />)}
             </FormItem>
             <FormItem {...formItemLayout} label="手机号">
               {getFieldDecorator('teacherPhone', {

@@ -15,7 +15,7 @@ const Header = ({ isShow, userLogout }) => {
             theme="light"
             mode="horizontal"
             defaultSelectedKeys={['1']}
-            style={{ lineHeight: '64px' }}
+            style={{ lineHeight: '64px', fontSize: '18px' }}
           >
             <Menu.Item key="1">宿舍管理</Menu.Item>
             <Menu.Item

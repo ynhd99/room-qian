@@ -50,11 +50,15 @@ const PropertyModal = ({
                     required: true,
                     message: '请输入物品编码',
                   },
+                  {
+                    pattern: /^[0-9]{1,10}$/,
+                    message: '请输入1到10位的数字！',
+                  },
                 ],
               })(
                 <Input
                   type="text"
-                  placeholder="请输入物品编码"
+                  placeholder="请输入物品编码（1到10位的数字）"
                   disabled={property.oPty === 'edit'}
                 />,
               )}
@@ -69,8 +73,12 @@ const PropertyModal = ({
                     required: true,
                     message: '请输入物品名称',
                   },
+                  {
+                    max: 20,
+                    message: '最长为20个字符',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入物品名称" />)}
+              })(<Input type="text" placeholder="请输入物品名称（最多20个字符）" />)}
             </FormItem>
           </Row>
         </Col>

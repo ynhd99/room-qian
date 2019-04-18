@@ -94,28 +94,34 @@ const CateModal = ({
             initialValue: roomCate.cateCode,
             rules: [
               { required: true, message: '分类编码未填写', whitespace: true },
-              { max: 20, message: '最大长度不超过20' },
+              {
+                pattern: /^[0-9]{1,10}$/,
+                message: '请输入1到10位的数字！',
+              },
             ],
-          })(<Input {...codeProps} />)}
+          })(<Input {...codeProps} placeholder="请输入编码（1到10位的数字）" />)}
         </FormItem>
         <FormItem label="分类名称：" {...formItemLayout}>
           {getFieldDecorator('cateName', {
             initialValue: roomCate.cateName,
             rules: [
               { required: true, message: '分类名称未填写', whitespace: true },
-              { max: 20, message: '最大长度不超过20' },
+              {
+                pattern: /^[A-Za-z\u4e00-\u9fa5]{2,10}$/,
+                message: '请输入2到10位的中文或英文字符！',
+              },
             ],
-          })(<Input {...nameProps} />)}
+          })(<Input {...nameProps} placeholder="请输入名称（2到10位的中文或英文字符）" />)}
         </FormItem>
         <FormItem {...formItemLayout} label="分类描述">
           {getFieldDecorator('cateDesc', {
             validateFirst: true,
             rules: [
               { required: true, message: '请输入分类描述' },
-              { max: 30, message: '分类描述长度最长为30位' },
+              { max: 100, message: '分类描述长度最长为100位' },
             ],
             initialValue: roomCate.cateDesc,
-          })(<TextArea {...explainProps} />)}
+          })(<TextArea {...explainProps} placeholder="请输入分类描述（最多100个字符）" />)}
         </FormItem>
       </Form>
     </Modal>

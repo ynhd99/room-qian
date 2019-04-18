@@ -6720,13 +6720,15 @@ button.close {
   background: #fff;
   border-bottom: 1px solid #e0e0e0;
   position: relative;
+  font-size: 18px;
 }
 .bread :global .ant-breadcrumb .ant-breadcrumb-link {
-  font-size: 12px;
+  font-size: 18px;
   color: #999;
 }
 .bread :global .ant-breadcrumb span:last-child .ant-breadcrumb-link {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
   color: #666;
 }
 .bread :global .ant-form {

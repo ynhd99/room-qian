@@ -109,15 +109,25 @@ const HealthModal = ({
                     required: true,
                     message: '请输入检查分数',
                   },
+                  {
+                    pattern: /^100$|^(\d|[1-9]\d)(\.\d{1,4})*$/,
+                    message: '只能输入数字，最多四位小数！',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入检查分数" />)}
+              })(<Input type="text" placeholder="请输入检查分数（数字，最多四位小数）" />)}
             </FormItem>
           </Row>
           <Row>
             <FormItem label="检查备注" {...formItemLayout}>
               {getFieldDecorator('remark', {
                 initialValue: health.remark,
-              })(<TextArea type="text" placeholder="请输入检查备注" />)}
+                rules: [
+                  {
+                    max: 200,
+                    message: '最多200个字符',
+                  },
+                ],
+              })(<TextArea type="text" placeholder="请输入检查备注（最多200个字符）" />)}
             </FormItem>
           </Row>
         </Col>

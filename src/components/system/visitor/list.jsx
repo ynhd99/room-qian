@@ -65,6 +65,7 @@ const VisitorList = ({ visitor, onPageChange, mergeData }) => {
                   phoneNumber: record.phoneNumber,
                   receptName: record.receptName,
                   startTime: record.startTime,
+                  endTime: record.endTime,
                   remark: record.remark,
                 });
               }}

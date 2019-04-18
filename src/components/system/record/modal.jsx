@@ -29,7 +29,7 @@ const RecordModal = ({
   };
   const modalOpts = {
     width: 600,
-    title: record.oPty === 'add' ? '新增访问信息' : '修改访问信息',
+    title: record.oPty === 'add' ? '新增公告信息' : '修改公告信息',
     visible: record.modalVisible,
     onOk: handleOk,
     onCancel,
@@ -50,8 +50,9 @@ const RecordModal = ({
                     required: true,
                     message: '请输入公告标题',
                   },
+                  { max: 100, message: '请输入100个字符以内' },
                 ],
-              })(<Input type="text" placeholder="请输入公告标题" />)}
+              })(<Input type="text" placeholder="请输入公告标题，最多100个字符" />)}
             </FormItem>
           </Row>
           <Row>
@@ -63,8 +64,9 @@ const RecordModal = ({
                     required: true,
                     message: '请输入公告内容',
                   },
+                  { max: 500, message: '请输入500个字符以内' },
                 ],
-              })(<TextArea type="text" placeholder="请输入公告内容" />)}
+              })(<TextArea type="text" placeholder="请输入公告内容，最多500个字符" rows={4} />)}
             </FormItem>
           </Row>
         </Col>

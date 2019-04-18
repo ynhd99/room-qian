@@ -90,7 +90,7 @@ const StudentModal = ({
                 rules: [
                   {
                     required: true,
-                    message: '请输入编号！',
+                    message: '请输入学号！',
                     whitespace: true,
                   },
                   {
@@ -98,7 +98,12 @@ const StudentModal = ({
                     message: '请输入2到10位的数字！',
                   },
                 ],
-              })(<Input disabled={student.oPty === 'edit'} />)}
+              })(
+                <Input
+                  disabled={student.oPty === 'edit'}
+                  placeholder="请输入学号（2到10位的数字）"
+                />,
+              )}
             </FormItem>
             <FormItem {...formItemLayout} label="学生姓名" hasFeedback>
               {getFieldDecorator('studentName', {
@@ -114,7 +119,7 @@ const StudentModal = ({
                     message: '请输入2到10位的中文或英文字符！',
                   },
                 ],
-              })(<Input type="text" placeholder="2到10位的中文或英文字符" />)}
+              })(<Input type="text" placeholder="请输入学生姓名（2到10位的中文或英文字符）" />)}
             </FormItem>
             <FormItem {...formItemLayout} label="手机号">
               {getFieldDecorator('studentPhone', {

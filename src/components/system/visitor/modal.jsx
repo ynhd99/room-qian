@@ -50,8 +50,12 @@ const VisitorModal = ({
                     required: true,
                     message: '请输入到访问员姓名',
                   },
+                  {
+                    pattern: /^[A-Za-z\u4e00-\u9fa5]{2,10}$/,
+                    message: '请输入2到10位的中文或英文字符！',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入访问者姓名" />)}
+              })(<Input type="text" placeholder="请输入访问者姓名（2到10位的中文或英文字符）" />)}
             </FormItem>
           </Row>
           <Row>
@@ -62,6 +66,10 @@ const VisitorModal = ({
                   {
                     required: true,
                     message: '请输入身份证号',
+                  },
+                  {
+                    pattern: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
+                    message: '身份证号格式不正确',
                   },
                 ],
               })(<Input type="text" placeholder="请输入身份证号" />)}
@@ -76,8 +84,12 @@ const VisitorModal = ({
                     required: true,
                     message: '请输入手机号',
                   },
+                  {
+                    pattern: /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/,
+                    message: '手机号格式错误！',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入手机号" />)}
+              })(<Input type="text" placeholder="请输入11位手机号" />)}
             </FormItem>
           </Row>
           <Row>
@@ -89,8 +101,12 @@ const VisitorModal = ({
                     required: true,
                     message: '请输入接待人姓名',
                   },
+                  {
+                    pattern: /^[A-Za-z\u4e00-\u9fa5]{2,10}$/,
+                    message: '请输入2到10位的中文或英文字符！',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入接待人姓名" />)}
+              })(<Input type="text" placeholder="请输入接待人姓名（2到10位的中文或英文字符）" />)}
             </FormItem>
           </Row>
           <Row>
@@ -145,8 +161,12 @@ const VisitorModal = ({
                     required: true,
                     message: '请输入访问原因',
                   },
+                  {
+                    max: 200,
+                    message: '最多200个字符',
+                  },
                 ],
-              })(<TextArea type="text" placeholder="请输入访问原因" />)}
+              })(<TextArea type="text" placeholder="请输入访问原因（最多200个字符）" />)}
             </FormItem>
           </Row>
         </Col>

@@ -51,11 +51,15 @@ const CollegeModal = ({
                     required: true,
                     message: '请输入学院编码',
                   },
+                  {
+                    pattern: /^[0-9]{1,10}$/,
+                    message: '请输入1到10位的数字！',
+                  },
                 ],
               })(
                 <Input
                   type="text"
-                  placeholder="请输入学院编码"
+                  placeholder="请输入学院编码（1到10位的数字）"
                   disabled={college.oPty === 'edit'}
                 />,
               )}
@@ -70,8 +74,12 @@ const CollegeModal = ({
                     required: true,
                     message: '请输入学院名称',
                   },
+                  {
+                    pattern: /^[A-Za-z\u4e00-\u9fa5]{2,10}$/,
+                    message: '请输入2到10位的中文或英文字符！',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入学院名称" />)}
+              })(<Input type="text" placeholder="请输入学院名称（2到10位的中文或英文字符）" />)}
             </FormItem>
           </Row>
         </Col>

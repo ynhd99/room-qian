@@ -101,9 +101,17 @@ const RoleModal = ({
                     required: true,
                     message: '请输入角色编码',
                   },
+                  {
+                    pattern: /^[0-9]{1,10}$/,
+                    message: '请输入1到10位的数字！',
+                  },
                 ],
               })(
-                <Input type="text" placeholder="请输入角色编码" disabled={role.oPty === 'edit'} />,
+                <Input
+                  type="text"
+                  placeholder="请输入角色编码（1到10位的数字）"
+                  disabled={role.oPty === 'edit'}
+                />,
               )}
             </FormItem>
           </Row>
@@ -116,8 +124,17 @@ const RoleModal = ({
                     required: true,
                     message: '请输入角色名称',
                   },
+                  {
+                    pattern: /^[_\-a-zA-Z0-9\u4e00-\u9fa5]+$/,
+                    message: '请输入2到10位中文/英文/数字/下划线字符，可组合！',
+                  },
                 ],
-              })(<Input type="text" placeholder="请输入角色名称" />)}
+              })(
+                <Input
+                  type="text"
+                  placeholder="请输入角色名称（2到10位中文/英文/数字/下划线字符）"
+                />,
+              )}
             </FormItem>
           </Row>
           <Row>
