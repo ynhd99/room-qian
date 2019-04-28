@@ -70,6 +70,16 @@ const StaffList = ({ mergeData, staff, onPageChange, deleteStaff, getRoleList })
       },
     },
   ];
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, `selectedRows: ${selectedRows}`);
+      if (selectedRowKeys[0]) {
+        mergeData({ deleteStaffList: selectedRowKeys, buttonStatus: false });
+      } else {
+        mergeData({ buttonStatus: true });
+      }
+    },
+  };
   return (
     <Table
       style={{ marginTop: '15px' }}
@@ -79,6 +89,7 @@ const StaffList = ({ mergeData, staff, onPageChange, deleteStaff, getRoleList })
       // loading={staff.loading}
       rowKey={record => record.id}
       onChange={onPageChange}
+      rowSelection={rowSelection}
     />
   );
 };

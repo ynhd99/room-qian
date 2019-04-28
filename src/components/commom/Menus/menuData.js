@@ -2,7 +2,7 @@ const SiderMenuList = [
   {
     key: 'sub6',
     name: '个人管理',
-    icon: 'icon-cho-message',
+    icon: 'icon-cho-personal',
     items: [
       {
         key: '/system/room/personal',

@@ -12,6 +12,9 @@ import {
 export default {
   namespace: 'repair',
   state: {
+    status: '',
+    id: '',
+    reason: '',
     roomCode: '',
     propertyName: '',
     roomId: '',
@@ -24,7 +27,7 @@ export default {
     queryString: '',
     pageType: '',
     buildingId: '',
-    status: '',
+    visible: false,
     rangeDate: [moment().subtract(1, 'month'), moment()], // 日期选择框数据
     repairDate: new Date(),
     oPty: '',
@@ -106,9 +109,13 @@ export default {
       }
     },
     * updateRepair({ payload }, { select, call, put }) {
-      const { id, status } = yield select(state => state.repair);
-      payload.repairDate = payload.repairDate.format('YYYY-MM-DD');
+      const { id, status, reason } = yield select(state => state.repair);
+      console.log(`jqiwjsiwjdiwjedjeudje345666--------${id}`);
+      if (payload.repairDate) {
+        payload.repairDate = payload.repairDate.format('YYYY-MM-DD');
+      }
       payload.id = id;
+      payload.reason = reason;
       payload.status = status;
       console.log('我修改了哈');
       const res = yield call(updateRepair, { ...parse(payload) });

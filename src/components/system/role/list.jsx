@@ -6,23 +6,31 @@ import Permission from '../../commom/Permission/Permission';
 const RoleList = ({ role, onPageChange, mergeData, deleteRole }) => {
   const columns = [
     {
-      title: '角色编码',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>角色编码</span>,
       dataIndex: 'roleCode',
       key: 'roleCode',
+      align: 'center',
+      width: '15%',
     },
     {
-      title: '角色名称',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>角色名称</span>,
       dataIndex: 'roleName',
       key: 'roleName',
+      align: 'center',
+      width: '25%',
     },
     {
-      title: '所含员工数',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>所含员工数</span>,
       dataIndex: 'count',
       key: 'count',
+      align: 'center',
+      width: '20%',
     },
     {
-      title: '操作',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>操作</span>,
       dataIndex: 'action',
+      align: 'center',
+      width: '30%',
       render(text, record) {
         return (
           <div>
@@ -85,6 +93,7 @@ const RoleList = ({ role, onPageChange, mergeData, deleteRole }) => {
         style={{ marginTop: '15px' }}
         columns={columns}
         dataSource={role.roleList}
+        size="middle"
         pagination={role.pagination}
         // loading={role.loading}
         rowKey={record => record.id}

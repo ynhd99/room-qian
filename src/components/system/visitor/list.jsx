@@ -6,51 +6,59 @@ import Permission from '../../commom/Permission/Permission';
 const VisitorList = ({ visitor, onPageChange, mergeData }) => {
   const columns = [
     {
-      title: '姓名',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>姓名</span>,
       dataIndex: 'visitorName',
       key: 'visitorName',
       width: '10%',
+      align: 'center',
     },
     {
-      title: '证件号',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>证件号</span>,
       dataIndex: 'identityCode',
       key: 'identityCode',
       width: '15%',
+      align: 'center',
     },
     {
-      title: '手机号',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>手机号</span>,
       dataIndex: 'phoneNumber',
       key: 'phoneNumber',
       width: '10%',
+      align: 'center',
     },
     {
-      title: '接待人',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>接待人</span>,
       dataIndex: 'receptName',
       key: 'receptName',
       width: '10%',
+      align: 'center',
     },
     {
-      title: '到访时间',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>到访时间</span>,
       dataIndex: 'startTime',
       key: 'startTime',
       width: '10%',
+      align: 'center',
     },
     {
-      title: '离开时间',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>离开时间</span>,
       dataIndex: 'endTime',
       key: 'endTime',
       width: '10%',
+      align: 'center',
     },
     {
-      title: '到访事由',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>到访事由</span>,
       dataIndex: 'remark',
       key: 'remark',
       width: '15%',
+      align: 'center',
     },
     {
-      title: '操作',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>操作</span>,
       dataIndex: 'action',
       key: 'action',
+      align: 'center',
       render(text, record) {
         return (
           <Permission path={INVENTORY_PERMISSION.VISITE_LIST.OPTION.code}>

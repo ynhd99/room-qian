@@ -6,24 +6,31 @@ import Permission from '../../commom/Permission/Permission';
 const CateList = ({ roomCate, showModal, updateStatus, delDeport }) => {
   const columns = [
     {
-      title: '分类名称',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>分类名称</span>,
       dataIndex: 'cateName',
       key: 'cateName',
+      align: 'center',
+      width: '10%',
     },
     {
-      title: '分类编码',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>分类编码</span>,
       dataIndex: 'cateCode',
       key: 'cateCode',
+      align: 'center',
+      width: '20%',
     },
     {
-      title: '分类描述',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>分类描述</span>,
       dataIndex: 'cateDesc',
       key: 'cateDesc',
+      align: 'center',
+      width: '30%',
     },
     {
-      title: '分类状态',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>分类状态</span>,
       dataIndex: 'status',
-      width: 100,
+      width: '15%',
+      align: 'center',
       render(text, record) {
         if (record.parentId === '-1') {
           return null;
@@ -35,8 +42,9 @@ const CateList = ({ roomCate, showModal, updateStatus, delDeport }) => {
       },
     },
     {
-      title: '操作',
-      width: '200',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>操作</span>,
+      width: '25%',
+      align: 'center',
       render(text, record) {
         if (record.parentId === '-1') {
           return (

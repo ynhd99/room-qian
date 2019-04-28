@@ -6,27 +6,31 @@ import Permission from '../../commom/Permission/Permission';
 const ClassList = ({ mergeData, classRoom, onPageChange, deleteClass, updateStatus }) => {
   const columns = [
     {
-      title: '班级代码',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>班级代码</span>,
       dataIndex: 'classCode',
       key: 'classCode',
-      width: '20%',
+      width: '15%',
+      align: 'center',
     },
     {
-      title: '班级名称',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>班级名称</span>,
       dataIndex: 'className',
       key: 'className',
       width: '20%',
+      align: 'center',
     },
     {
-      title: '学院',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>所属学院</span>,
       dataIndex: 'collegeName',
       key: 'collegeName',
       width: '20%',
+      align: 'center',
     },
     {
-      title: '状态',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>状态</span>,
       dataIndex: 'status',
       width: '20%',
+      align: 'center',
       render(text, record) {
         if (record.parentId === '-1') {
           return null;
@@ -38,9 +42,10 @@ const ClassList = ({ mergeData, classRoom, onPageChange, deleteClass, updateStat
       },
     },
     {
-      title: '操作',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>操作</span>,
       dataIndex: 'action',
-      width: '20%',
+      width: '25%',
+      align: 'center',
       render(text, record) {
         if (record.status === 0) {
           return (

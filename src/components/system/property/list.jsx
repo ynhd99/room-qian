@@ -6,19 +6,25 @@ import Permission from '../../commom/Permission/Permission';
 const PropertyList = ({ mergeData, property, onPageChange, updateStatus, deleteGoods }) => {
   const columns = [
     {
-      title: '物品编码',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>物品编码</span>,
       dataIndex: 'goodsCode',
       key: 'goodsCode',
+      width: '15%',
+      align: 'center',
     },
     {
-      title: '物品名称',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>物品名称</span>,
       dataIndex: 'goodsName',
       key: 'goodsName',
+      width: '25%',
+      align: 'center',
     },
     {
-      title: '状态',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>状态</span>,
       dataIndex: 'status',
       key: 'status',
+      width: '20%',
+      align: 'center',
       render(text, record) {
         if (record.status === 0) {
           return <Badge status="success" text="启用" />;
@@ -27,8 +33,10 @@ const PropertyList = ({ mergeData, property, onPageChange, updateStatus, deleteG
       },
     },
     {
-      title: '操作',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>操作</span>,
       dataIndex: 'action',
+      width: '30%',
+      align: 'center',
       render(text, record) {
         if (record.status === 0) {
           return (

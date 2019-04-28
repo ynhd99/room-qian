@@ -6,34 +6,39 @@ import Permission from '../../commom/Permission/Permission';
 const BuildingList = ({ mergeData, building, onPageChange, updateStatus, deleteBuilding }) => {
   const columns = [
     {
-      title: '宿舍楼编码',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>宿舍楼编码</span>,
       dataIndex: 'buildingCode',
       key: 'buildingCode',
       width: '15%',
+      align: 'center',
     },
     {
-      title: '宿舍楼名称',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>宿舍楼名称</span>,
       dataIndex: 'buildingName',
       key: 'buildingName',
       width: '15%',
+      align: 'center',
     },
     {
-      title: '宿管员名称',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>宿管员名称</span>,
       dataIndex: 'staffName',
       key: 'stallName',
       width: '15%',
+      align: 'center',
     },
     {
-      title: '宿管人员联系电话',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>宿管员联系电话</span>,
       dataIndex: 'staffPhone',
       key: 'stallPhone',
       width: '20%',
+      align: 'center',
     },
     {
-      title: '状态',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>状态</span>,
       dataIndex: 'status',
       key: 'status',
       width: '15%',
+      align: 'center',
       render(text, record) {
         if (record.status === 0) {
           return <Badge status="success" text="启用" />;
@@ -43,9 +48,10 @@ const BuildingList = ({ mergeData, building, onPageChange, updateStatus, deleteB
       },
     },
     {
-      title: '操作',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>操作</span>,
       dataIndex: 'action',
       width: '20%',
+      align: 'center',
       render(text, record) {
         if (record.status === 0) {
           return (

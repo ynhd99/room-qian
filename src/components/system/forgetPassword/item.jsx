@@ -3,11 +3,7 @@ import { Form, Input, Button, Row } from 'antd';
 import styles from '../../../common/register.less';
 
 const FormItem = Form.Item;
-const Item = ({
-  home,
-  form: { getFieldDecorator, getFieldValue, validateFields },
-  onSubmitInfo,
-}) => {
+const Item = ({ form: { getFieldDecorator, getFieldValue, validateFields }, onSubmitInfo }) => {
   const formItemLayout = {
     labelCol: {
       span: 6,
@@ -31,13 +27,14 @@ const Item = ({
       }
     });
   };
+  const userInfo = JSON.parse(window.sessionStorage.getItem('userInfo'));
   return (
     <div className={styles.main}>
       <Form onSubmit={handleSubmit}>
         <Row>
           <FormItem hasFeedback label="账号" {...formItemLayout}>
             <Input
-              value={home.userInfo.code}
+              value={userInfo.code}
               style={{ width: '90%' }}
               placeholder="请输入账号"
               disabled

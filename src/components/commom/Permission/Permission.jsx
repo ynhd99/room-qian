@@ -9,7 +9,6 @@ class Permission extends Component {
 
   isExistType() {
     const sysPermmission = window.sessionStorage.getItem('authority');
-    console.log(`sysPermmission${sysPermmission[0]}`);
     if (this.props.path) {
       return sysPermmission.indexOf(this.props.path) !== -1;
     }

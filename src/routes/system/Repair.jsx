@@ -66,6 +66,12 @@ const Repair = ({ repair, dispatch }) => {
         payload,
       });
     },
+    updateRepair(payload) {
+      dispatch({
+        type: 'repair/updateRepair',
+        payload,
+      });
+    },
   };
   const repairModal = {
     repair,

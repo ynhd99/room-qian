@@ -9,7 +9,7 @@ export default {
     loading: false,
     params: null,
     authorityList: [],
-    userInfo: {},
+    userInfo: { code: '' },
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -40,8 +40,9 @@ export default {
       if (code === '200') {
         window.sessionStorage.setItem('token', res.data.data.sessionId);
         window.sessionStorage.setItem('authority', res.data.data.authority);
+        window.sessionStorage.setItem('userInfo', JSON.stringify(res.data.data.userInfo));
         window.sessionStorage.setItem('fullName', res.data.data.fullName);
-        window.sessionStorage.setItem('userInfo', res.data.data.userInfo);
+        console.log(`hahahahhahahaha---------${res.data.data.userInfo.code}`);
         const path = '/system/room/record';
         yield put(routerRedux.push(path));
         yield put({

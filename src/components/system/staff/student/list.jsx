@@ -110,6 +110,16 @@ const StudentList = ({ mergeData, student, onPageChange, getDataList, deleteStud
       },
     },
   ];
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, `selectedRows: ${selectedRows}`);
+      if (selectedRowKeys[0]) {
+        mergeData({ deleteStudentList: selectedRowKeys, buttonStatus: false });
+      } else {
+        mergeData({ buttonStatus: true });
+      }
+    },
+  };
   return (
     <div>
       <Table
@@ -119,6 +129,7 @@ const StudentList = ({ mergeData, student, onPageChange, getDataList, deleteStud
         pagination={student.pagination}
         rowKey={record => record.id}
         onChange={onPageChange}
+        rowSelection={rowSelection}
       />
     </div>
   );

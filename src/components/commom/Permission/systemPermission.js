@@ -34,6 +34,7 @@ module.exports = {
   ACCOUNT_LIST: {
     ADD: { code: '61000011', description: '新增' },
     OPTION: { code: '61000012', description: '操作' },
+    DELETE: { code: '61000013', description: '批量删除' },
   },
   COLLEGE_LIST: {
     ADD: { code: '61000031', description: '新增' },

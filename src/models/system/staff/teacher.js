@@ -14,6 +14,8 @@ export default {
     loading: false,
     teacherList: [],
     collegeList: [],
+    deleteTeacherList: [],
+    buttonStatus: true,
     modalVisible: false,
     // 学生姓名
     teacherName: '',

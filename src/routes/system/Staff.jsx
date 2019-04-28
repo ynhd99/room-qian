@@ -37,6 +37,12 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         payload: {},
       });
     },
+    deleteStudent(payload) {
+      dispatch({
+        type: 'student/deleteStudent',
+        payload,
+      });
+    },
   };
   const studentList = {
     student,
@@ -134,6 +140,12 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         payload: {},
       });
     },
+    deleteTeacher(payload) {
+      dispatch({
+        type: 'teacher/deleteTeacher',
+        payload,
+      });
+    },
   };
   const teacherList = {
     teacher,
@@ -221,6 +233,12 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         payload: {},
       });
     },
+    deleteStaff(payload) {
+      dispatch({
+        type: 'staff/deleteStaff',
+        payload,
+      });
+    },
   };
   const staffList = {
     staff,
@@ -243,6 +261,12 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
       console.log('我要获取角色信息了');
       dispatch({
         type: 'staff/getRoleList',
+        payload,
+      });
+    },
+    deleteStaff(payload) {
+      dispatch({
+        type: 'staff/deleteStaff',
         payload,
       });
     },

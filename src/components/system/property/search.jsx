@@ -29,7 +29,7 @@ const PropertySearch = ({
                 initialValue: property.queryString,
               })(
                 <Input
-                  minWidth="214"
+                  style={{ width: '220' }}
                   placeholder="请输入物品的编码或者名称"
                   onChange={(value) => {
                     mergeData({ queryString: value.target.value });

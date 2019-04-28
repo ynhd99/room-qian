@@ -1,63 +1,86 @@
 import React from 'react';
-import { Table, Form, Popconfirm, Badge } from 'antd';
+import { Table, Form, Popconfirm, Badge, Modal, Input } from 'antd';
 import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
 import Permission from '../../commom/Permission/Permission';
 
-const RepairList = ({ repair, onPageChange, mergeData, getDateList, updateStatus }) => {
+const TextArea = Input.TextArea;
+const RepairList = ({
+  repair,
+  onPageChange,
+  mergeData,
+  getDateList,
+  updateStatus,
+  updateRepair,
+  form: { getFieldDecorator, validateFields, getFieldsValue },
+}) => {
   const columns = [
     {
-      title: '宿舍号',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>宿舍号</span>,
       dataIndex: 'roomCode',
       key: 'roomCode',
       width: '10%',
+      align: 'center',
     },
     {
-      title: '维修物品',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>维修物品</span>,
       dataIndex: 'goodsName',
       key: 'goodsName',
-      width: '15%',
+      width: '10%',
+      align: 'center',
     },
     {
-      title: '维修时间',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>维修时间</span>,
       dataIndex: 'repairDate',
       key: 'repairDate',
       width: '15%',
+      align: 'center',
     },
     {
-      title: '申请人',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>申请人</span>,
       dataIndex: 'repairPerson',
       key: 'repairPerson',
       width: '10%',
+      align: 'center',
     },
     {
-      title: '维修原因',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>维修原因</span>,
       dataIndex: 'remark',
       key: 'remark',
-      width: '20%',
+      width: '15%',
+      align: 'center',
     },
     {
-      title: '业务状态',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>驳回原因</span>,
+      dataIndex: 'reason',
+      key: 'reason',
+      width: '15%',
+      align: 'center',
+    },
+    {
+      title: <span style={{ display: 'table', margin: '0 auto' }}>业务状态</span>,
       dataIndex: 'status',
       key: 'status',
       width: '10%',
+      align: 'center',
       render(text, record) {
         if (record.status === 1) {
-          return <Badge status="success" text="待审核" />;
+          return <Badge status="warning" text="待审核" />;
         }
         if (record.status === 2) {
           return <Badge status="success" text="已审核" />;
         }
         if (record.status === 3) {
-          return <Badge status="success" text="已驳回" />;
+          return <Badge status="error" text="已驳回" />;
         }
         return null;
       },
     },
     {
-      title: '操作',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>操作</span>,
       dataIndex: 'action',
       key: 'action',
-      width: '20%',
+      width: '15%',
+      align: 'center',
       render(text, record) {
         if (record.status === 1) {
           return (
@@ -95,16 +118,13 @@ const RepairList = ({ repair, onPageChange, mergeData, getDateList, updateStatus
                 </Popconfirm>
               </Permission>
               <Permission path={INVENTORY_PERMISSION.REPAIR_LIST.REJECT.code}>
-                <Popconfirm
-                  title="你确定要驳回该申请吗？"
-                  onConfirm={() => {
-                    updateStatus({ id: record.id, status: 3 });
+                <a
+                  onClick={() => {
+                    mergeData({ visible: true, id: record.id, status: 3 });
                   }}
-                  okText="确定"
-                  cancelText="取消"
                 >
-                  <a> | 驳回</a>
-                </Popconfirm>
+                  | 驳回
+                </a>
               </Permission>
             </div>
           );
@@ -137,15 +157,56 @@ const RepairList = ({ repair, onPageChange, mergeData, getDateList, updateStatus
       },
     },
   ];
+  // form参数
+  const itemLayout = {
+    labelCol: { span: 5 },
+    wrapperCol: { span: 16 },
+    label: '驳回原因',
+  };
+  // modal框点击确定
+  function handleOk() {
+    validateFields((errors) => {
+      if (errors) {
+        return;
+      }
+      const value = {
+        ...getFieldsValue(),
+        visible: false,
+      };
+      mergeData(value);
+      updateRepair({});
+    });
+  }
+  // modal框参数
+  const modalOpts = {
+    title: '驳回',
+    visible: repair.visible,
+    onOk: handleOk,
+    onCancel: () => mergeData({ visible: false }),
+  };
   return (
-    <Table
-      dataSource={repair.repairList}
-      columns={columns}
-      // loading={loading}
-      rowKey={record => record.id}
-      onChange={onPageChange}
-      pagination={repair.pagination}
-    />
+    <div>
+      <Modal {...modalOpts}>
+        <Form layout="horizontal">
+          <Form.Item {...itemLayout}>
+            {getFieldDecorator('reason', {
+              rules: [
+                { required: true, message: '驳回原因未填写', whitespace: true },
+                { max: 30, message: '最大长度不超过30' },
+              ],
+            })(<TextArea placeholder="请输入驳回原因" maxLength="30" rows={2} />)}
+          </Form.Item>
+        </Form>
+      </Modal>
+      <Table
+        dataSource={repair.repairList}
+        columns={columns}
+        // loading={loading}
+        rowKey={record => record.id}
+        onChange={onPageChange}
+        pagination={repair.pagination}
+      />
+    </div>
   );
 };
 export default Form.create()(RepairList);

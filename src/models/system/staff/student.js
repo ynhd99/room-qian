@@ -18,10 +18,14 @@ export default {
     classList: [],
     // 学院列表
     collegeList: [],
+    // 批量删除列表
+    deleteStudentList: [],
     // modal可见标志
     modalVisible: false,
     // 学生姓名
     studentName: '',
+    // 按钮是否可选
+    buttonStatus: true,
     // 学生手机号
     studentPhone: '',
     // 学院

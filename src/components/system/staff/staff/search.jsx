@@ -10,6 +10,7 @@ const StaffSearch = ({
   onSubmitInfo,
   getRoleList,
   searchAction,
+  deleteStaff,
   form: { getFieldDecorator, validateFields },
 }) => {
   const handleSubmit = (e) => {
@@ -31,7 +32,7 @@ const StaffSearch = ({
                   initialValue: staff.queryString,
                 })(
                   <Input
-                    minWidth="250"
+                    style={{ width: 220 }}
                     placeholder="请输入宿管员编号或者姓名"
                     onChange={(value) => {
                       mergeData({ queryString: value.target.value });
@@ -65,6 +66,18 @@ const StaffSearch = ({
                 >
                   +新增宿管员
                 </Button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+                  <Button
+                    type="primary"
+                    disabled={staff.buttonStatus}
+                    onClick={() => {
+                      deleteStaff({ deleteStaffList: staff.deleteStaffList });
+                    }}
+                  >
+                    -批量删除宿管员
+                  </Button>
+                </Permission>
               </Col>
             </Row>
           </Permission>

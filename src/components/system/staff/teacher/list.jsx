@@ -77,6 +77,16 @@ const TeacherList = ({ mergeData, teacher, onPageChange, getDataList, deleteTeac
       },
     },
   ];
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, `selectedRows: ${selectedRows}`);
+      if (selectedRowKeys[0]) {
+        mergeData({ deleteTeacherList: selectedRowKeys, buttonStatus: false });
+      } else {
+        mergeData({ buttonStatus: true });
+      }
+    },
+  };
   return (
     <Table
       style={{ marginTop: '15px' }}
@@ -86,6 +96,7 @@ const TeacherList = ({ mergeData, teacher, onPageChange, getDataList, deleteTeac
       // loading={staff.loading}
       rowKey={record => record.id}
       onChange={onPageChange}
+      rowSelection={rowSelection}
     />
   );
 };

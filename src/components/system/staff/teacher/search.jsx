@@ -10,6 +10,7 @@ const TeacherSearch = ({
   onSubmitInfo,
   searchAction,
   getDataList,
+  deleteTeacher,
   form: { getFieldDecorator, validateFields },
 }) => {
   const handleSubmit = (e) => {
@@ -31,7 +32,7 @@ const TeacherSearch = ({
                   initialValue: teacher.queryString,
                 })(
                   <Input
-                    width="214"
+                    style={{ width: 220 }}
                     placeholder="请输入老师的编号或者姓名"
                     onChange={(value) => {
                       mergeData({ queryString: value.target.value });
@@ -65,6 +66,18 @@ const TeacherSearch = ({
                 >
                   +新增老师
                 </Button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+                  <Button
+                    type="primary"
+                    disabled={teacher.buttonStatus}
+                    onClick={() => {
+                      deleteTeacher({ deleteTeacherList: teacher.deleteTeacherList });
+                    }}
+                  >
+                    -批量删除老师
+                  </Button>
+                </Permission>
               </Col>
             </Row>
           </Permission>

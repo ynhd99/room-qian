@@ -13,20 +13,23 @@ const CollegeList = ({
 }) => {
   const columns = [
     {
-      title: '学院代码',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>学院代码</span>,
       dataIndex: 'collegeCode',
       key: 'collegeCode',
-      width: '25%',
+      width: '15%',
+      align: 'center',
     },
     {
-      title: '学院名称',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>学院名称</span>,
       dataIndex: 'collegeName',
       key: 'collegeName',
       width: '25%',
+      align: 'center',
     },
     {
-      title: '分类状态',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>分类状态</span>,
       dataIndex: 'status',
+      align: 'center',
       width: '25%',
       render(text, record) {
         if (record.status === 0) {
@@ -36,9 +39,10 @@ const CollegeList = ({
       },
     },
     {
-      title: '操作',
+      title: <span style={{ display: 'table', margin: '0 auto' }}>操作</span>,
       dataIndex: 'action',
       width: '25%',
+      align: 'center',
       render(text, record) {
         if (record.status === 0) {
           return (

@@ -10,6 +10,8 @@ export default {
     studentList: [],
     roleList: [],
     staffList: [],
+    deleteStaffList: [],
+    buttonStatus: true,
     modalVisible: false,
     // 学生姓名
     staffName: '',
@@ -133,7 +135,7 @@ export default {
       const res = yield call(deleteStaff, { ...parse(payload) });
       if (res.data.code === '200') {
         message.info('删除成功');
-        yield put({ type: 'getClassList', payload: {} });
+        yield put({ type: 'getStaffList', payload: {} });
       } else {
         message.error(res.data.errorInfo);
       }
