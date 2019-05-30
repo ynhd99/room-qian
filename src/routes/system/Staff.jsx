@@ -43,6 +43,13 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         payload,
       });
     },
+    exportStudent(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'student/exportStudent',
+        payload,
+      });
+    }
   };
   const studentList = {
     student,
@@ -146,6 +153,13 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         payload,
       });
     },
+    exportTeacher(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'teacher/exportTeacher',
+        payload,
+      });
+    }
   };
   const teacherList = {
     teacher,
@@ -239,6 +253,13 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
         payload,
       });
     },
+    exportStaff(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'staff/exportStaff',
+        payload,
+      });
+    }
   };
   const staffList = {
     staff,

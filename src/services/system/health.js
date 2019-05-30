@@ -24,3 +24,11 @@ export async function getRoomList(params) {
     body: JSON.stringify(params),
   });
 }
+export async function exportHealth(params) {
+  // 导出
+  // let studentInfo = `{"id":"${params.payload.id}"}`;
+  // studentInfo = encodeURIComponent(studentInfo);
+  const authToken = window.sessionStorage.getItem('token');
+  const url = `/api/health/exportHealth?authToken=${authToken}`;
+  window.location.href = url;
+}

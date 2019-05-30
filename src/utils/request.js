@@ -1,7 +1,6 @@
 import fetch from 'dva/fetch';
 import { stringify } from 'qs';
-import { message } from 'antd';
-import { getFormData, getSession } from './index';
+import { getFormData } from './index';
 
 /**
  * Requests a URL, returning a promise.

@@ -31,6 +31,13 @@ const Room = ({ room, dispatch }) => {
         payload: {},
       });
     },
+    exportRoom(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'room/exportRoom',
+        payload,
+      });
+    }
   };
   const listPropsList = {
     room,

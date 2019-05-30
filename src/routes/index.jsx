@@ -20,7 +20,6 @@ import Record from './system/Record';
 import Repair from './system/Repair';
 import Health from './system/Health';
 import Personal from './system/Personal';
-import RoomAllocation from './system/RoomAllocation';
 
 const routes = [
   {
@@ -70,10 +69,6 @@ const routes = [
   {
     path: '/system/room/allocation',
     component: Allocation,
-  },
-  {
-    path: '/system/room/roomAllocation',
-    component: RoomAllocation,
   },
   {
     path: '/system/room/class',

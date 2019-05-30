@@ -5,6 +5,7 @@ import {
   updateBuilding,
   addBuilding,
   deleteBuilding,
+  exportBuilding,
 } from '../../services/system/building';
 import { getStaffList } from '../../services/system/staff';
 
@@ -111,6 +112,11 @@ export default {
       } else {
         message.error(res.data.errorInfo);
       }
+    },
+    // 导出宿舍楼信息
+    * exportBuilding({ payload }, { call }) {
+      console.log('bdwuiedheufherufhrufhru');
+      yield call(exportBuilding, { payload });
     },
     // 更新教学楼信息
     * updateStatus({ payload }, { call, put }) {

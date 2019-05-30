@@ -99,7 +99,7 @@ const ClassModal = ({
                     message: '请输入班级名称',
                   },
                   {
-                    pattern: /^[A-Za-z\u4e00-\u9fa5]{2,10}$/,
+                    pattern: /^[A-Za-z\u4e00-\u9fa51-9]{2,10}$/,
                     message: '请输入2到10位的中文或英文字符！',
                   },
                 ],

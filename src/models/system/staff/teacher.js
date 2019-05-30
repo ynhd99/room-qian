@@ -6,6 +6,7 @@ import {
   updateTeacher,
   addTeacher,
   deleteTeacher,
+  exportTeacher,
 } from '../../../services/system/staff';
 
 export default {
@@ -21,6 +22,8 @@ export default {
     teacherName: '',
     // 角色
     roleList: [],
+    errorVisible: false,
+    errorList: [],
     // 学生手机号
     teacherPhone: '',
     // 学院
@@ -135,6 +138,11 @@ export default {
       } else {
         message.error(res.data.errorInfo);
       }
+    },
+      // 导出辅导员信息
+    * exportTeacher({ payload }, { call }) {
+      console.log('bdwuiedheufherufhrufhru');
+      yield call(exportTeacher, { payload });
     },
     * getCollegeList({ payload }, { call, put }) {
       payload.page = 1;

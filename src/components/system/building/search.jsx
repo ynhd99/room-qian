@@ -10,6 +10,7 @@ const CollegeSearch = ({
   onSubmitInfo,
   searchAction,
   getStaffList,
+  exportBuilding,
   form: { getFieldDecorator, validateFields },
 }) => {
   const handleSubmit = (e) => {
@@ -64,25 +65,32 @@ const CollegeSearch = ({
       <div className="action-box">
         <Row />
         <Permission path={INVENTORY_PERMISSION.BUILDING_LIST.ADD.code}>
-          <Row>
-            <Col span={16}>
-              <Button
-                type="primary"
-                onClick={() => {
-                  mergeData({
-                    modalVisible: true,
-                    oPty: 'add',
-                    buildingCode: '',
-                    buildingName: '',
-                    staffId: '',
-                  });
-                  getStaffList();
-                }}
-              >
+          <Button
+            type="primary"
+            onClick={() => {
+              mergeData({
+                modalVisible: true,
+                oPty: 'add',
+                buildingCode: '',
+                buildingName: '',
+                staffId: '',
+              });
+              getStaffList();
+            }}
+          >
                 添加宿舍楼
               </Button>
-            </Col>
-          </Row>
+        </Permission>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Button
+            type="primary"
+            onClick={() => {
+              exportBuilding({});
+            }}
+          >
+                    导出宿舍楼信息
+                  </Button>
         </Permission>
       </div>
     </div>

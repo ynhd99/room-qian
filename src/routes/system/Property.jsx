@@ -57,6 +57,13 @@ const Property = ({ property, dispatch }) => {
         payload: {},
       });
     },
+    exportProperty(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'property/exportProperty',
+        payload,
+      });
+    }
   };
   const propertyModal = {
     property,

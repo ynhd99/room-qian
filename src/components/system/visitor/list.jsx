@@ -87,6 +87,7 @@ const VisitorList = ({ visitor, onPageChange, mergeData }) => {
   ];
   return (
     <Table
+      style={{ marginTop: '15px' }}
       dataSource={visitor.visitorList}
       columns={columns}
       // loading={loading}

@@ -27,7 +27,7 @@ const Allocation = ({ allocation, dispatch }) => {
     },
     searchAction() {
       dispatch({
-        type: 'allocation/getStudentList',
+        type: 'allocation/getRoomDetailList',
         payload: {},
       });
     },

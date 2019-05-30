@@ -199,6 +199,7 @@ const RepairList = ({
         </Form>
       </Modal>
       <Table
+        style={{ marginTop: '15px' }}
         dataSource={repair.repairList}
         columns={columns}
         // loading={loading}

@@ -6,6 +6,7 @@ import {
   addClass,
   updateClass,
   deleteClass,
+  exportClass,
 } from '../../services/system/classRoom';
 
 export default {
@@ -20,6 +21,8 @@ export default {
     queryString: '',
     // 班级名称
     className: '',
+    errorVisible: false,
+    errorList: [],
     // 班级代码
     classCode: '',
     // 分页
@@ -106,6 +109,11 @@ export default {
       } else {
         message.error(res.data.errorInfo);
       }
+    },
+      // 导出班级信息
+    * exportClass({ payload }, { call }) {
+      console.log('bdwuiedheufherufhrufhru');
+      yield call(exportClass, { payload });
     },
     * getClassList({ payload }, { select, call, put }) {
       yield put({ type: 'showLoading' });

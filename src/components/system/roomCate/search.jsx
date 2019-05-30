@@ -5,14 +5,15 @@ import Permission from '../../commom/Permission/Permission';
 
 const FormItem = Form.Item;
 
-const CateSearch = ({ queryString, showModal }) => {
+const CateSearch = ({ showModal, mergeData, roomCate, seachAction }) => {
   const nameProps = {
     style: { minWidth: 248 },
     onChange({ target: { value } }) {
-      // nameChanged(value);
+      mergeData({ queryString: value });
+      seachAction({});
     },
     placeholder: '请输入分类编码或名称',
-    // value: queryString,
+    value: roomCate.queryString,
   };
 
   return (

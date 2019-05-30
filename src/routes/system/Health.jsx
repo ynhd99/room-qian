@@ -27,6 +27,13 @@ const Health = ({ health, dispatch }) => {
         payload: {},
       });
     },
+    exportHealth(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'health/exportHealth',
+        payload,
+      });
+    }
   };
   const healthList = {
     health,

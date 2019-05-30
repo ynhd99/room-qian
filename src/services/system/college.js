@@ -30,3 +30,11 @@ export async function update(params) {
     body: JSON.stringify(params),
   });
 }
+export async function exportCollege(params) {
+  // 导出
+  // let studentInfo = `{"id":"${params.payload.id}"}`;
+  // studentInfo = encodeURIComponent(studentInfo);
+  const authToken = window.sessionStorage.getItem('token');
+  const url = `/api/college/exportCollege?authToken=${authToken}`;
+  window.location.href = url;
+}

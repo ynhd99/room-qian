@@ -45,6 +45,7 @@ const BuildingList = ({ mergeData, building, onPageChange, updateStatus, deleteB
         } else if (record.status === 1) {
           return <Badge status="error" text="停用" />;
         }
+        return null;
       },
     },
     {
@@ -58,6 +59,7 @@ const BuildingList = ({ mergeData, building, onPageChange, updateStatus, deleteB
             <div>
               <Permission path={INVENTORY_PERMISSION.BUILDING_LIST.OPTION.code}>
                 <a
+
                   onClick={() =>
                     mergeData({
                       oPty: 'edit',
@@ -115,7 +117,7 @@ const BuildingList = ({ mergeData, building, onPageChange, updateStatus, deleteB
               <Popconfirm
                 title="你确定要删除该教学楼吗？"
                 onConfirm={() => {
-                  deleteBuilding({ record });
+                  deleteBuilding({ id: record.id });
                 }}
                 okText="确定"
                 cancelText="取消"

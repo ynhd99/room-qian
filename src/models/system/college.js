@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { parse } from 'qs';
-import { getList, add, updateStatus, deleteCollege, update } from '../../services/system/college';
+import { getList, add, updateStatus, deleteCollege, update,exportCollege } from '../../services/system/college';
 
 export default {
   namespace: 'college',
@@ -12,6 +12,8 @@ export default {
     status: '2',
     // 学院名称
     collegeName: '',
+    errorVisible: false,
+    errorList: [],
     // 学院代码
     collegeCode: '',
     queryString: '',
@@ -68,6 +70,11 @@ export default {
         message.error(res.data.errorInfo);
       }
     },
+       //导出学院信息
+       * exportCollege({ payload },{ call }) {
+        console.log("bdwuiedheufherufhrufhru");
+        yield call(exportCollege, {payload});
+      },
     * updateStatus({ payload }, { select, call, put }) {
       const res = yield call(updateStatus, { ...parse(payload) });
       if (res.data.code === '200') {

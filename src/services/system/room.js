@@ -74,3 +74,11 @@ export async function deleteRoomDetail(params) {
     body: JSON.stringify(params),
   });
 }
+export async function exportRoom(params) {
+  // 导出
+  // let studentInfo = `{"id":"${params.payload.id}"}`;
+  // studentInfo = encodeURIComponent(studentInfo);
+  const authToken = window.sessionStorage.getItem('token');
+  const url = `/api/room/exportRoom?authToken=${authToken}`;
+  window.location.href = url;
+}

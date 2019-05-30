@@ -1,7 +1,7 @@
 import { parse } from 'qs';
 import { message } from 'antd';
 import moment from 'moment';
-import { addHealth, updateHealth, getHealthList, getRoomList } from '../../services/system/health';
+import { addHealth, updateHealth, getHealthList, getRoomList ,exportHealth} from '../../services/system/health';
 
 export default {
   namespace: 'health',
@@ -10,6 +10,8 @@ export default {
     roomId: '',
     modalVisible: false,
     healthList: [],
+    errorVisible: false,
+    errorList: [],
     roomList: [],
     rangeDate: [moment().subtract(1, 'month'), moment()], // 日期选择框数据
     checkDate: new Date(),
@@ -86,11 +88,16 @@ export default {
             roomCode: '',
           },
         });
-        yield put({ type: 'getRepairList', payload: {} });
+        yield put({ type: 'getHealthList', payload: {} });
       } else {
         message.error(res.data.errorInfo);
       }
     },
+      //导出卫生检查信息
+      * exportHealth({ payload },{ call }) {
+        console.log("bdwuiedheufherufhrufhru");
+        yield call(exportHealth, {payload});
+      },
     * updateHealth({ payload }, { select, call, put }) {
       const { id } = yield select(state => state.health);
       payload.checkDate = payload.checkDate.format('YYYY-MM-DD');

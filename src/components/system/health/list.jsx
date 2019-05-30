@@ -65,6 +65,7 @@ const HealthList = ({ health, onPageChange, mergeData, getDateList }) => {
   ];
   return (
     <Table
+      style={{ marginTop: '15px' }}
       dataSource={health.healthList}
       columns={columns}
       // loading={loading}

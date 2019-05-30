@@ -34,9 +34,14 @@ const AllocationList = ({ allocation, onPageChange }) => {
       key: 'className',
     },
     {
-      title: '办理日期',
+      title: '入住日期',
       dataIndex: 'checkDate',
       key: 'checkDate',
+    },
+    {
+      title: '退宿日期',
+      dataIndex: 'deleteDate',
+      key: 'deleteDate',
     },
     {
       title: '床号',

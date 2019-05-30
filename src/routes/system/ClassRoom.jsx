@@ -68,6 +68,13 @@ const ClassRoom = ({ classRoom, dispatch }) => {
         payload: {},
       });
     },
+    exportClass(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'classRoom/exportClass',
+        payload,
+      });
+    }
   };
   const ClassModals = {
     classRoom,

@@ -66,3 +66,9 @@ export async function deleteRole(params) {
     body: JSON.stringify(params),
   });
 }
+export async function getRoomDetailList(params) {
+  return request('/api/roomDetail/findRoomDetailForPage', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}

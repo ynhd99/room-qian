@@ -1,4 +1,5 @@
 import { message } from 'antd';
+import moment from 'moment';
 import { parse } from 'qs';
 import {
   getBuildingList,
@@ -12,13 +13,17 @@ import {
   getStudentList,
   addRoomDetail,
   deleteRoomDetail,
+  exportRoom,
 } from '../../services/system/room';
 
 export default {
   namespace: 'room',
   state: {
+    id: '',
     roomCode: '',
     cateName: '',
+    errorVisible: false,
+    errorList: [],
     cateId: '',
     buildingName: '',
     buildingId: '',
@@ -106,7 +111,16 @@ export default {
         message.error(res.data.errorInfo);
       }
     },
-    * updateRoom({ payload }, { call, put }) {
+     //导出宿舍信息
+     * exportRoom({ payload },{ call }) {
+      console.log("bdwuiedheufherufhrufhru");
+      yield call(exportRoom, {payload});
+    },
+    * updateRoom({ payload }, { call, put, select }) {
+      if (!payload.id) {
+        const { id } = yield select(state => state.room);
+        payload.id = id;
+      }
       const res = yield call(updateRoom, { ...parse(payload) });
       if (res.data.code === '200') {
         message.info('修改成功');
@@ -231,7 +245,7 @@ export default {
       const { id, roomDetailInfoList, checkDate } = yield select(state => state.room);
       roomDetailInfoList.map((item) => {
         item.roomId = id;
-        item.checkDate = checkDate.format('YYYY-MM-DD');
+        item.checkDate = moment(checkDate).format('YYYY-MM-DD');
         return null;
       });
       payload.roomDetailInfoList = roomDetailInfoList;
@@ -248,7 +262,7 @@ export default {
       console.log(`还没有吗${payload.classCode}`);
       const res = yield call(deleteRoomDetail, { ...parse(payload) });
       if (res.data.code === '200') {
-        message.info('删除成功');
+        message.info('退宿成功');
         yield put({ type: 'getRoomList', payload: {} });
       } else {
         message.error(res.data.errorInfo);

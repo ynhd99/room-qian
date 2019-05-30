@@ -22,9 +22,6 @@ const HealthModal = ({
     }
     return false;
   };
-  function disabledDate(current) {
-    return current && current > moment().endOf('day');
-  }
   const roomOperation =
     health.roomList &&
     health.roomList.map(room => (

@@ -1,7 +1,7 @@
 import { parse } from 'qs';
 import { message } from 'antd';
 import { getRoleList } from '../../../services/system/common/common';
-import { getStaffList, addStaff, updateStaff, deleteStaff } from '../../../services/system/staff';
+import { getStaffList, addStaff, updateStaff, deleteStaff, exportStaff } from '../../../services/system/staff';
 
 export default {
   namespace: 'staff',
@@ -15,6 +15,8 @@ export default {
     modalVisible: false,
     // 学生姓名
     staffName: '',
+    errorVisible: false,
+    errorList: [],
     // 学生手机号
     staffPhone: '',
     // 性别
@@ -139,6 +141,11 @@ export default {
       } else {
         message.error(res.data.errorInfo);
       }
+    },
+    // 导出宿管员信息
+    * exportStaff({ payload }, { call }) {
+      console.log('bdwuiedheufherufhrufhru');
+      yield call(exportStaff, { payload });
     },
   },
   reducers: {

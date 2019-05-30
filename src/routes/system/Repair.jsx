@@ -31,6 +31,13 @@ const Repair = ({ repair, dispatch }) => {
         payload: {},
       });
     },
+    exportRepair(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'repair/exportRepair',
+        payload,
+      });
+    }
   };
   const repairList = {
     repair,

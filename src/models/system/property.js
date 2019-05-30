@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { parse } from 'qs';
-import { getGoodsList, addGoods, updateGoods, deleteGoods } from '../../services/system/property';
+import { getGoodsList, addGoods, updateGoods, deleteGoods,exportGoods } from '../../services/system/property';
 
 export default {
   namespace: 'property',
@@ -74,6 +74,11 @@ export default {
         message.error(res.data.errorInfo);
       }
       yield put({ type: 'hideLoading' });
+    },
+    //导出物品信息
+    * exportProperty({ payload },{ call }) {
+      console.log("bdwuiedheufherufhrufhru");
+      yield call(exportGoods, {payload});
     },
     * addGoods({ payload }, { call, put }) {
       console.log(`还没有吗${payload.classCode}`);

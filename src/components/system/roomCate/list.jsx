@@ -119,6 +119,7 @@ const CateList = ({ roomCate, showModal, updateStatus, delDeport }) => {
   ];
   return (
     <Table
+      style={{ marginTop: '15px' }}
       dataSource={roomCate.cateList}
       columns={columns}
       loading={roomCate.loading}

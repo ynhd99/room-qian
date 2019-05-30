@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Input, Row, Col, Button, Select, DatePicker } from 'antd';
 
-const Option = Select.Option;
 const FormItem = Form.Item;
 const AllocationSearch = ({
   mergeData,

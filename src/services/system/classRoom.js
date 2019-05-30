@@ -30,3 +30,11 @@ export async function deleteClass(params) {
     body: JSON.stringify(params),
   });
 }
+export async function exportClass() {
+  // 导出
+  // let studentInfo = `{"id":"${params.payload.id}"}`;
+  // studentInfo = encodeURIComponent(studentInfo);
+  const authToken = window.sessionStorage.getItem('token');
+  const url = `/api/class/exportClass?authToken=${authToken}`;
+  window.location.href = url;
+}

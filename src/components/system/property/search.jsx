@@ -9,6 +9,7 @@ const PropertySearch = ({
   mergeData,
   onSubmitInfo,
   searchAction,
+  exportProperty,
   form: { getFieldDecorator, validateFields },
 }) => {
   const handleSubmit = (e) => {
@@ -63,18 +64,25 @@ const PropertySearch = ({
       <div className="action-box">
         <Row />
         <Permission path={INVENTORY_PERMISSION.GOODS_LIST.ADD.code}>
-          <Row>
-            <Col span={16}>
-              <Button
-                type="primary"
-                onClick={() =>
+          <Button
+            type="primary"
+            onClick={() =>
                   mergeData({ modalVisible: true, oPty: 'add', goodsCode: '', goodsName: '' })
                 }
-              >
+          >
                 添加公共财产
               </Button>
-            </Col>
-          </Row>
+        </Permission>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Button
+            type="primary"
+            onClick={() => {
+              exportProperty({});
+            }}
+          >
+                    导出物品信息
+                  </Button>
         </Permission>
       </div>
     </div>

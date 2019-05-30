@@ -24,3 +24,11 @@ export async function deleteGoods(params) {
     body: JSON.stringify(params),
   });
 }
+export async function exportGoods(params) {
+  // 导出
+  // let studentInfo = `{"id":"${params.payload.id}"}`;
+  // studentInfo = encodeURIComponent(studentInfo);
+  const authToken = window.sessionStorage.getItem('token');
+  const url = `/api/goods/exportGoods?authToken=${authToken}`;
+  window.location.href = url;
+}

@@ -149,7 +149,7 @@ const RepairModal = ({
             </FormItem>
           </Row>
           <Row>
-            <FormItem label="访问事由" {...formItemLayout}>
+            <FormItem label="维修原因" {...formItemLayout}>
               {getFieldDecorator('remark', {
                 initialValue: repair.remark,
                 rules: [

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Row, Col, Button } from 'antd';
+import { Form, Input, Row, Col, Button, Upload, Icon, message, Modal } from 'antd';
 import INVENTORY_PERMISSION from '../../../commom/Permission/systemPermission';
 import Permission from '../../../commom/Permission/Permission';
 
@@ -11,8 +11,56 @@ const StudentSearch = ({
   getDataList,
   searchAction,
   deleteStudent,
+  exportStudent,
   form: { getFieldDecorator, validateFields },
 }) => {
+  const authToken = window.sessionStorage.getItem('token');
+  const onChange = (info) => {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      console.log(info.file.response);
+      console.log(info.file.response.uploadStatus);
+      if (!info.file.response.uploadStatus) {
+        console.log('愁死我了  你到底是个啥');
+        mergeData({ errorVisible: true, errorList: info.file.response.errorList });
+      } else {
+        message.success(`已成功导入${info.file.response.importMsg}条数据`);
+        searchAction();
+      }
+    } else if (info.file.status === 'error') {
+      message.error('导入失败');
+    }
+  };
+  const beforeUpload = (file) => {
+    const arr = ['', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+    const isImg = arr.indexOf(file.type) !== -1;
+    if (!isImg) {
+      message.error('请上传 xlsx ,xls 格式的文件');
+    }
+    return isImg;
+  };
+  const handleStatus = () => {
+    mergeData({ errorVisible: false });
+    searchAction();
+  };
+  const modelProps = {
+    title: '导入错误信息',
+    visible: student.errorVisible,
+    onOk: handleStatus,
+    onCancel: handleStatus,
+  };
+  const props = {
+    name: 'file',
+    action: `api/student/importStudent?authToken=${authToken}`,
+    headers: {
+      authorization: 'authorization-text',
+    },
+    showUploadList: false,
+    onChange,
+    beforeUpload,
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     validateFields({ force: true }, (err, values) => {
@@ -23,6 +71,11 @@ const StudentSearch = ({
   };
   return (
     <div>
+      <Modal {...modelProps}>
+        {student.errorList.map(item => (
+          <p>{item}</p>
+       ))}
+      </Modal>
       <div className="components-search">
         <Form layout="inline" onSubmit={handleSubmit}>
           <Row>
@@ -79,6 +132,23 @@ const StudentSearch = ({
                   >
                     -批量删除学生
                   </Button>
+                </Permission>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+                  <Button
+                    type="primary"
+                    onClick={() => {
+                      exportStudent({});
+                    }}
+                  >
+                    导出学生
+                  </Button>
+                </Permission>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+                  <Upload {...props}>
+                    <Icon type="upload" /> 导入学生
+                  </Upload>
                 </Permission>
               </Col>
             </Row>

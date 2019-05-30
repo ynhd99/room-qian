@@ -7,7 +7,7 @@ const Header = ({ isShow, userLogout }) => {
     return (
       <div className={styles.header}>
         <div className={styles.leftLogo}>
-          <img src="./images/logo.png" alt="logo" />
+           {/* <img src="./images/logo.png" alt="logo" /> */}
         </div>
         <div className={styles.leftMenus} />
         <div className={styles.rightMenus}>

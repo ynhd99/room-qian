@@ -6,6 +6,7 @@ import {
   addStudent,
   updateStudent,
   deleteStudent,
+  exportStudent,
 } from '../../../services/system/staff';
 
 export default {
@@ -30,6 +31,8 @@ export default {
     studentPhone: '',
     // 学院
     collegeId: '',
+    errorVisible: false,
+    errorList: [],
     // 班级
     classId: '',
     // 角色
@@ -114,10 +117,10 @@ export default {
     },
     * updateStudent({ payload }, { select, call, put }) {
       const { id } = yield select(state => state.student);
-      if (payload.teacherSex === '1') {
-        payload.teacherSex = '男';
-      } else if (payload.teacherSex === '2') {
-        payload.teacherSex = '女';
+      if (payload.studentSex === '1') {
+        payload.studentSex = '男';
+      } else if (payload.studentSex === '2') {
+        payload.studentSex = '女';
       }
       payload.id = id;
       const res = yield call(updateStudent, { ...parse(payload) });
@@ -150,6 +153,11 @@ export default {
       } else {
         message.error(res.data.errorInfo);
       }
+    },
+    // 导出学生信息
+    * exportStudent({ payload }, { call }) {
+      console.log('bdwuiedheufherufhrufhru');
+      yield call(exportStudent, { payload });
     },
     * getCollegeList({ payload }, { call, put }) {
       payload.page = 1;

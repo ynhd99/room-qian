@@ -46,6 +46,13 @@ const Visitor = ({ visitor, dispatch }) => {
         payload: {},
       });
     },
+    exportVisitor(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'visitor/exportVisitor',
+        payload,
+      });
+    }
   };
   const visitorModal = {
     visitor,

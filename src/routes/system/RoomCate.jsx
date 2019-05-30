@@ -23,6 +23,18 @@ const RoomCate = ({ roomCate, dispatch }) => {
         },
       });
     },
+    mergeData(payload) {
+      dispatch({
+        type: 'roomCate/mergeData',
+        payload,
+      });
+    },
+    seachAction(payload) {
+      dispatch({
+        type: 'roomCate/getCateList',
+        payload,
+      });
+    },
   };
   const catePropsList = {
     roomCate,

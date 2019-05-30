@@ -88,6 +88,13 @@ const College = ({ college, dispatch }) => {
         payload: {},
       });
     },
+    exportCollege(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'college/exportCollege',
+        payload,
+      });
+    }
   };
   const CollegeModalList = {
     college,

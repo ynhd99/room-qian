@@ -7,6 +7,7 @@ import {
   getRepairList,
   getRoomList,
   getGoodsList,
+  exportRepair,
 } from '../../services/system/repair';
 
 export default {
@@ -20,6 +21,8 @@ export default {
     roomId: '',
     goodsId: '',
     modalVisible: false,
+    errorVisible: false,
+    errorList: [],
     repairList: [],
     roomList: [],
     goodsList: [],
@@ -91,6 +94,11 @@ export default {
         message.error(res.data.errorInfo);
       }
       yield put({ type: 'hideLoading' });
+    },
+    //导出维修信息
+    * exportRepair({ payload },{ call }) {
+      console.log("bdwuiedheufherufhrufhru");
+      yield call(exportRepair, {payload});
     },
     * addRepair({ payload }, { call, put }) {
       payload.repairDate = payload.repairDate.format('YYYY-MM-DD');

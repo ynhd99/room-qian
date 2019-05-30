@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import { parse } from 'qs';
 import moment from 'moment';
-import { addVisitor, getVisitorList, updateVisitor } from '../../services/system/visitor';
+import { addVisitor, getVisitorList, updateVisitor,exportVisitor } from '../../services/system/visitor';
 
 export default {
   namespace: 'visitor',
@@ -11,6 +11,8 @@ export default {
     modalVisable: false,
     visitorName: '',
     endTime: '',
+    errorVisible: false,
+    errorList: [],
     startTime: '',
     id: '',
     oPty: '',
@@ -73,6 +75,11 @@ export default {
         message.error(res.data.errorInfo);
       }
       yield put({ type: 'hideLoading' });
+    },
+    //导出外来人员信息
+    * exportVisitor({ payload },{ call }) {
+      console.log("bdwuiedheufherufhrufhru");
+      yield call(exportVisitor, {payload});
     },
     * addVisitor({ payload }, { call, put }) {
       console.log(`还没有吗${payload.classCode}`);

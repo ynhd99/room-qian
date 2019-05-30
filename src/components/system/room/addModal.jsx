@@ -51,7 +51,7 @@ const AddRoomModal = ({
     },
   };
   const handleOk = () => {
-    validateFields((errors, values) => {
+    validateFields((errors) => {
       if (!errors) {
         addRoomDetail();
         mergeData({
@@ -60,6 +60,7 @@ const AddRoomModal = ({
           collegeId: '',
           classId: '',
           checkDate: new Date(),
+          roomDetailInfoList: [],
         });
       }
     });
@@ -71,6 +72,7 @@ const AddRoomModal = ({
       collegeId: '',
       classId: '',
       checkDate: new Date(),
+      roomDetailInfoList: [],
     });
   };
   const modalOpts = {
@@ -102,7 +104,6 @@ const AddRoomModal = ({
       name: record.name,
     }),
   };
-
   const columns = [
     {
       title: '学生编码',
@@ -140,9 +141,10 @@ const AddRoomModal = ({
             {getFieldDecorator(`${record.id}bedCount`, {
               initialValue: record.bedCount === 0 ? '' : record.bedCount,
               rules:
-                record.settleFlag === 1
+                 record.settleFlag === 1 || room.roomDetailInfoList.length !== 0
                   ? ''
                   : [{ required: true, message: '床位号没选择', whitespace: true }],
+                  // [{ required: true, message: '床位号没选择', whitespace: true }]
             })(
               <Input
                 disabled={record.settleFlag === 1}

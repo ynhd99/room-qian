@@ -53,7 +53,7 @@ const StudentList = ({ mergeData, student, onPageChange, getDataList, deleteStud
       title: '手机号',
       dataIndex: 'studentPhone',
       key: 'studentPhone',
-      width: '20%',
+      width: '15%',
     },
     {
       title: '学院',
@@ -65,7 +65,13 @@ const StudentList = ({ mergeData, student, onPageChange, getDataList, deleteStud
       title: '班级',
       dataIndex: 'className',
       key: 'className',
-      width: '15%',
+      width: '10%',
+    },
+    {
+      title: '性别',
+      dataIndex: 'studentSex',
+      key: 'studentSex',
+      width: '10%',
     },
     {
       title: '操作',

@@ -5,7 +5,7 @@ import {
   getClassList,
   getBuildingList,
   getRoomList,
-  getStudentList,
+  getRoomDetailList,
 } from '../../services/system/common/common';
 
 export default {
@@ -61,7 +61,7 @@ export default {
             payload: {},
           });
           dispatch({
-            type: 'getStudentList',
+            type: 'getRoomDetailList',
             payload: {},
           });
         }
@@ -70,7 +70,7 @@ export default {
   },
   effects: {
     // 分页获取学生住宿情况列表
-    * getStudentList({ payload }, { select, call, put }) {
+    * getRoomDetailList({ payload }, { select, call, put }) {
       console.log('我获取学生列表了');
       yield put({ type: 'showLoading' });
       const {
@@ -96,7 +96,7 @@ export default {
         payload.page = 1;
         payload.size = 10;
       }
-      const res = yield call(getStudentList, { ...parse(payload) });
+      const res = yield call(getRoomDetailList, { ...parse(payload) });
       if (res.data.code === '200') {
         yield put({
           type: 'mergeData',

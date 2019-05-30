@@ -57,6 +57,13 @@ const Ruilding = ({ building, dispatch }) => {
         payload: {},
       });
     },
+    exportBuilding(payload){
+      console.log("哈哈哈哈哈哈哈哈哈哈哈哈");
+      dispatch({
+        type: 'building/exportBuilding',
+        payload,
+      });
+    }
   };
   const BuildingModalList = {
     building,

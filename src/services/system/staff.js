@@ -24,6 +24,14 @@ export async function deleteStaff(params) {
     body: JSON.stringify(params),
   });
 }
+export async function exportStaff(params) {
+  // 导出
+  // let studentInfo = `{"id":"${params.payload.id}"}`;
+  // studentInfo = encodeURIComponent(studentInfo);
+  const authToken = window.sessionStorage.getItem('token');
+  const url = `/api/staff/exportStaff?authToken=${authToken}`;
+  window.location.href = url;
+}
 export async function getTeacherList(params) {
   return request('/api/teacher/findTeacherForPage', {
     method: 'post',
@@ -47,6 +55,14 @@ export async function deleteTeacher(params) {
     method: 'post',
     body: JSON.stringify(params),
   });
+}
+export async function exportTeacher(params) {
+  // 导出
+  // let studentInfo = `{"id":"${params.payload.id}"}`;
+  // studentInfo = encodeURIComponent(studentInfo);
+  const authToken = window.sessionStorage.getItem('token');
+  const url = `/api/teacher/exportTeacher?authToken=${authToken}`;
+  window.location.href = url;
 }
 export async function getStudentList(params) {
   return request('/api/student/findStudentForPage', {
@@ -73,4 +89,12 @@ export async function deleteStudent(params) {
     method: 'post',
     body: JSON.stringify(params),
   });
+}
+export async function exportStudent(params) {
+  // 导出
+  // let studentInfo = `{"id":"${params.payload.id}"}`;
+  // studentInfo = encodeURIComponent(studentInfo);
+  const authToken = window.sessionStorage.getItem('token');
+  const url = `/api/student/exportStudent?authToken=${authToken}`;
+  window.location.href = url;
 }

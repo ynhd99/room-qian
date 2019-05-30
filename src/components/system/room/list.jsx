@@ -61,14 +61,14 @@ const RoomList = ({
         return (
           <Permission path={INVENTORY_PERMISSION.ROOM_LIST.OPTION.code}>
             <Popconfirm
-              title="你确定要将该学生从宿舍中移除码？"
+              title="你确定要退宿吗？"
               onConfirm={() => {
                 deleteRoomDetail({ id: record.id, studentId: record.studentId });
               }}
               okText="确定"
               cancelText="取消"
             >
-              <a>删除</a>
+              <a>退宿</a>
             </Popconfirm>
           </Permission>
         );
