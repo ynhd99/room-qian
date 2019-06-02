@@ -9,7 +9,7 @@ const ClassRoom = ({ classRoom, dispatch }) => {
     classRoom,
     onPageChange(page) {
       dispatch({
-        type: 'classRoom/getStaffList',
+        type: 'classRoom/getClassList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,
@@ -105,6 +105,16 @@ const ClassRoom = ({ classRoom, dispatch }) => {
           },
         });
       }
+      dispatch({
+        type: 'classRoom/mergeData',
+        payload: {
+          modalVisable: false,
+          classCode: '', 
+          className: '', 
+          collegeId: '',
+          oPty: '',
+        },
+      });
     },
   };
   return (

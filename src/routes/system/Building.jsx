@@ -9,7 +9,7 @@ const Ruilding = ({ building, dispatch }) => {
     building,
     onPageChange(page) {
       dispatch({
-        type: 'building/getStaffList',
+        type: 'building/getBuildingList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,

@@ -122,7 +122,7 @@ const StudentSearch = ({
                   +新增学生
                 </Button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.BATCHDELETE.code}>
                   <Button
                     type="primary"
                     disabled={student.buttonStatus}
@@ -134,7 +134,7 @@ const StudentSearch = ({
                   </Button>
                 </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.EXPORT.code}>
                   <Button
                     type="primary"
                     onClick={() => {
@@ -145,7 +145,7 @@ const StudentSearch = ({
                   </Button>
                 </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.IMPORT.code}>
                   <Upload {...props}>
                     <Icon type="upload" /> 导入学生
                   </Upload>

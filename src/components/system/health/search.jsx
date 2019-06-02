@@ -149,7 +149,7 @@ const HealthSearch = ({
               </Button>
           </Permission>
         &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.HEALTH_LIST.EXPORT.code}>
             <Button
               type="primary"
               onClick={() => {
@@ -160,7 +160,7 @@ const HealthSearch = ({
                   </Button>
           </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.HEALTH_LIST.IMPORT.code}>
             <Upload {...props}>
               <Icon type="upload" /> 导入卫生检查
                   </Upload>

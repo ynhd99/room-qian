@@ -9,7 +9,7 @@ const Property = ({ property, dispatch }) => {
     property,
     onPageChange(page) {
       dispatch({
-        type: 'property/getStaffList',
+        type: 'property/getGoodsList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,

@@ -9,7 +9,7 @@ const Role = ({ role, dispatch }) => {
     role,
     onPageChange(page) {
       dispatch({
-        type: 'staff/getStaffList',
+        type: 'staff/getRoleList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,

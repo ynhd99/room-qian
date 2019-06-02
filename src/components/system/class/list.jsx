@@ -58,6 +58,8 @@ const ClassList = ({ mergeData, classRoom, onPageChange, deleteClass, updateStat
                       id: record.id,
                       modalVisible: true,
                       classCode: record.classCode,
+                      className: record.className,
+                      collegeId: record.collegeId,
                     })
                   }
                 >
@@ -87,6 +89,8 @@ const ClassList = ({ mergeData, classRoom, onPageChange, deleteClass, updateStat
                     id: record.id,
                     modalVisible: true,
                     classCode: record.classCode,
+                    className: record.className,
+                    collegeId: record.collegeId,
                   })
                 }
               >

@@ -173,7 +173,7 @@ const ClassSearch = ({
             </Button>
         </Permission>
       &nbsp;&nbsp;&nbsp;&nbsp;
-        <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+        <Permission path={INVENTORY_PERMISSION.CLASS_LIST.EXPORT.code}>
           <Button
             type="primary"
             onClick={() => {
@@ -184,7 +184,7 @@ const ClassSearch = ({
                   </Button>
         </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-        <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+        <Permission path={INVENTORY_PERMISSION.CLASS_LIST.IMPORT.code}>
           <Upload {...props}>
             <Icon type="upload" /> 导入班级
                   </Upload>

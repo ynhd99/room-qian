@@ -55,7 +55,8 @@ const AllocationList = ({ allocation, onPageChange }) => {
       columns={columns}
       // loading={loading}
       rowKey={record => record.id}
-      pagination={onPageChange} // 分页器:不分页
+      pagination={allocation.pagination} // 分页器:不分页
+      onChange={onPageChange}
     />
   );
 };

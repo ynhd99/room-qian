@@ -82,7 +82,7 @@ const CollegeSearch = ({
               </Button>
         </Permission>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+        <Permission path={INVENTORY_PERMISSION.BUILDING_LIST.EXPORT.code}>
           <Button
             type="primary"
             onClick={() => {

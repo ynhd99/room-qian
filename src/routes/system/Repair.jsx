@@ -50,7 +50,7 @@ const Repair = ({ repair, dispatch }) => {
     },
     onPageChange(page) {
       dispatch({
-        type: 'staff/getStaffList',
+        type: 'staff/getRepairList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,

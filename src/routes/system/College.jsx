@@ -9,7 +9,7 @@ const College = ({ college, dispatch }) => {
     college,
     onPageChange(page) {
       dispatch({
-        type: 'college/getStaffList',
+        type: 'college/getList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,
@@ -121,6 +121,9 @@ const College = ({ college, dispatch }) => {
         type: 'college/mergeData',
         payload: {
           modalVisable: false,
+          collegeCode: '', 
+          collegeName: '', 
+          oPty: '',
         },
       });
     },

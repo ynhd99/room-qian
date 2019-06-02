@@ -27,6 +27,7 @@ const StaffSearch = ({
         mergeData({ errorVisible: true, errorList: info.file.response.errorList });
       } else {
         message.success(`已成功导入${info.file.response.importMsg}条数据`);
+        searchAction();
       }
     } else if (info.file.status === 'error') {
       message.error('导入失败');
@@ -119,7 +120,7 @@ const StaffSearch = ({
                   +新增宿管员
                 </Button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.BATCHDELETE.code}>
                   <Button
                     type="primary"
                     disabled={staff.buttonStatus}
@@ -131,7 +132,7 @@ const StaffSearch = ({
                   </Button>
                 </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.EXPORT.code}>
                   <Button
                     type="primary"
                     onClick={() => {
@@ -142,7 +143,7 @@ const StaffSearch = ({
                   </Button>
                 </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+                <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.IMPORT.code}>
                   <Upload {...props}>
                     <Icon type="upload" /> 导入宿管员
                   </Upload>

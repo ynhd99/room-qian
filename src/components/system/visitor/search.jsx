@@ -112,7 +112,7 @@ const VisitorSearch = ({
                       请点选两个时间以确定一个时间范围
                     </div>
                   )}
-                    disabledDate={disabledDate}
+                    //disabledDate={disabledDate}
                     onChange={(value) => {
                       mergeData({ visitDate: value });
                       searchAction();
@@ -157,7 +157,7 @@ const VisitorSearch = ({
               </Button>
           </Permission>
         &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.EXPORT.code}>
             <Button
               type="primary"
               onClick={() => {
@@ -168,7 +168,7 @@ const VisitorSearch = ({
                   </Button>
           </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.IMPORT.code}>
             <Upload {...props}>
               <Icon type="upload" /> 导入访问
                   </Upload>

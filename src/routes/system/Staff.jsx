@@ -181,7 +181,7 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
     },
     onPageChange(page) {
       dispatch({
-        type: 'teacher/getStudentList',
+        type: 'teacher/getTeacherList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,
@@ -271,7 +271,7 @@ const Staff = ({ student, dispatch, teacher, staff }) => {
     },
     onPageChange(page) {
       dispatch({
-        type: 'staff/getStudentList',
+        type: 'staff/getStaffList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,

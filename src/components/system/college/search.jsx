@@ -123,7 +123,7 @@ const CollegeSearch = ({
               </Button>
           </Permission>
         &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.COLLEGE_LIST.EXPORT.code}>
             <Button
               type="primary"
               onClick={() => {
@@ -134,7 +134,7 @@ const CollegeSearch = ({
                   </Button>
           </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.COLLEGE_LIST.IMPORT.code}>
             <Upload {...props}>
               <Icon type="upload" /> 导入学院
                   </Upload>

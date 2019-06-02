@@ -42,7 +42,7 @@ const Allocation = ({ allocation, dispatch }) => {
     },
     onPageChange(page) {
       dispatch({
-        type: 'allocation/getStudentList',
+        type: 'allocation/getRoomDetailList',
         payload: {
           pageNo: page.current,
           pageSize: page.pageSize,

@@ -55,6 +55,7 @@ const CollegeList = ({
                       id: record.id,
                       modalVisible: true,
                       collegeCode: record.collegeCode,
+                      collegeName: record.collegeName,
                     })
                   }
                 >

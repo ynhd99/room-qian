@@ -161,6 +161,7 @@ const RepairSearch = ({
                   propertyName: '',
                   repairDate: new Date(),
                   remark: '',
+                  repairPerson: '',
                 });
                 getDateList();
               }}
@@ -169,7 +170,7 @@ const RepairSearch = ({
               </Button>
           </Permission>
         &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.REPAIR_LIST.EXPORT.code}>
             <Button
               type="primary"
               onClick={() => {
@@ -180,7 +181,7 @@ const RepairSearch = ({
                   </Button>
           </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.REPAIR_LIST.IMPORT.code}>
             <Upload {...props}>
               <Icon type="upload" /> 导入维修情况
                   </Upload>

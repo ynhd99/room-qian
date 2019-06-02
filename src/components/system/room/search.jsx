@@ -135,7 +135,7 @@ const RoomSearch = ({
           </Button>
           </Permission>
       &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.ROOM_LIST.EXPORT.code}>
             <Button
               type="primary"
               onClick={() => {
@@ -146,13 +146,13 @@ const RoomSearch = ({
                   </Button>
           </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.ROOM_LIST.IMPORTROOM.code}>
             <Upload {...props}>
               <Icon type="upload" /> 导入宿舍
                   </Upload>
           </Permission>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-          <Permission path={INVENTORY_PERMISSION.ACCOUNT_LIST.DELETE.code}>
+          <Permission path={INVENTORY_PERMISSION.ROOM_LIST.IMPORTDETAIL.code}>
             <Upload {...props1}>
               <Icon type="upload" /> 导入宿舍分配
                   </Upload>
