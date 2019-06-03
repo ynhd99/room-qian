@@ -5,6 +5,7 @@ import {
   getMaxCode,
   addRoomCate,
   updateRoomCate,
+  deleteRoomCate,
 } from '../../services/system/roomCate';
 
 export default {
@@ -80,7 +81,25 @@ export default {
         message.info('修改成功');
         yield put({ type: 'getCateList', payload: {} });
       } else {
-        message.error(res.data.erroeInfo);
+        message.error(res.data.errorInfo);
+      }
+    },
+    * updateStatus({ payload }, { call, select, put }) {
+      const res = yield call(updateRoomCate, { ...parse(payload) });
+      if (res.data.code === '200') {
+        message.info('修改成功');
+        yield put({ type: 'getCateList', payload: {} });
+      } else {
+        message.error(res.data.errorInfo);
+      }
+    },
+    * deleteRoomCate({ payload }, { call, put }) {
+      const res = yield call(deleteRoomCate, { ...parse(payload) });
+      if (res.data.code === '200') {
+        message.info('删除成功');
+        yield put({ type: 'getCateList', payload: {} });
+      } else {
+        message.error(res.data.errorInfo);
       }
     },
     * getMaxCode({ payload }, { call, select, put }) {

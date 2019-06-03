@@ -1,4 +1,5 @@
 import React from 'react';
+import { message } from 'antd';
 import { Table, Form, Col, Row, Button, Popconfirm } from 'antd';
 import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
 import Permission from '../../commom/Permission/Permission';
@@ -52,7 +53,11 @@ const RoleList = ({ role, onPageChange, mergeData, deleteRole }) => {
               <Popconfirm
                 title="你确定要删除该学院吗？"
                 onConfirm={() => {
+                  if(record.count == 0){
                   deleteRole({ record });
+                  }else{
+                    message.info("该角色下已有用户，不可进行删除操作");
+                  }
                 }}
                 okText="确定"
                 cancelText="取消"

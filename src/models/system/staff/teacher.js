@@ -134,6 +134,17 @@ export default {
       const res = yield call(deleteTeacher, { ...parse(payload) });
       if (res.data.code === '200') {
         message.info('删除成功');
+        yield put({
+          type: 'mergeData',
+          payload: {
+            pagination: {
+              showSizeChanger: true,
+              showQuickJumper: true,
+              current: 0,
+              pageSize: 10,
+            },
+          },
+        });
         yield put({ type: 'getTeacherList', payload: {} });
       } else {
         message.error(res.data.errorInfo);

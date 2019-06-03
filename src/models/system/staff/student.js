@@ -149,6 +149,17 @@ export default {
       const res = yield call(deleteStudent, { ...parse(payload) });
       if (res.data.code === '200') {
         message.info('删除成功');
+        yield put({
+          type: 'mergeData',
+          payload: {
+            pagination: {
+              showSizeChanger: true,
+              showQuickJumper: true,
+              current: 0,
+              pageSize: 10,
+            },
+          },
+        });
         yield put({ type: 'getStudentList', payload: {} });
       } else {
         message.error(res.data.errorInfo);

@@ -108,7 +108,7 @@ const ClassRoom = ({ classRoom, dispatch }) => {
       dispatch({
         type: 'classRoom/mergeData',
         payload: {
-          modalVisable: false,
+          modalVisible: false,
           classCode: '', 
           className: '', 
           collegeId: '',

@@ -58,6 +58,18 @@ const RoomCate = ({ roomCate, dispatch }) => {
         },
       });
     },
+    deleteRoomCate(payload){
+      dispatch({
+        type:'roomCate/deleteRoomCate',
+        payload,
+      })
+    },
+    updateStatus(payload){
+      dispatch({
+        type:'roomCate/updateStatus',
+        payload,
+      })
+    }
   };
   const catePropsModal = {
     roomCate,

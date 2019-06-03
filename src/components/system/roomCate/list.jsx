@@ -3,7 +3,7 @@ import { Table, Form, Badge, Popconfirm } from 'antd';
 import INVENTORY_PERMISSION from '../../commom/Permission/systemPermission';
 import Permission from '../../commom/Permission/Permission';
 
-const CateList = ({ roomCate, showModal, updateStatus, delDeport }) => {
+const CateList = ({ roomCate, showModal, updateStatus, deleteRoomCate }) => {
   const columns = [
     {
       title: <span style={{ display: 'table', margin: '0 auto' }}>分类名称</span>,
@@ -55,7 +55,7 @@ const CateList = ({ roomCate, showModal, updateStatus, delDeport }) => {
                 <Popconfirm
                   title="删除主类，将删除主类下的子类，确定要删除吗？"
                   onConfirm={() => {
-                    updateStatus({ record, status: 1 });
+                    deleteRoomCate({ id:record.id,parentId:record.parentId });
                   }}
                   okText="确定"
                   cancelText="取消"
@@ -73,9 +73,9 @@ const CateList = ({ roomCate, showModal, updateStatus, delDeport }) => {
                 <a onClick={() => showModal('edit', record)}>编辑 |</a>
                 <span className="ant-divider" />
                 <Popconfirm
-                  title="您确定停用此销售关系吗？"
+                  title="您确定停用此分类吗？"
                   onConfirm={() => {
-                    updateStatus({ record, status: 1 });
+                    updateStatus({ id:record.id, status: 1 });
                   }}
                   okText="确定"
                   cancelText="取消"
@@ -91,9 +91,9 @@ const CateList = ({ roomCate, showModal, updateStatus, delDeport }) => {
             <div>
               <a onClick={() => showModal('edit', record)}>编辑 |</a>
               <Popconfirm
-                title="您确定启用此销售关系吗？"
+                title="您确定启用此分类吗？"
                 onConfirm={() => {
-                  updateStatus({ record, status: 0 });
+                  updateStatus({ id:record.id, status: 0 });
                 }}
                 okText="确定"
                 cancelText="取消"
@@ -102,9 +102,9 @@ const CateList = ({ roomCate, showModal, updateStatus, delDeport }) => {
               </Popconfirm>
               <span className="antd-divider" />
               <Popconfirm
-                title="您确定删除此销售关系吗？"
+                title="您确定删除此分类吗？"
                 onConfirm={() => {
-                  delDeport({ record });
+                  deleteRoomCate({ id:record.id,parentId:record.parentId });
                 }}
                 okText="确定"
                 cancelText="取消"

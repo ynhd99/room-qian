@@ -24,3 +24,9 @@ export async function updateRoomCate(params) {
     body: JSON.stringify(params),
   });
 }
+export async function deleteRoomCate(params) {
+  return request('/api/roomCate/deleteRoomCate', {
+    method: 'post',
+    body: JSON.stringify(params),
+  });
+}
