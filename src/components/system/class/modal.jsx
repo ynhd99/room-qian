@@ -17,7 +17,6 @@ const ClassModal = ({
         modalHandleOk(values);
       }
     });
-    mergeData({ modalVisible: false });
   };
   const onCancel = () => {
     mergeData({ modalVisible: false, oPty: '' });
@@ -119,7 +118,7 @@ const ClassModal = ({
               })(
                 <Select
                   style={{ minWidth: 215 }}
-                  value={classRoom.collegeId}
+                  //value={classRoom.collegeId}
                   showSearch
                   filterOption={filterOption}
                   onChange={(value) => {

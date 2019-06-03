@@ -113,7 +113,7 @@ export default {
       payload.roleAuthorityList = roleAuthorityList;
       const res = yield call(updateRole, { ...parse(payload) });
       if (res.data.code === '200') {
-        message.info('新增成功');
+        message.info('修改成功');
         yield put({ type: 'getRoleList', payload: {} });
       } else {
         message.error(res.data.errorInfo);

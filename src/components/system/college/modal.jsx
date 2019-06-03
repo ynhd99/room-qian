@@ -15,10 +15,9 @@ const CollegeModal = ({
         modalHandleOk(values);
       }
     });
-    mergeData({ modalVisible: false });
   };
   const onCancel = () => {
-    mergeData({ modalVisible: false, deportCode: '', deportName: '', oPty: '' });
+    mergeData({ modalVisible: false, collegeCode: '', collegeName: '', oPty: '' });
   };
   const formItemLayout = {
     labelCol: {
