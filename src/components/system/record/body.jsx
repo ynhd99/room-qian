@@ -26,7 +26,6 @@ const RecordBody = ({ record, mergeData, deleleRecord }) => {
               >
                 编辑
               </a>
-              ,
               <Popconfirm
                 title="您确定要删除吗？"
                 onConfirm={() => {
@@ -35,10 +34,9 @@ const RecordBody = ({ record, mergeData, deleleRecord }) => {
                 okText="确定"
                 cancelText="取消"
               >
-                <a>删除</a>
+                <a> | 删除</a>
               </Popconfirm>
-              ,
-            </Permission>,
+            </Permission>
           ]}
         >
           <List.Item.Meta
@@ -48,7 +46,7 @@ const RecordBody = ({ record, mergeData, deleleRecord }) => {
                 <Icon type="notification" />
               </Badge>
             }
-            title={<a href="https://ant.design">{item.title}</a>}
+      title={<a href="https://ant.design">{item.title}(发布时间：{item.updateTime})</a>}
             description={item.content}
           />
         </List.Item>
